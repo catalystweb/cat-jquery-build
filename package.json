@@ -7,8 +7,12 @@
     "start": "parcel index.html --open",
     "build": "parcel build index.html"
   },
-  "dependencies": {},
+  "dependencies": {
+    "extract-text-webpack-plugin": "3.0.2",
+    "webpack": "4.29.3"
+  },
   "devDependencies": {
+    "@types/extract-text-webpack-plugin": "3.0.3",
     "parcel-bundler": "^1.6.1"
   },
   "keywords": []

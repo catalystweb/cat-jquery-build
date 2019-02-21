@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Kerem Suer",
+    "title": "Contributor",
+    "avatar": "user-pic-1",
+    "status": "offline"
+  },
+  {
+    "name": "Bill S Kenney",
+    "title": "Editor",
+    "avatar": "user-pic-1",
+    "status": "online"
+  },
+  {
+    "name": "Oykun Yilmaz",
+    "title": "Administrator",
+    "avatar": "user-pic-1",
+    "status": "afk"
+  },
+  {
+    "name": "Rogie King",
+    "title": "Contributor",
+    "avatar": "user-pic-1",
+    "status": "online"
+  },
+  {
+    "name": "Victor Erixon",
+    "title": "Contributor",
+    "avatar": "user-pic-1",
+    "status": "offline"
+  },
+  {
+    "name": "Daniel Kandilas",
+    "title": "Developer",
+    "avatar": "user-pic-1",
+    "status": "offline"
+  },
+  {
+    "name": "Neil Wang",
+    "title": "Developer",
+    "avatar": "user-pic-1",
+    "status": "online"
+  }
+]

@@ -23,19 +23,10 @@
 				<section>
 					<div class="user-wrapper">
 						<div class="user-container">
-							<div class="user-img-container">
-								<div class="user-avatar user-pic-1"></div>
-								<div class="user-status pink"></div>
-							</div>
-							<div class="user-info">
-								<div class="user-name">Kerem Suer</div>
-								<div class="user-title">Contributor</div>
-							</div>
-							<button class="user-button">Block</button>
 						</div>
 					</div>
 				</section>
-				<section>
+				<!-- <section>
 					<div class="user-wrapper">
 						<div class="user-container">
 							<div class="user-img-container">
@@ -107,17 +98,19 @@
 								<div class="user-title">Developer</div>
 							</div>
 							<button class="user-button">Block</button>
-								</div>
-							</div>
-						</section>
+						</div>
+					</div>
+				</section> -->
 			</div>
 			<footer>
 				<div class="search-wrapper">
 					<div class="search-container">
-						<input type="text" class="search-icon-glass border defaultFont" placeholder="Search contacts"><span class="fa fa-search search-icon-position" aria-hidden="true"></span></input>
+						<input id="searchField" type="text" onkeyup="filterFunction()" class="search-icon-glass border defaultFont" placeholder="Search contacts"><span class="fa fa-search search-icon-position" aria-hidden="true"></span></input>
 					</div>
 				</div>
 			</footer>
 		</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"/>
+<script src="src/js/main.js"/>
 </html>

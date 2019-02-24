@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  var dataSource = "https://catalystweb.github.io/test/json/data.json";
+$(document).ready(function () {
+  var dataSource = "https://catalystweb.github.io/json/userdata.json";
   $.ajax({
     type: "GET",
     url: dataSource,
@@ -8,32 +8,26 @@ $(document).ready(function() {
     dataType: "jsonp",
     crossDomain: true,
     cache: false,
-    success: function(index, data) {
+    success: function (index, data) {
       var userData = "";
 
-      $.each(data, function(i) {
-        console.log(data);
-        '<div class="user-img-container">' +
-          '<div class="user-avatar ' +
-          data.avatar[i] +
-          '"></div >' +
-          '<div class="user-status ' +
-          data.status[i] +
-          '"></div>' +
-          "</div >" +
-          '<div class="user-info">' +
-          '<div class="user-name">' +
-          data.name[i] +
-          "</div>" +
-          '<div class="user-title">' +
-          data.title[i] +
-          "</div>" +
-          "</div>" +
-          '<button class="user-button">Block</button>';
+      $.each(data, function (i) {
+  
+        userData += '<div class="user-img-container">' +
+                    '<div class="user-avatar ' + data.avatar[i] + '"></div >' +
+                    '<div class="user-status ' + data.status[i] + '"></div>' +
+                    "</div >" +
+                    '<div class="user-info">' +
+                    '<div class="user-name">' + data.name[i] +
+                    "</div>" + 
+                    '<div class="user-title">' + data.title[i] +
+                    "</div>" +
+                    "</div>" +
+                    '<button class="user-button">Block</button>';
       });
-      $("#user-container").append(userData);
+      $(".user-container").append(userData);
     },
-    error: function(msg) {
+    error: function (msg) {
       alert(msg.responseText);
     }
   });

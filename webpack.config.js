@@ -1,33 +1,36 @@
-const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: {
-    "main.min.css": [
-      path.resolve(__dirname, "src/css/base.css"),
-      path.resolve(__dirname, "src/css/arrow-icon.css"),
-      path.resolve(__dirname, "src/css/search-module.css"),
-      path.resolve(__dirname, "src/css/user-module.css"),
-      path.resolve(__dirname, "src/css/user-state.css")
+    'bundle.min.css': [
+      path.resolve(__dirname, 'src/css/base.css'),
+      path.resolve(__dirname, 'src/css/arrow-icon.css')
+    ],
+    'bundle.js': [
+      path.resolve(__dirname, 'src/js/main.js')
     ]
-    // 'bundle.js': [
-    //   path.resolve(__dirname, 'src/index.js')
-    // ]
-  },
+  }, 
   output: {
-    filename: "main",
-    path: path.resolve(__dirname, "dist")
+    filename: '[name]',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
-      }
-    ]
+      },
+    ],
   },
-  plugins: [new ExtractTextPlugin("main.min.css")]
+  devServer: {
+    contentBase: './dist'
+  },
+  plugins: [
+    new ExtractTextPlugin("bundle.min.css"),
+  ]
 };

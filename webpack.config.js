@@ -6,7 +6,10 @@ module.exports = {
   entry: {
     'bundle.min.css': [
       path.resolve(__dirname, 'src/css/base.css'),
-      path.resolve(__dirname, 'src/css/arrow-icon.css')
+      path.resolve(__dirname, 'src/css/arrow-icon.css'),
+      path.resolve(__dirname, 'src/css/search-module.css'),
+      path.resolve(__dirname, 'src/css/user-module.css'),
+      path.resolve(__dirname, 'src/css/user-state.css')
     ],
     'bundle.js': [
       path.resolve(__dirname, 'src/js/main.js')

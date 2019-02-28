@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const path = require("path");
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -31,3 +32,18 @@
 //   },
 //   plugins: [new ExtractTextPlugin("main.min.css")]
 // };
+=======
+const path = require('path');
+
+module.exports = {
+  mode: 'development',
+  entry: './src/js/main.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  devServer: {
+    contentBase: './dist'
+  },
+};
+>>>>>>> master

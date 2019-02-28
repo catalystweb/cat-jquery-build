@@ -26,11 +26,20 @@ section {
   flex: 1 1 auto;
   position: relative;
   overflow-y: auto;
+  background: silver;
 }
 
 header {
   min-height: 50px;
   background: black;
+}
+
+.slideUp {
+  height: 0;
+}
+.slideDown {
+  height: 250px;
+  transition: max-height 0.4s ease-in-out;
 }
 
 footer {
@@ -69,19 +78,24 @@ input[type="text"] {
   padding-bottom: 10px;
 }
 
+#noData {
+  display: flex;
+  height: 100%;
+}
+
 .defaultFont {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.grey {
+.offline {
   background: lightgrey;
 }
 
-.green {
+.online {
   background: green;
 }
 
-.pink {
+.afk {
   background: #ea4dd3;
 }
 

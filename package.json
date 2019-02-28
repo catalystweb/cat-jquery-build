@@ -1,4 +1,19 @@
 {
+<<<<<<< HEAD
+  "name": "wng-css-test",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "webpack": "4.29.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.6.1"
+=======
   "name": "csstest",
   "version": "1.0.0",
   "description": "nomads test build",
@@ -26,6 +41,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/catalystweb/nomads-css/issues"
+>>>>>>> master
   },
   "homepage": "https://github.com/catalystweb/nomads-css#readme"
 }

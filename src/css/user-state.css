@@ -1,37 +1,39 @@
-
 @media only screen and (max-width: 340px) {
+  .user-img,
+  .user-info,
+  .user-status,
+  .user-button,
+  .user-avatar {
+    float: none;
+  }
 
-    .user-img, .user-info, .user-status, .user-button, .user-avatar {
-        float:none;
-    }
+  .user-info {
+    display: block;
+    width: 90%;
+    padding-left: 0;
+    margin: auto;
+    padding-bottom: 10px;
+    text-align: center;
+  }
 
-    .user-info {
-        width:90%;
-        padding-left:0;
-        margin:auto;
-        padding-bottom:10px;
-        text-align:center;
-    }
+  .user-button {
+    display: block;
+    width: 70%;
+    padding-left: 0;
+    margin: auto;
+    text-align: center;
+  }
 
-    .user-button {
-        display:block;
-        width:70%;
-        padding-left:0;
-        margin:auto;
-        text-align:center;
-    }
+  .user-img-container {
+    width: 55vw;
+    height: auto;
+    margin: auto;
+  }
 
-    .user-img-container {
-        width: 55vw;
-        height: auto;
-        margin: auto;
-    }
-
-    .user-avatar {
-        display:inline-block;
-        margin-left: 25%;
-        width: 4em;
-        height: 4em;
-    }
-
+  .user-avatar {
+    display: inline-block;
+    margin-left: 25%;
+    width: 4em;
+    height: 4em;
+  }
 }

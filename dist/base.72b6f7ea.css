@@ -1,0 +1,104 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #404040;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+section {
+  width: 100%;
+  background: lightgrey;
+}
+
+.content-wrapper {
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;
+  background: silver;
+}
+
+header {
+  min-height: 50px;
+  background: black;
+}
+
+.slideUp {
+  height: 0;
+}
+.slideDown {
+  height: 250px;
+  transition: max-height 0.4s ease-in-out;
+}
+
+footer {
+  flex: 0 0 auto;
+  z-index: 1;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: lightgrey;
+}
+
+nav {
+  float: right;
+  padding: 10px 10px 0px 0px;
+}
+
+button {
+  display: inline-block;
+  height: 40px;
+  width: 70px;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid grey;
+  background: white;
+  color: grey;
+  text-align: center;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  width: 100%;
+  color: grey;
+  background: white;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#noData {
+  display: flex;
+  height: 100%;
+}
+
+.defaultFont {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.offline {
+  background: lightgrey;
+}
+
+.online {
+  background: green;
+}
+
+.afk {
+  background: #ea4dd3;
+}
+
+.border {
+  border: 1px solid grey;
+}

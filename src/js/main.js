@@ -1,5 +1,4 @@
 $(window).on("load", function() {
-<<<<<<< HEAD
   // Get json data and render divs //
   var userData = "";
   $.getJSON("src/json/data.json", function(result) {
@@ -10,16 +9,6 @@ $(window).on("load", function() {
         data.id +
         ">" +
         '<div class="user-wrapper">' +
-=======
-  var userData = "";
-
-  $.getJSON("src/json/data.json", function(result) {
-    $.each(result, function(index, data) {
-      console.log("result: " + data.name);
-      userData +=
-        "<section>" +
-        '<div class="user-wrapper" >' +
->>>>>>> master
         '<div class="user-container">' +
         '<div class="user-img-container">' +
         '<div class="user-avatar ' +
@@ -30,25 +19,17 @@ $(window).on("load", function() {
         '"></div>' +
         "</div >" +
         '<div class="user-info">' +
-<<<<<<< HEAD
         "<div>" +
         '<div class="user-name" contenteditable="true">' +
         data.name +
         "</div>" +
         '<div class="user-title" contenteditable="true">' +
-=======
-        '<div class="user-name">' +
-        data.name +
-        "</div>" +
-        '<div class="user-title">' +
->>>>>>> master
         data.title +
         "</div>" +
         "</div>" +
         '<button class="user-button">Block</button>' +
         "</div>" +
         "</div>" +
-<<<<<<< HEAD
         "</div>" +
         "</section>";
     });
@@ -116,15 +97,9 @@ $(window).on("load", function() {
         });
       });
     }
-=======
-        "</section>";
-    });
-    $(".content-wrapper").html(userData);
->>>>>>> master
   });
 });
 
-<<<<<<< HEAD
   $(document).on("click", "nav", function() {
     if ($("header").hasClass("slideDown")) {
       $("header")
@@ -162,21 +137,5 @@ function filterFunction() {
     } else {
       $("#noData").css("display", "none");
     }
-=======
-function filterFunction() {
-  var input, filter, selector;
-  input = document.getElementById("searchField");
-  filter = input.value.toUpperCase();
-  selector = document.getElementsByTagName("section");
-
-  for (i = 0; i < selector.length; i++) {
-    getName = selector[i].getElementsByClassName("user-name")[0];
-    nameVal = getName.textContent || getName.innerText;
-    if (nameVal.toUpperCase().indexOf(filter) > -1) {
-      selector[i].style.display = "";
-    } else {
-      selector[i].style.display = "none";
-    }
->>>>>>> master
   }
 }

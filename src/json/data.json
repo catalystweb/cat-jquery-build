@@ -1,41 +1,48 @@
 [
   {
+    "id": "1",
     "name": "Kerem Suer",
     "title": "Contributor",
     "avatar": "user-pic-1",
     "status": "offline"
   },
   {
+    "id": "2",
     "name": "Bill S Kenney",
     "title": "Editor",
     "avatar": "user-pic-1",
     "status": "online"
   },
   {
+    "id": "3",
     "name": "Oykun Yilmaz",
     "title": "Administrator",
     "avatar": "user-pic-1",
     "status": "afk"
   },
   {
+    "id": "4",
     "name": "Rogie King",
     "title": "Contributor",
     "avatar": "user-pic-1",
     "status": "online"
   },
   {
+    "id": "5",
     "name": "Victor Erixon",
     "title": "Contributor",
     "avatar": "user-pic-1",
     "status": "offline"
   },
   {
+    "id": "6",
     "name": "Daniel Kandilas",
     "title": "Developer",
     "avatar": "user-pic-1",
     "status": "offline"
   },
   {
+    "id": "7",
     "name": "Neil Wang",
     "title": "Developer",
     "avatar": "user-pic-1",

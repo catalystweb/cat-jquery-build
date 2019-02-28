@@ -1,24 +1,33 @@
-
 .arrow-icon {
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    /* border: 0.5em solid #333; */
-    border-radius: 50%;
-    background: white;
-    margin-left: 0.75em;
-  }
-  
-  .arrow-icon:after {
-    content: '';
-    display: inline-block;
-    margin-top: 0.6em;
-    margin-left: 0.75em;
-    width: 0.5em;
-    height: 0.5em;
-    border-top: 0.1em solid #333;
-    border-right: 0.1em solid #333;
-    -moz-transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
-  }
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  /* border: 0.5em solid #333; */
+  border-radius: 50%;
+  background: white;
+  margin-left: 0.75em;
+}
+
+.arrow-icon:after {
+  content: "";
+  display: inline-block;
+  margin-top: 0.6em;
+  margin-left: 0.75em;
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 0.1em solid #333;
+  border-right: 0.1em solid #333;
+  -moz-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.arrow-spin-up {
+  transform: rotate(0deg);
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-down {
+  transform: rotate(180deg);
+  transition: 400ms ease-in-out;
+}

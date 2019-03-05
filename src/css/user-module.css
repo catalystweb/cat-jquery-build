@@ -1,6 +1,8 @@
 .user-wrapper {
   width: 100%;
   overflow: auto;
+  color: black;
+  background: lightgrey;
 }
 
 .user-container {
@@ -14,7 +16,7 @@
   background-size: cover;
   width: 3em;
   height: 3em;
-  border: 0.2em solid white;
+  border: 0.2em solid grey;
   border-radius: 50%;
   background: white;
   margin-left: 1em;
@@ -48,7 +50,7 @@
   display: inline-block;
   width: 1em;
   height: 1em;
-  border: 0.1em solid white;
+  border: 0.1em solid grey;
   border-radius: 50%;
   margin-top: 35px;
   margin-left: -20px;

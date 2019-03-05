@@ -6,6 +6,7 @@
   border-radius: 50%;
   background: white;
   margin-left: 0.75em;
+  cursor: pointer;
 }
 
 .arrow-icon:after {

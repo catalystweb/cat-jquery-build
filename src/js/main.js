@@ -1,5 +1,8 @@
 $(window).on("load", function() {
   // Get json data and render divs //
+  if ($("header").hasClass("slideDown")) {
+    $("header").css("min-height", "191");
+  }
   var userData = "";
   $.getJSON("src/json/data.json", function(result) {
     $.each(result, function(index, data) {
@@ -20,14 +23,14 @@ $(window).on("load", function() {
         "</div >" +
         '<div class="user-info">' +
         "<div>" +
-        '<div class="user-name" contenteditable="true">' +
+        '<div class="user-name">' +
         data.name +
         "</div>" +
-        '<div class="user-title" contenteditable="true">' +
+        '<div class="user-title">' +
         data.title +
         "</div>" +
         "</div>" +
-        '<button class="user-button">Block</button>' +
+        '<button class="user-button transition">Block</button>' +
         "</div>" +
         "</div>" +
         "</div>" +
@@ -36,85 +39,67 @@ $(window).on("load", function() {
     $(".content-wrapper").html(userData);
   });
 
-  // prevent enter key creating new line for contenteditable attribute //
-  $(document).on("keypress", ".user-name, .user-title", function(e) {
-    if (e.which == 13) {
-      e.preventDefault();
-      $(this).blur();
-    }
-  });
-
-  // update json data when contenteditable values changed //
-  $(document).on("blur", ".user-name, .user-title", function() {
-    var this_class = $(this).attr("class");
-    console.log("this class: " + this_class);
-
-    if (this_class == "user-name") {
-      var dataID = $(this)
-        .closest("section")
-        .attr("id");
-      var dataName = $(this).text();
-      var dataTitle = $(this).text();
-
-      console.log("section id: " + dataID);
-      console.log("name: " + dataName);
-
-      $.getJSON("src/json/data.json", function(result) {
-        $.each(result, function(index, data) {
-          console.log("data id: " + dataID);
-          if (data.id == dataID) {
-            $.post(
-              "src/json/data.json",
-              JSON.stringify({ name: +dataName }),
-              function(result) {
-                console.log("new data name: " + data.name);
-              }
-            );
-          }
-        });
-      });
-    } else {
-      var dataID = $(this)
-        .closest("section")
-        .attr("id");
-      var dataTitle = $(this).text();
-
-      console.log("section id: " + dataID);
-      console.log("title: " + dataTitle);
-
-      $.getJSON("src/json/data.json", function(result) {
-        $.each(result, function(index, data) {
-          console.log("data id: " + dataID);
-          if (data.id == dataID) {
-            $.post(
-              "src/json/data.json",
-              JSON.stringify({ title: +dataTitle }),
-              function(result) {
-                console.log("success:");
-              }
-            );
-          }
-        });
-      });
-    }
-  });
-});
-
-  $(document).on("click", "nav", function() {
+  $(document).on("click", ".arrow-icon", function() {
     if ($("header").hasClass("slideDown")) {
-      $("header")
-        .removeClass("slideDown")
-        .addClass("slideUp");
+      $("header").removeClass("slideDown");
       $(".arrow-icon")
         .removeClass("arrow-spin-down")
         .addClass("arrow-spin-up");
     } else {
-      $("header")
-        .removeClass("slideUp")
-        .addClass("slideDown");
+      $("header").addClass("slideDown");
       $(".arrow-icon")
         .removeClass("arrow-spin-up")
         .addClass("arrow-spin-down");
+    }
+  });
+
+  $(document).click(function(e) {
+    if (e.target.id == "add-user") {
+      $("#add-modal").fadeIn("fast");
+      $(".page-container").css("opacity", "0.3");
+    }
+    if (e.target.id == "del-user") {
+      $("#del-modal").fadeIn("fast");
+      $(".page-container").css("opacity", "0.3");
+    }
+    if (e.target.id == "block-user") {
+      $("#block-modal").fadeIn("fast");
+      $(".page-container").css("opacity", "0.3");
+    }
+    if (e.target.id == "change-theme") {
+      $("#change-theme").fadeIn("fast");
+      $('input[type="radio"]').prop("checked", false);
+      $(".page-container").css("opacity", "0.3");
+    }
+    if (e.target.id == "submit-theme") {
+      if ($("#dark").is(":checked")) {
+        $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
+        $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+      } else {
+        $('link[href="src/css/dark-theme.css"]').prop("disabled", true);
+        $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+      }
+    }
+    if (e.target.classList[0] == "close") {
+      $(".modal-container").fadeOut("fast");
+      $(".page-container").css("opacity", "1");
+    }
+  });
+
+  $(document).keyup(function(e) {
+    if (e.target.id == "searchField") {
+      if ($("header").hasClass("slideDown")) {
+        $("header").removeClass("slideDown");
+        $(".arrow-icon")
+          .removeClass("arrow-spin-down")
+          .addClass("arrow-spin-up");
+      }
+    }
+    if ($(".modal-container").is(":visible")) {
+      if (e.key === "Escape") {
+        $(".modal-container").fadeOut("fast");
+        $(".page-container").css("opacity", "1");
+      }
     }
   });
 });

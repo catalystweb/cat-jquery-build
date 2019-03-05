@@ -1,24 +1,19 @@
 {
-  "name": "csstest",
-  "version": "1.0.0",
-  "description": "nomads test build",
-  "main": "dist/index.html",
-  "dependencies": {
-    "parcel-bundler": "^1.11.0",
-  },
+  "name": "wng-css-test",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build dist/index.html",
-    "start": "parcel dist/index.html --open"
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/catalystweb/nomads-css.git"
+  "dependencies": {
+    "json-server": "0.14.2",
+    "webpack": "4.29.3"
   },
-  "author": "daniel kandilas",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/catalystweb/nomads-css/issues"
+  "devDependencies": {
+    "@types/json-server": "0.14.0",
+    "parcel-bundler": "^1.6.1"
   },
-  "homepage": "https://github.com/catalystweb/nomads-css#readme"
+  "keywords": []
 }

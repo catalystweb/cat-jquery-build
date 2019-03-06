@@ -1,12 +1,17 @@
+
+var jquery = require("jquery");
+window.$ = window.jQuery = jquery; // notice the definition of global variables here
+require("../../node_modules/jquery/dist/jquery.js");
+
 $(window).on("load", function() {
   // Get json data and render divs //
   if ($("header").hasClass("slideDown")) {
     $("header").css("min-height", "191");
   }
   var userData = "";
-  $.getJSON("src/json/data.json", function(result) {
+  $.getJSON("../json/data.json", function(result) {
     $.each(result, function(index, data) {
-      // console.log(data);
+      console.log(data);
       userData +=
         "<section id=" +
         data.id +

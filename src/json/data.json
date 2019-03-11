@@ -62,7 +62,7 @@
     "avatar": "user-pic-1",
     "status": "online",
     "block": "false"
-  }
+  },
   {
     "id": "9",
     "name": "Mark Menegus",
@@ -70,6 +70,5 @@
     "avatar": "user-pic-1",
     "status": "online",
     "block": "false"
-  }
-  
+  }  
 ]

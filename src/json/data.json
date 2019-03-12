@@ -35,7 +35,7 @@
     "id": "5",
     "name": "Victor Erixon",
     "title": "Contributor",
-    "avatar": "user-pic-1",
+    "avatar": "user-pic-2",
     "status": "offline",
     "block": "false"
   },
@@ -57,6 +57,13 @@
   },
   {
     "id": "8",
+    "name": "Julie Kandilas",
+    "title": "Wife",
+    "avatar": "user-pic-3",
+    "status": "online",
+    "block": "false"
+  },
+    "id": "9",
     "name": "David Kandilas",
     "title": "noob",
     "avatar": "user-pic-1",
@@ -64,7 +71,7 @@
     "block": "false"
   },
   {
-    "id": "9",
+    "id": "10",
     "name": "Mark Menegus",
     "title": "jits-master",
     "avatar": "user-pic-1",

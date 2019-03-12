@@ -18,6 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: lightgrey;
 }
 
 section {
@@ -45,8 +46,9 @@ header {
 }
 
 .slideDown {
-  height: 275px;
-  transition: height 0.3s ease-in-out;
+  min-height: 185px;
+  height: 185px;
+  transition: min-height 0.3s ease-in-out;
 }
 
 footer {
@@ -100,6 +102,15 @@ nav li {
   padding-bottom: 10px;
 }
 
+.sort-list {
+  font-size: 13px;
+  padding: 10px 0px 0px 25px;
+  background: lightgrey;
+  color: black;
+  cursor: pointer;
+  width: 60px;
+}
+
 .close {
   display: inline-flex;
   border: 2px solid grey;
@@ -146,8 +157,8 @@ select {
   color: #404040;
   background: white;
   border-radius: 4px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  text-indent: 10px;
 }
 
 input[type="radio"] {
@@ -163,6 +174,7 @@ input[type="radio"] {
 
 .defaultFont {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13.3px;
 }
 
 .offline {
@@ -229,8 +241,9 @@ input[type="radio"] {
   padding: 0px 15px 0px 15px;
 }
 
-.search-container > input[type="text"] {
-  text-indent: 35px;
+.search-container > input[type="text"],
+.search-container > input[type="text"]::placeholder {
+  text-indent: 30px;
 }
 
 .search-icon-position {
@@ -285,7 +298,7 @@ input[type="radio"] {
 
 .user-nodata {
   padding-left: 20px;
-  background: silver;
+  background: lightgrey;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -309,7 +322,8 @@ input[type="radio"] {
 }
 
 .user-pic-1 {
-  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center no-repeat;
+  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
+    no-repeat;
 }
 
 .user-pic-2 {
@@ -321,10 +335,12 @@ input[type="radio"] {
     bottom center no-repeat;
 }
 .user-pic-4 {
-  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center no-repeat;
+  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
+    no-repeat;
 }
 .user-pic-5 {
-  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center no-repeat;
+  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
+    no-repeat;
 }
 
 @media only screen and (max-width: 340px) {
@@ -367,7 +383,7 @@ input[type="radio"] {
   }
 }
 
-/* arrow-icon */
+/* arrow-icons */
 
 .arrow-icon {
   display: inline-block;
@@ -395,11 +411,30 @@ input[type="radio"] {
 }
 
 .arrow-spin-up {
-  transform: rotate(0deg);
+  transform: rotate(0deg) !important;
   transition: 400ms ease-in-out;
 }
 
 .arrow-spin-down {
-  transform: rotate(180deg);
+  transform: rotate(180deg) !important;
   transition: 400ms ease-in-out;
+}
+
+.arrow-sort {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  border-bottom: solid 10px black;
+  border-right: solid 6px transparent;
+  border-left: solid 6px transparent;
+  transform: rotate(0deg);
+}
+.arrow-sort .empty {
+  position: absolute;
+  top: 9px;
+  left: -21px;
+  width: 0;
+  border-bottom: solid 36px black;
+  border-right: solid 21px transparent;
+  border-left: solid 21px transparent;
 }

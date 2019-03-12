@@ -35,7 +35,7 @@
     "id": "5",
     "name": "Victor Erixon",
     "title": "Contributor",
-    "avatar": "user-pic-1",
+    "avatar": "user-pic-2",
     "status": "offline",
     "block": "false"
   },
@@ -52,6 +52,14 @@
     "name": "Neil Wang",
     "title": "Developer",
     "avatar": "user-pic-1",
+    "status": "online",
+    "block": "false"
+  },
+  {
+    "id": "8",
+    "name": "Julie Kandilas",
+    "title": "Wife",
+    "avatar": "user-pic-3",
     "status": "online",
     "block": "false"
   }

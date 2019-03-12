@@ -23,19 +23,25 @@ $(document).on("blur", ".user-name, .user-title", function() {
     console.log("section id: " + dataID);
     console.log("name: " + dataName);
 
-    $.getJSON("src/json/data.json", function(result) {
-      $.each(result, function(index, data) {
-        console.log("data id: " + dataID);
-        if (data.id == dataID) {
-          $.post(
-            "src/json/data.json",
-            JSON.stringify({ name: +dataName }),
-            function(result) {
-              console.log("new data name: " + data.name);
-            }
-          );
-        }
-      });
+    $.ajax({
+      url: "https://catalystweb.github.io/json/json/data.json",
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function(result) {
+        $.each(result, function(index, data) {
+          console.log("data id: " + dataID);
+          if (data.id == dataID) {
+            $.post(
+              "src/json/data.json",
+              JSON.stringify({ name: +dataName }),
+              function(result) {
+                console.log("new data name: " + data.name);
+              }
+            );
+          }
+        });
+      }
     });
   } else {
     var dataID = $(this)

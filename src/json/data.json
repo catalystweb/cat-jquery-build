@@ -13,7 +13,7 @@
     "title": "Editor",
     "avatar": "user-pic-1",
     "status": "online",
-    "block": "false"
+    "block": "true"
   },
   {
     "id": "3",
@@ -21,7 +21,7 @@
     "title": "Administrator",
     "avatar": "user-pic-1",
     "status": "afk",
-    "block": "false"
+    "block": "true"
   },
   {
     "id": "4",
@@ -62,5 +62,20 @@
     "avatar": "user-pic-3",
     "status": "online",
     "block": "false"
-  }
+  },
+    "id": "9",
+    "name": "David Kandilas",
+    "title": "noob",
+    "avatar": "user-pic-1",
+    "status": "online",
+    "block": "false"
+  },
+  {
+    "id": "10",
+    "name": "Mark Menegus",
+    "title": "jits-master",
+    "avatar": "user-pic-1",
+    "status": "online",
+    "block": "false"
+  }  
 ]

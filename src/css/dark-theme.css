@@ -35,7 +35,6 @@ section {
 
 header {
   height: 60px;
-  min-height: 60px;
   transition: height 0.3s ease-in-out;
   overflow: hidden;
   background: #00173d;
@@ -46,9 +45,8 @@ header {
 }
 
 .slideDown {
-  min-height: 185px;
   height: 185px;
-  transition: min-height 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out;
 }
 
 footer {

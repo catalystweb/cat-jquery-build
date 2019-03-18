@@ -1,3 +1,5 @@
+window.$ = require('jquery')
+
 $(window).on("load", function() {
   $("#searchField").val("");
 
@@ -120,11 +122,11 @@ $(window).on("load", function() {
     }
     if (e.target.id == "submit-theme") {
       if ($("#dark").is(":checked")) {
-        $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
-        $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+        $('link[href=js.d818e0ef.css"]').prop("disabled", false);
+        $('link[href="js.d818e0ef.css"]').prop("disabled", true);
       } else {
-        $('link[href="src/css/dark-theme.css"]').prop("disabled", true);
-        $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+        $('link[href="js.d818e0ef.css"]').prop("disabled", true);
+        $('link[href="js.d818e0ef.css"]').prop("disabled", false);
       }
     }
 

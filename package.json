@@ -2,10 +2,10 @@
   "name": "wng-css-test",
   "version": "1.0.1",
   "description": "",
-  "main": "index.html",
+  "main": "index2.html",
   "scripts": {
-    "start": "parcel index html --open",
-    "build": "parcel build index.html"
+    "start": "parcel index2.html --open",
+    "build": "parcel build index2.html"
   },
   "dependencies": {
     "jquery": "3.3.1",
@@ -13,8 +13,7 @@
   },
   "devDependencies": {
     "@types/jquery": "3.3.29",
-    "@types/json-server": "0.14.0",
-    "parcel-bundler": "^1.6.1"
+    "@types/json-server": "0.14.0"
   },
   "keywords": []
 }

@@ -1,8 +1,6 @@
 import "../css/dark-theme.css";
 import "../css/light-theme.css";
 import "../js/main.js";
-import "../../img/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg";
-import "../../img/logo-trans.png";
 
 document.getElementById("app").innerHTML = `
 <body>
@@ -34,14 +32,10 @@ document.getElementById("app").innerHTML = `
 			</div>			
 				<div>
 							<select id="del-list" class="search-icon-glass border defaultFont margin">
-									<option value="" disabled selected>Select User</option>
-									<option value="volvo">Volvo</option>
-									<option value="saab">Saab</option>
-									<option value="fiat">Fiat</option>
-									<option value="audi">Audi</option>
 							</select>
+							<input id="confirm-del" type="checkbox" style="display:none;"><span class="defaultFont">Are you sure ?</span></input>
 							<br><br>
-							<button class="user-button transition">Delete</button>
+							<button id="del-button" style="display:none;" class="user-button transition">Delete</button>
 				</div>
 			</div>
 		</div>
@@ -52,12 +46,7 @@ document.getElementById("app").innerHTML = `
 					<div class="close transition">&times;</div>
 				</div>
 					<div>
-							<select id="block-list" class="search-icon-glass border defaultFont margin">
-									<option value="" disabled selected>Select user to unblock</option>
-									<option value="volvo">Volvo</option>
-									<option value="saab">Saab</option>
-									<option value="fiat">Fiat</option>
-									<option value="audi">Audi</option>
+							<select id="block-list" class="search-icon-glass border defaultFont margin">									
 							</select>
 							<br><br>
 							<button class="user-button transition">Unblock</button>
@@ -86,7 +75,7 @@ document.getElementById("app").innerHTML = `
 		<header class="black">
 			<nav class="arrow-container">
 				<div class="nav-wrapper">
-					<div class="logo"><img src="img/logo-trans.png" height="45"/></div>
+					<div class="logo"></div>
 					<div class="nav">					
 						<span>Menu</span>
 						<span class="arrow-icon"></span>
@@ -102,13 +91,12 @@ document.getElementById("app").innerHTML = `
 				</div>
 			</nav>
 		</header>	
+		<div id="sort-asc" class="sort-list">
+			<span>Sort</span>
+			<div class="arrow-sort">
+			</div>
+		</div>
 		<div class="content-wrapper">		
-			 <section>
-				<div class="user-wrapper">
-					<div class="user-container">						
-					</div>
-				</div>
-			</section>
 		</div>
 		<div id="noData" style="display:none;">
 				<div class="user-wrapper user-container user-nodata">

@@ -55,6 +55,39 @@ $(window).on("load", function () {
           "</section>";
       });
       $(".content-wrapper").html(userData);
+
+      //delete - delete data from submit button
+      $(document).on("click", function (e) {
+        if (e.target.id == "del-button") {
+          var userID = $("#del-list").children(":selected").attr("id");
+          var userRecord = $("#del-list option:selected").val();
+          
+          console.log("user: " + userID);
+          console.log("user: " + userRecord);
+          $.each(result, function (i, data) {               
+            if (userID = data.id) {
+              var payload = {
+                id: userID,
+                name: userRecord,
+                title: data[i].title,
+                avatar: data[i].avatar,
+                status: data[i].status,
+                block: data[i].block
+              };
+              $.ajax({
+                url: "http://localhost:3000/users" + '?' + $.param(payload),
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json",
+                success: function(result) {
+                  console.log("new data name: " + payload);
+                }         
+              });
+              return;
+           }
+          });  
+        }   
+      });     
     },
     error: function () {
       userData = "";
@@ -66,6 +99,8 @@ $(window).on("load", function () {
         "</div>";
       $(".content-wrapper").html(userData);
     }
+
+
   });
 
   //display json data source for block list
@@ -99,7 +134,7 @@ $(window).on("load", function () {
     success: function (result) {
       $.each(result, function (index, data) {
         userDel +=
-          "<option value='" + data.name + "'>" + data.name + "</option>";
+          "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + "</option>";
         $("#del-list").html(userDel);
       });
     }
@@ -140,7 +175,6 @@ $(window).on("load", function () {
     }
 
     //post - add data from submit button
-
     if (e.target.id == "add-button") {
       var dataName = $("#add-name").val();
       var dataTitle = $("#add-title").val();
@@ -168,7 +202,7 @@ $(window).on("load", function () {
           console.log("new data name: " + payload.name);
         }         
       });      
-    }  
+    }     
 
     //add modal display
     if (e.target.id == "add-user") {

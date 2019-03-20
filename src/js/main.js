@@ -14,10 +14,10 @@ $(window).on("load", function () {
   $(".content-wrapper").html(userData);
 
   $.ajax({
-    url: "https://catalystweb.github.io/json/json/data.json",
+    url: "http://localhost:3000/users",
     cache: false,
     data: {},
-    dataType: "json",
+    dataType: "jsonp",
     success: function (result) {
       userData = "";
       $(".content-wrapper").html(userData);
@@ -41,10 +41,10 @@ $(window).on("load", function () {
           "<div>" +
           '<div class="user-name" data-name="' +
           data.name +
-          '">' +
+          '" contenteditable="true">' +
           data.name +
           "</div>" +
-          '<div class="user-title">' +
+          '<div class="user-title" contenteditable="true">' +
           data.title +
           "</div>" +
           "</div>" +
@@ -68,11 +68,11 @@ $(window).on("load", function () {
     }
   });
 
-  //block json data source
+  //display json data source for block list
   var userBlock = "<option value=''>Select blocked user from list</option>";
 
   $.ajax({
-    url: "https://catalystweb.github.io/json/json/data.json",
+    url: "http://localhost:3000/users",
     cache: false,
     data: {},
     dataType: "json",
@@ -87,15 +87,15 @@ $(window).on("load", function () {
     }
   });
 
-  //delete json data source
+  //display json data source for delete list
   var userDel =
     "<option value='' selected='false'>Select user from list</option>";
 
   $.ajax({
-    url: "https://catalystweb.github.io/json/json/data.json",
+    url: "http://localhost:3000/users",
     cache: false,
     data: {},
-    dataType: "json",
+    dataType: "jsonp",
     success: function (result) {
       $.each(result, function (index, data) {
         userDel +=
@@ -111,7 +111,7 @@ $(window).on("load", function () {
   });
 
   //global click event handler
-  $(document).click(function (e) {
+  $(document).on("click", function (e) {
     if (e.target.id == "add-user") {
       $("#add-modal").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
@@ -139,6 +139,37 @@ $(window).on("load", function () {
       }
     }
 
+    //post - add data from submit button
+
+    if (e.target.id == "add-button") {
+      var dataName = $("#add-name").val();
+      var dataTitle = $("#add-title").val();
+      var dataAvatar = $("#add-avatar option:selected").val();
+      
+      console.log("name: " + dataName);
+      console.log("title: " + dataTitle);
+      console.log("avatar: " + dataAvatar);
+           
+      var payload = {
+        name: dataName,
+        title: dataTitle,
+        avatar: dataAvatar,
+        status: "offline",
+        block: "false"
+      };
+
+      $.ajax({
+        url: "http://localhost:3000/users",
+        type: "POST",
+        data: JSON.stringify(payload),
+        dataType: "json",
+        contentType: "application/json",
+        success: function(result) {
+          console.log("new data name: " + payload.name);
+        }         
+      });      
+    }  
+
     //add modal display
     if (e.target.id == "add-user") {
       if ($("#add-button").is(":visible")) {
@@ -146,8 +177,6 @@ $(window).on("load", function () {
       }
       $(this).on("input", function () {  
         $("#add-modal input[type='text']").bind("keyup change", function () {
-          console.log("name field: " + $("#add-name").val());
-          console.log("title field: " + $("#add-title").val());
               if ($("#add-name").val() != "" && $("#add-title").val() != "") {
                 $("button").prop("disabled", false);
                 $("#add-button").fadeIn("fast");

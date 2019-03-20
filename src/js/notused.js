@@ -52,19 +52,25 @@ $(document).on("blur", ".user-name, .user-title", function() {
     console.log("section id: " + dataID);
     console.log("title: " + dataTitle);
 
-    $.getJSON("src/json/data.json", function(result) {
-      $.each(result, function(index, data) {
-        console.log("data id: " + dataID);
-        if (data.id == dataID) {
-          $.post(
-            "src/json/data.json",
-            JSON.stringify({ title: +dataTitle }),
-            function(result) {
-              console.log("success:");
-            }
-          );
-        }
-      });
-    });
+    $.ajax({
+      url: "http://localhost:3000/users",
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function (result) {
+        $.each(result, function(index, data) {
+          console.log("data id: " + dataID);
+          if (data.id == dataID) {
+            $.post(
+              "src/json/data.json",
+              JSON.stringify({ title: +dataTitle }),
+              function(result) {
+                console.log("success:");
+              }
+            );
+          }
+        });
+      }
+    });    
   }
 });

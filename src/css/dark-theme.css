@@ -34,8 +34,9 @@ section {
 }
 
 header {
-  height: 60px;
-  transition: height 0.3s ease-in-out;
+  height: 65px;
+  min-height: 65px;
+  transition: min-height 0.3s ease-in-out;
   overflow: hidden;
   background: #00173d;
   border-bottom: 1px solid grey;
@@ -45,8 +46,8 @@ header {
 }
 
 .slideDown {
-  height: 185px;
-  transition: height 0.3s ease-in-out;
+  min-height: 185px;
+  transition: min-height 0.3s ease-in-out;
 }
 
 footer {
@@ -64,7 +65,20 @@ nav {
 }
 
 .logo {
+  display:flex;
+  align-items: center;
   padding-left: 15px;
+  cursor: pointer;
+}
+
+.catalyst {
+  display:none;
+}
+
+.cat-inner {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  width:300px;
 }
 
 .nav {
@@ -87,7 +101,7 @@ nav {
 }
 
 nav ul {
-  margin-top: 10px;
+  margin-top: 0px;
   list-style-type: none;
 }
 
@@ -160,6 +174,10 @@ select {
   text-indent: 10px;
 }
 
+select {
+  text-indent: 3px;
+}
+
 input[type="radio"] {
   -webkit-appearance: checkbox;
   -moz-appearance: checkbox;
@@ -201,8 +219,10 @@ input[type="radio"] {
 
 .modal-container {
   width: 60%;
-  margin-top: 5em;
-  margin-left: 3em;
+  margin:0 auto;
+  top: 25%;
+  left: 0;
+  right: 0;
   background: black;
   color: silver;
   border-radius: 4px;
@@ -387,12 +407,12 @@ input[type="radio"] {
 
 .arrow-icon {
   display: inline-block;
-  width: 2em;
-  height: 2em;
-  /* border: 0.5em solid #333; */
-  border-radius: 50%;
-  background: white;
-  margin-left: 0.75em;
+  width: 2em;  
+  height: 2em;  
+  border: 0.1em solid gray;  
+  border-radius: 50%;  
+  background: black;  
+  margin-left: 0.75em;  
   cursor: pointer;
 }
 
@@ -400,11 +420,11 @@ input[type="radio"] {
   content: "";
   display: inline-block;
   margin-top: 0.6em;
-  margin-left: 0.75em;
+  margin-left: 0.70em;
   width: 0.5em;
   height: 0.5em;
-  border-top: 0.1em solid #333;
-  border-right: 0.1em solid #333;
+  border-top: 0.1em solid white;
+  border-right: 0.1em solid white;
   -moz-transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
   transform: rotate(135deg);
@@ -418,6 +438,10 @@ input[type="radio"] {
 .arrow-spin-down {
   transform: rotate(180deg);
   transition: 400ms ease-in-out;
+}
+
+.arrow-spin-down:after {
+  margin-left:0.7em;
 }
 
 .arrow-sort {

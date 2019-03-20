@@ -8,9 +8,6 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="stylesheet" href="src/css/dark-theme.css" id="dark-css" />
 	<link rel="stylesheet" href="src/css/light-theme.css" id="light-css">
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-						</script>
-			<script src="src/js/main.js" />
 </head>
 <body>
 	<div id="add-modal" class="modal-container" style="display:none;">
@@ -29,7 +26,7 @@
 									<option value="audi">Audi</option>
 							</select>
 							<br><br>
-						<button class="user-button transition">Submit</button>
+						<button id="add-button" class="user-button transition" style="display:none;">Submit</button>
 					</div>
 		</div>
 	</div>
@@ -40,11 +37,13 @@
 				<div class="close transition">&times;</div>
 			</div>			
 				<div>
-							<select id="del-list" class="search-icon-glass border defaultFont margin">
-							</select>
-							<input id="confirm-del" type="checkbox" style="display:none;"><span class="defaultFont">Are you sure ?</span></input>
-							<br><br>
-							<button id="del-button" style="display:none;" class="user-button transition">Delete</button>
+						<select id="del-list" class="search-icon-glass border defaultFont margin">
+						</select>
+						<div id="confirm-del" style="display:none;">
+							<input id="checkbox-state" type="checkbox"></input><span class="defaultFont">Are you sure ?</span>
+						</div>
+						<br>
+						<button id="del-button" style="display:none;" class="user-button transition">Delete</button>
 				</div>
 			</div>
 		</div>
@@ -58,7 +57,7 @@
 							<select id="block-list" class="search-icon-glass border defaultFont margin">									
 							</select>
 							<br><br>
-							<button class="user-button transition">Unblock</button>
+							<button id="del-block-button" style="display:none;" class="user-button transition">Unblock</button>
 				</div>
 			</div>
 		</div>
@@ -84,7 +83,11 @@
 		<header class="black">
 			<nav class="arrow-container">
 				<div class="nav-wrapper">
-					<div class="logo"><img src="img/logo-trans.png" height="45"/></div>
+					<div class="logo"><img src="img/logo-trans.png" height="55"/>
+						<div class="catalyst">
+							<div class="cat-inner">catalyst app build 0.1</div>
+						</div>
+					</div>					
 					<div class="nav">					
 						<span>Menu</span>
 						<span class="arrow-icon"></span>
@@ -101,8 +104,8 @@
 			</nav>
 		</header>	
 		<div id="sort-asc" class="sort-list">
-			<span>Sort</span>
-			<div class="arrow-sort">
+			<div class="sort">Sort
+				<div class="arrow-sort"></div>
 			</div>
 		</div>
 		<div class="content-wrapper">		
@@ -120,5 +123,7 @@
 			</div>
 		</footer>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="src/js/main.js"></script>
 </body>
 </html>

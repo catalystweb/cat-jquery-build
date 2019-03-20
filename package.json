@@ -13,7 +13,10 @@
   },
   "devDependencies": {
     "@types/jquery": "3.3.29",
-    "@types/json-server": "0.14.0"
+    "@types/json-server": "0.14.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "keywords": []
 }

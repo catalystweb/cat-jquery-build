@@ -1,5 +1,11 @@
 /* base css */
 
+/* @font-face {
+  font-family: Ostrich-Sans-Bold;
+  src: url("../fonts/ostrich-sans-master/webfonts/ostrich-sans-black.eot") format("eot");
+  src: url("../fonts/ostrich-sans-master/webfonts/ostrich-sans-black.woff") format("woff");    
+} */
+
 html {
   height: 100%;
 }
@@ -34,8 +40,9 @@ section {
 }
 
 header {
-  height: 60px;
-  transition: height 0.3s ease-in-out;
+  height: 65px;
+  min-height: 65px;
+  transition: min-height 0.3s ease-in-out;
   overflow: hidden;
   background: silver;
   border-bottom: 1px solid black;
@@ -45,8 +52,8 @@ header {
 }
 
 .slideDown {
-  height: 185px;
-  transition: height 0.3s ease-in-out;
+  min-height: 185px;
+  transition: min-height 0.3s ease-in-out;
 }
 
 footer {
@@ -62,10 +69,21 @@ nav {
   padding: 5px 10px 0px 0px;
 }
 
-.logo {  
-  background: url(../../img/logo-trans.png) bottom center;
-  height:45px;
+.logo {
+  display:flex;
+  align-items: center;
   padding-left: 15px;
+  cursor: pointer;
+}
+
+.catalyst {
+  display:none;
+}
+
+.cat-inner {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  width:300px;
 }
 
 .nav {
@@ -88,7 +106,7 @@ nav {
 }
 
 nav ul {
-  margin-top: 10px;
+  margin-top: 0px;
   list-style-type: none;
 }
 
@@ -161,6 +179,10 @@ select {
   text-indent: 10px;
 }
 
+select {
+  text-indent: 3px;
+}
+
 input[type="radio"] {
   -webkit-appearance: checkbox;
   -moz-appearance: checkbox;
@@ -202,8 +224,10 @@ input[type="radio"] {
 
 .modal-container {
   width: 60%;
-  margin-top: 5em;
-  margin-left: 3em;
+  margin:0 auto;
+  top: 25%;
+  left: 0;
+  right: 0;
   background: silver;
   color: black;
   border-radius: 4px;
@@ -381,6 +405,11 @@ input[type="radio"] {
     width: 4em;
     height: 4em;
   }
+
+  .cat-inner {
+    width: 120px;
+    text-align: center;
+  }
 }
 
 /* arrow-icons */
@@ -389,7 +418,7 @@ input[type="radio"] {
   display: inline-block;
   width: 2em;
   height: 2em;
-  /* border: 0.5em solid #333; */
+  border: 0.1em solid white;
   border-radius: 50%;
   background: white;
   margin-left: 0.75em;
@@ -418,6 +447,10 @@ input[type="radio"] {
 .arrow-spin-down {
   transform: rotate(180deg) !important;
   transition: 400ms ease-in-out;
+}
+
+.arrow-spin-down:after {
+  margin-left:0.7em;
 }
 
 .arrow-sort {

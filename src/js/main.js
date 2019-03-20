@@ -1,32 +1,28 @@
-window.$ = require('jquery')
+// window.$ = require('jquery')
 
-$(window).on("load", function() {
+$(window).on("load", function () {
   $("#searchField").val("");
 
-  // set listener for window height change //
-  $(window).resize(function() {
-    $("header").trigger("heightChange");
-  });
-
-  // trigger change to header height for resize //
-  $("header").bind("heightChange", function() {
-    if ($("header").hasClass("slideDown")) {
-      $("header").css("min-height", "191px");
-    } else {
-      $("header").css("min-height", "60px");
-    }
-  });
-
+  //global json data source
   var userData = "";
   var sectionId = $("section").attr("id");
+
+  userData +=
+    '<div class="user-nodata" style="height:100%;">' +
+    "<strong> loading data </strong>" +
+    "</div>";
+  $(".content-wrapper").html(userData);
 
   $.ajax({
     url: "https://catalystweb.github.io/json/json/data.json",
     cache: false,
     data: {},
     dataType: "json",
-    success: function(result) {
-      $.each(result, function(index, data) {
+    success: function (result) {
+      userData = "";
+      $(".content-wrapper").html(userData);
+
+      $.each(result, function (index, data) {
         userData +=
           "<section id=" +
           data.id +
@@ -59,50 +55,63 @@ $(window).on("load", function() {
           "</section>";
       });
       $(".content-wrapper").html(userData);
+    },
+    error: function () {
+      userData = "";
+      $(".content-wrapper").html(userData);
+
+      userData +=
+        '<div class="user-nodata" style="height:100%;">' +
+        "<strong> error loading external data </strong>" +
+        "</div>";
+      $(".content-wrapper").html(userData);
     }
   });
 
-  var userBlock = "<option value=''> Select blocked user from list</option>";
+  //block json data source
+  var userBlock = "<option value=''>Select blocked user from list</option>";
 
   $.ajax({
     url: "https://catalystweb.github.io/json/json/data.json",
     cache: false,
     data: {},
     dataType: "json",
-    success: function(result) {
-      $.each(result, function(index, data) {
+    success: function (result) {
+      $.each(result, function (index, data) {
         if (data.block == "true") {
           userBlock +=
-            "<option value=" + data.name + ">" + data.name + "</option>";
+            "<option value='" + data.name + "'>" + data.name + "</option>";
         }
         $("#block-list").html(userBlock);
       });
     }
   });
 
-  var userDel = "<option value=''> Select user from list</option>";
+  //delete json data source
+  var userDel =
+    "<option value='' selected='false'>Select user from list</option>";
 
   $.ajax({
     url: "https://catalystweb.github.io/json/json/data.json",
     cache: false,
     data: {},
     dataType: "json",
-    success: function(result) {
-      $.each(result, function(index, data) {
-        userDel += "<option value=" + data.name + ">" + data.name + "</option>";
-
+    success: function (result) {
+      $.each(result, function (index, data) {
+        userDel +=
+          "<option value='" + data.name + "'>" + data.name + "</option>";
         $("#del-list").html(userDel);
       });
     }
   });
 
-  $("#del-list option").each(function() {
-    if ($(this).is(":selected")) {
-      $("#confirm-del").css("display", "block");
-    }
+  //logo hover event handler 
+  $(".logo").hover(function (e) {
+      $(".catalyst").animate({width: 'toggle'});
   });
 
-  $(document).click(function(e) {
+  //global click event handler
+  $(document).click(function (e) {
     if (e.target.id == "add-user") {
       $("#add-modal").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
@@ -122,37 +131,94 @@ $(window).on("load", function() {
     }
     if (e.target.id == "submit-theme") {
       if ($("#dark").is(":checked")) {
-        $('link[href=js.d818e0ef.css"]').prop("disabled", false);
-        $('link[href="js.d818e0ef.css"]').prop("disabled", true);
+        $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
+        $('link[href="src/css/light-theme.css"]').prop("disabled", true);
       } else {
-        $('link[href="js.d818e0ef.css"]').prop("disabled", true);
-        $('link[href="js.d818e0ef.css"]').prop("disabled", false);
+        $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
+        $('link[href="src/css/light-theme.css"]').prop("disabled", false);
       }
     }
 
-    if (e.target.id == "confirm-del") {
-      $("#del-button").fadeIn("fast");
+    //add modal display
+    if (e.target.id == "add-user") {
+      if ($("#add-button").is(":visible")) {
+        $("#add-button").css("display","none");
+      }
+      $(this).on("input", function () {  
+        $("#add-modal input[type='text']").bind("keyup change", function () {
+          console.log("name field: " + $("#add-name").val());
+          console.log("title field: " + $("#add-title").val());
+              if ($("#add-name").val() != "" && $("#add-title").val() != "") {
+                $("button").prop("disabled", false);
+                $("#add-button").fadeIn("fast");
+              } else {
+                $("button").prop("disabled", true);
+                $("#add-button").fadeOut("fast");
+              }
+        });
+      });      
     }
 
+    //block modal display
+    if (e.target.id == "block-user") {
+      if ($("#del-block-button").is(":visible")) {
+        $("#del-block-button").css("display","none");
+      }
+      $("#block-list").on("change", function () {  
+        if ($("#block-list option").filter(":selected").text() != "Select blocked user from list") {
+          $("#del-block-button").fadeIn("fast");
+        } else {
+          $("#del-block-button").fadeOut("fast");
+        }
+      });
+    }
+
+    //delete modal display
+    if (e.target.id == "del-user") {
+      if ($("#confirm-del").is(":visible")) {
+        $("#confirm-del").css("display","none");
+        $("#del-button").css("display","none");
+      }
+      $("#del-list").on("change", function () {  
+        if ($("#del-list option").filter(":selected").text() != "Select user from list") {
+          $("#confirm-del").fadeIn("fast");
+        } else {
+          $("#confirm-del").fadeOut("fast");
+          $("#checkbox-state").prop("checked",false);
+          $("#del-button").fadeOut("fast");
+        }
+      });
+    }
+
+    if (e.target.id == "checkbox-state") {
+      if ($("#checkbox-state").prop("checked") == true) {
+        console.log(true);
+        $("#del-button").fadeIn("fast");
+      } else {
+        $("#del-button").fadeOut("fast");
+      }
+    }
+
+    //close statement if user clicks close icon
     if (e.target.classList[0] == "close") {
       $(".modal-container").fadeOut("fast");
+      $("input").val('');
+      $("select").val('');
+      $('input[type=checkbox]').prop('checked',false);
       $(".page-container").css("opacity", "1");
     }
 
+    //arrow spin style for sorting
     if (e.target.classList[0] == "arrow-icon") {
       if ($("header").hasClass("slideDown")) {
         $("header").removeClass("slideDown");
-        $(".arrow-icon")
-          .removeClass("arrow-spin-down")
-          .addClass("arrow-spin-up");
+        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
       } else {
         $("header").addClass("slideDown");
-        $(".arrow-icon")
-          .removeClass("arrow-spin-up")
-          .addClass("arrow-spin-down");
+        $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
       }
     }
-    if (e.target.classList[0] == "arrow-sort") {
+    if (e.target.classList[0] == "sort") {
       if ($(".arrow-sort").hasClass("arrow-spin-down")) {
         $(".arrow-sort").removeClass("arrow-spin-down");
         $(".arrow-sort").addClass("arrow-spin-up");
@@ -161,58 +227,50 @@ $(window).on("load", function() {
         $(".arrow-sort").addClass("arrow-spin-down");
       }
     }
-    if (e.target.classList[0] == "arrow-sort") {
+
+    // sort function for asc and desc
+    if (e.target.classList[0] == "sort") {
       var getStateVal = document.getElementsByClassName("sort-list")[0].id;
       var alphabeticallyOrderedDivs = $(".sort-class")
-        .sort(function(a, b) {
+        .sort(function (a, b) {
           if (getStateVal == "sort-asc") {
             document.getElementsByClassName("sort-list")[0].id = "sort-des";
             return String.prototype.localeCompare.call(
-              $(a)
-                .find("div.user-name")
-                .data("name")
-                .toLowerCase(),
-              $(b)
-                .find("div.user-name")
-                .data("name")
-                .toLowerCase()
+              $(a).find("div.user-name").data("name").toLowerCase(),
+              $(b).find("div.user-name").data("name").toLowerCase()
             );
           } else {
             document.getElementsByClassName("sort-list")[0].id = "sort-asc";
             return String.prototype.localeCompare.call(
-              $(b)
-                .find("div.user-name")
-                .data("name")
-                .toLowerCase(),
-              $(a)
-                .find("div.user-name")
-                .data("name")
-                .toLowerCase()
+              $(b).find("div.user-name").data("name").toLowerCase(),
+              $(a).find("div.user-name").data("name").toLowerCase()
             );
           }
-        })
-        .appendTo(".content-wrapper");
+        }).appendTo(".content-wrapper");
     }
   });
 
-  $(document).keyup(function(e) {
+  //key function if menu open close during filter function
+  $(document).keyup(function (e) {
     if (e.target.id == "searchField") {
       if ($("header").hasClass("slideDown")) {
         $("header").removeClass("slideDown");
-        $(".arrow-icon")
-          .removeClass("arrow-spin-down")
-          .addClass("arrow-spin-up");
+        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
       }
     }
     if ($(".modal-container").is(":visible")) {
       if (e.key === "Escape") {
         $(".modal-container").fadeOut("fast");
+        $("input").val('');
+        $("select").val('');
+        $('input[type=checkbox]').prop('checked',false);
         $(".page-container").css("opacity", "1");
       }
     }
   });
 });
 
+//filter function for filtering displayed data via input field
 function filterFunction() {
   var input, filter, selector, userData;
   input = document.getElementById("searchField");

@@ -5,7 +5,6 @@ $(window).on("load", function () {
 
   //global json data source
   var userData = "";
-  var sectionId = $("section").attr("id");
 
   userData +=
     '<div class="user-nodata" style="height:100%;">' +

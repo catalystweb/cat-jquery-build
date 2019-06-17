@@ -65,21 +65,14 @@ $(window).on("load", function () {
           console.log("user: " + userRecord);
           $.each(result, function (i, data) {               
             if (userID = data.id) {
-              var payload = {
-                id: userID,
-                name: userRecord,
-                title: data[i].title,
-                avatar: data[i].avatar,
-                status: data[i].status,
-                block: data[i].block
-              };
+                delete data[i];              
               $.ajax({
-                url: "http://localhost:3000/users" + '?' + $.param(payload),
+                url: "http://localhost:3000/users",
                 type: "DELETE",
                 dataType: "json",
                 contentType: "application/json",
                 success: function(result) {
-                  console.log("new data name: " + payload);
+                  console.log("record deleted");
                 }         
               });
               return;

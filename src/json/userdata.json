@@ -83,15 +83,10 @@
     {
       "name": "Michael Scott",
       "title": "Boss",
-      "avatar": "",
+      "avatar": "user-pic-3",
       "status": "offline",
       "block": "false",
       "id": "lJ-wpCK"
-    },
-    {
-      "status": "offline",
-      "block": "false",
-      "id": "WaDswV1"
     },
     {
       "name": "Test subject",

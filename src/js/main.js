@@ -59,20 +59,20 @@ $(window).on("load", function () {
       $(document).on("click", function (e) {
         if (e.target.id == "del-button") {
           var userID = $("#del-list").children(":selected").attr("id");
-          var userRecord = $("#del-list option:selected").val();
+          //var userRecord = $("#del-list option:selected").val();
           
           console.log("user: " + userID);
-          console.log("user: " + userRecord);
-          $.each(result, function (i, data) {               
+          $.each(result, function (i, data) {
+            console.log("data id: " + data.id);               
             if (userID = data.id) {
-                delete data[i];              
+                var payload = delete data[i].id;              
               $.ajax({
-                url: "http://localhost:3000/users",
+                url: "http://localhost:3000/users" + '?' + $.param(payload),
                 type: "DELETE",
                 dataType: "json",
                 contentType: "application/json",
                 success: function(result) {
-                  console.log("record deleted");
+                  console.log("");
                 }         
               });
               return;

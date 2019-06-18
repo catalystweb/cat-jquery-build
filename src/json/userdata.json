@@ -89,12 +89,20 @@
       "id": "lJ-wpCK"
     },
     {
-      "name": "Test subject",
+      "name": "Andy Gray",
       "title": "Developer",
+      "avatar": "user-pic-2",
+      "status": "offline",
+      "block": "false",
+      "id": "eU07bM-"
+    },
+    {
+      "name": "123",
+      "title": "123",
       "avatar": "user-pic-1",
       "status": "offline",
       "block": "false",
-      "id": "4OhgNcw"
+      "id": "DONbTXg"
     }
   ]
 }

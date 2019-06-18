@@ -1,99 +1,122 @@
-// window.$ = require('jquery')
-
 $(window).on("load", function () {
   $("#searchField").val("");
+  
+  function getData() {
+      //hide any existing modal 
+      if ($(".modal-container").is(":visible")) {
+        $("#del-modal").fadeOut("fast");
+        $("#add-modal").fadeOut("fast");
+        $("#block-modal").fadeOut("fast");
+        $(".page-container").css("opacity", "1");
+      };
 
-  //global json data source
-  var userData = "";
-
-  userData +=
-    '<div class="user-nodata" style="height:100%;">' +
-    "<strong> loading data </strong>" +
-    "</div>";
-  $(".content-wrapper").html(userData);
-
-  $.ajax({
-    url: "http://localhost:3000/users",
-    cache: false,
-    data: {},
-    dataType: "jsonp",
-    success: function (result) {
-      userData = "";
+      //global json data source
+      var userData = "";
+      userData +=
+        '<div class="user-nodata" style="height:100%;">' +
+        "<strong> loading data </strong>" +
+        "</div>";
       $(".content-wrapper").html(userData);
 
-      $.each(result, function (index, data) {
-        userData +=
-          "<section id=" +
-          data.id +
-          " class='sort-class'>" +
-          '<div class="user-wrapper">' +
-          '<div class="user-container">' +
-          '<div class="user-img-container">' +
-          '<div class="user-avatar ' +
-          data.avatar +
-          '"></div >' +
-          '<div class="user-status ' +
-          data.status +
-          '"></div>' +
-          "</div >" +
-          '<div class="user-info">' +
-          "<div>" +
-          '<div class="user-name" data-name="' +
-          data.name +
-          '" contenteditable="true">' +
-          data.name +
-          "</div>" +
-          '<div class="user-title" contenteditable="true">' +
-          data.title +
-          "</div>" +
-          "</div>" +
-          '<button class="user-button transition">Block</button>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</section>";
+      $.ajax({
+        url: "http://localhost:3000/users",
+        cache: false,
+        data: {},
+        dataType: "jsonp",
+          success: function (result) {   
+              userData = "";
+              $(".content-wrapper").html(userData);
+
+              $.each(result, function (index, data) {
+                userData +=
+                  "<section id=" +
+                  data.id +
+                  " class='sort-class'>" +
+                  '<div class="user-wrapper">' +
+                  '<div class="user-container">' +
+                  '<div class="user-img-container">' +
+                  '<div class="user-avatar ' +
+                  data.avatar +
+                  '"></div >' +
+                  '<div class="user-status ' +
+                  data.status +
+                  '"></div>' +
+                  "</div >" +
+                  '<div class="user-info">' +
+                  "<div>" +
+                  '<div class="user-name" data-name="' +
+                  data.name +
+                  '" contenteditable="true">' +
+                  data.name +
+                  "</div>" +
+                  '<div class="user-title" contenteditable="true">' +
+                  data.title +
+                  "</div>" +
+                  "</div>" +
+                  '<button class="user-button transition">Block</button>' +
+                  "</div>" +
+                  "</div>" +
+                  "</div>" +
+                  "</section>";
+              });
+                $(".content-wrapper").html(userData);
+
+          },
+          error: function () {
+            userData = "";
+            $(".content-wrapper").html(userData);
+            userData +=
+              '<div class="user-nodata" style="height:100%;">' +
+              "<strong> error loading external data </strong>" +
+              "</div>";
+            $(".content-wrapper").html(userData);
+          }        
       });
-      $(".content-wrapper").html(userData);
+    }
+  getData();
 
-      //delete - delete data from submit button
-      $(document).on("click", function (e) {
-        if (e.target.id == "del-button") {
-          var userID = $("#del-list").children(":selected").attr("id");
-          //var userRecord = $("#del-list option:selected").val();
-          
-          console.log("user: " + userID);
-          $.each(result, function (i, data) {
-            console.log("data id: " + data.id);               
-            if (userID = data.id) {
-                var payload = delete data[i].id;              
+  //show useradded successfully modal 
+  function userAdded() {
+    $(".user-add").css("display","none");
+    $(".user-success").fadeIn("fast");
+    setTimeout(function () {
+      getData();
+    },3000);
+  }
+
+  //delete - delete data from submit button
+  $(document).on("click", function (e) {
+    if (e.target.id == "del-button") {
+        var userID = $("#del-list").children(":selected").attr("id");
+        //var userRecord = $("#del-list option:selected").val();      
+      console.log("user: " + userID);
+      $.ajax({
+        url: "http://localhost:3000/users",
+        cache: false,
+        data: {},
+        dataType: "json",
+        success: function (result) {
+          $.each(result, function (index, data) {              
+            if (userID == data.id) {
+                console.log("data id: " + data.id); 
+                var payload = data[index];             
               $.ajax({
-                url: "http://localhost:3000/users" + '?' + $.param(payload),
+                url: "http://localhost:3000/users",
                 type: "DELETE",
-                dataType: "json",
+                dataType: "json", 
+                data: payload,               
                 contentType: "application/json",
                 success: function(result) {
                   console.log("");
                 }         
               });
               return;
-           }
+            }
           });  
         }   
-      });     
-    },
-    error: function () {
-      userData = "";
-      $(".content-wrapper").html(userData);
-
-      userData +=
-        '<div class="user-nodata" style="height:100%;">' +
-        "<strong> error loading external data </strong>" +
-        "</div>";
-      $(".content-wrapper").html(userData);
+      });
     }
-
-
-  });
+  });  
 
   //display json data source for block list
   var userBlock = "<option value=''>Select blocked user from list</option>";
@@ -190,12 +213,10 @@ $(window).on("load", function () {
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json",
-        success: function(result) {
-          console.log("new data name: " + payload.name);
-        }         
+        success: userAdded
       });      
     }     
-
+ 
     //add modal display
     if (e.target.id == "add-user") {
       if ($("#add-button").is(":visible")) {

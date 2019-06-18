@@ -11,22 +11,27 @@
 </head>
 <body>
 	<div id="add-modal" class="modal-container" style="display:none;">
-		<div class="modal-content">
+		<div class="modal-content user-add">
 			<div class="flex">
 				<div>Add user</div>
 				<div class="close transition">&times;</div>
 			</div>
-					<div><input id="add-name" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Name"></input></div>
-					<div><input id="add-title" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Title"></input></div>
-					<div><select id="add-avatar" class="search-icon-glass border defaultFont margin">
-									<option value="" disabled selected>Select Avatar</option>
-									<option value="user-pic-1">Pic 1</option>
-									<option value="user-pic-2">Pic 2</option>
-									<option value="user-pic-3">Pic 3</option>
-							</select>
-							<br><br>
-						<button id="add-button" class="user-button transition" style="display:none;">Submit</button>
-					</div>
+			<div><input id="add-name" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Name"></input></div>
+			<div><input id="add-title" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Title"></input></div>
+			<div><select id="add-avatar" class="search-icon-glass border defaultFont margin">
+							<option value="" disabled selected>Select Avatar</option>
+							<option value="user-pic-1">Pic 1</option>
+							<option value="user-pic-2">Pic 2</option>
+							<option value="user-pic-3">Pic 3</option>
+					</select>
+					<br><br>
+				<button id="add-button" class="user-button transition" style="display:none;">Submit</button>
+			</div>
+		</div>
+		<div class="modal-content user-success" style="display:none;">
+			<div>
+				<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user added successfully</div>
+			</div>
 		</div>
 	</div>
 	<div id="del-modal" class="modal-container" style="display:none;">
@@ -35,49 +40,49 @@
 				<div>Delete user</div>
 				<div class="close transition">&times;</div>
 			</div>			
+			<div>
+				<select id="del-list" class="search-icon-glass border defaultFont margin">
+				</select>
+				<div id="confirm-del" style="display:none;">
+					<input id="checkbox-state" type="checkbox"></input><span class="defaultFont">Are you sure ?</span>
+				</div>
+				<br>
+				<button id="del-button" style="display:none;" class="user-button transition">Delete</button>
+			</div>
+		</div>
+	</div>
+	<div id="block-modal" class="modal-container" style="display:none;">
+		<div class="modal-content">
+			<div class="flex">
+				<div>Block list</div>
+				<div class="close transition">&times;</div>
+			</div>
 				<div>
-						<select id="del-list" class="search-icon-glass border defaultFont margin">
+						<select id="block-list" class="search-icon-glass border defaultFont margin">									
 						</select>
-						<div id="confirm-del" style="display:none;">
-							<input id="checkbox-state" type="checkbox"></input><span class="defaultFont">Are you sure ?</span>
+						<br><br>
+						<button id="del-block-button" style="display:none;" class="user-button transition">Unblock</button>
+			</div>
+		</div>
+	</div>	
+	<div id="change-theme" class="modal-container" style="display:none;">
+		<div class="modal-content">
+			<div class="flex">
+				<div>Change theme</div>
+				<div class="close transition">&times;</div>
+			</div>
+				<div>
+						<div>
+								<label><input id="light" type="radio" name="radio">Light</label>
 						</div>
-						<br>
-						<button id="del-button" style="display:none;" class="user-button transition">Delete</button>
-				</div>
+						<div>
+							<label><input id="dark" type="radio" name="radio">Dark</label>
+						</div>
+						<br><br>
+						<button id="submit-theme" class="user-button transition">Submit</button>
 			</div>
 		</div>
-		<div id="block-modal" class="modal-container" style="display:none;">
-			<div class="modal-content">
-				<div class="flex">
-					<div>Block list</div>
-					<div class="close transition">&times;</div>
-				</div>
-					<div>
-							<select id="block-list" class="search-icon-glass border defaultFont margin">									
-							</select>
-							<br><br>
-							<button id="del-block-button" style="display:none;" class="user-button transition">Unblock</button>
-				</div>
-			</div>
-		</div>
-		<div id="change-theme" class="modal-container" style="display:none;">
-			<div class="modal-content">
-				<div class="flex">
-					<div>Change theme</div>
-					<div class="close transition">&times;</div>
-				</div>
-					<div>
-							<div>
-									<label><input id="light" type="radio" name="radio">Light</label>
-							</div>
-							<div>
-								<label><input id="dark" type="radio" name="radio">Dark</label>
-							</div>
-							<br><br>
-							<button id="submit-theme" class="user-button transition">Submit</button>
-				</div>
-			</div>
-		</div>
+	</div>
 	<div class="page-container">
 		<header class="black">
 			<nav class="arrow-container">

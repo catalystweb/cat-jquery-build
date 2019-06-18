@@ -28,36 +28,38 @@ $(window).on("load", function () {
               $(".content-wrapper").html(userData);
 
               $.each(result, function (index, data) {
-                userData +=
-                  "<section id=" +
-                  data.id +
-                  " class='sort-class'>" +
-                  '<div class="user-wrapper">' +
-                  '<div class="user-container">' +
-                  '<div class="user-img-container">' +
-                  '<div class="user-avatar ' +
-                  data.avatar +
-                  '"></div >' +
-                  '<div class="user-status ' +
-                  data.status +
-                  '"></div>' +
-                  "</div >" +
-                  '<div class="user-info">' +
-                  "<div>" +
-                  '<div class="user-name" data-name="' +
-                  data.name +
-                  '" contenteditable="true">' +
-                  data.name +
-                  "</div>" +
-                  '<div class="user-title" contenteditable="true">' +
-                  data.title +
-                  "</div>" +
-                  "</div>" +
-                  '<button class="user-button transition">Block</button>' +
-                  "</div>" +
-                  "</div>" +
-                  "</div>" +
-                  "</section>";
+                if (data.block !== "true") { 
+                  userData +=
+                    "<section id=" +
+                    data.id +
+                    " class='sort-class'>" +
+                    '<div class="user-wrapper">' +
+                    '<div class="user-container">' +
+                    '<div class="user-img-container">' +
+                    '<div class="user-avatar ' +
+                    data.avatar +
+                    '"></div >' +
+                    '<div class="user-status ' +
+                    data.status +
+                    '"></div>' +
+                    "</div >" +
+                    '<div class="user-info">' +
+                    "<div>" +
+                    '<div class="user-name" data-name="' +
+                    data.name +
+                    '" contenteditable="true">' +
+                    data.name +
+                    "</div>" +
+                    '<div class="user-title" contenteditable="true">' +
+                    data.title +
+                    "</div>" +
+                    "</div>" +
+                    '<button class="user-button transition">Block</button>' +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</section>";
+                }
               });
                 $(".content-wrapper").html(userData);
 
@@ -74,6 +76,28 @@ $(window).on("load", function () {
       });
     }
   getData();
+
+   //display json data source for block list
+   function getBlockData() {
+    var userBlock = "<option value=''>Select blocked user from list</option>";
+
+    $.ajax({
+      url: "http://localhost:3000/users",
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function (result) {
+        $.each(result, function (index, data) {
+          if (data.block == "true") {
+            userBlock +=
+              "<option value='" + data.name + "'>" + data.name + "</option>";
+          }
+          $("#block-list").html(userBlock);
+        });
+      }
+    });
+  }
+  getBlockData();
 
   //show useradded successfully modal 
   function userAdded() {
@@ -93,7 +117,6 @@ $(window).on("load", function () {
       $.ajax({
         url: "http://localhost:3000/users",
         cache: false,
-        data: {},
         dataType: "json",
         success: function (result) {
           $.each(result, function (index, data) {              
@@ -118,24 +141,67 @@ $(window).on("load", function () {
     }
   });  
 
-  //display json data source for block list
-  var userBlock = "<option value=''>Select blocked user from list</option>";
+  //add user to block list 
+  $(document).on("click", function (e) {
+    if ($(e.target).hasClass("user-button")) {
+      $(e.target).closest("section").fadeOut("slow");
 
-  $.ajax({
-    url: "http://localhost:3000/users",
-    cache: false,
-    data: {},
-    dataType: "json",
-    success: function (result) {
-      $.each(result, function (index, data) {
-        if (data.block == "true") {
-          userBlock +=
-            "<option value='" + data.name + "'>" + data.name + "</option>";
-        }
-        $("#block-list").html(userBlock);
+      var secID = $(e.target).closest("section").attr("id");
+
+      $.ajax({
+        url: "http://localhost:3000/users",
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+          $.each(result, function (index, data) {              
+            if (secID == data.id) {                
+                var payload = { 
+                  id: data.id,
+                  name: data.name,
+                  title: data.title,
+                  avatar: data.avatar,
+                  status: data.status,
+                  block: "true" 
+                };
+              $.ajax({
+                url: "http://localhost:3000/users/" +secID,
+                type: "PUT",
+                data: JSON.stringify(payload), 
+                dataType: "json",             
+                contentType: "application/json",
+                success: function(result) {
+                  getBlockData()
+                }         
+              });
+              return;
+            }
+          });  
+        }   
       });
     }
-  });
+  }); 
+
+  //display json data source for block list
+  function getBlockData() {
+    var userBlock = "<option value=''>Select blocked user from list</option>";
+
+    $.ajax({
+      url: "http://localhost:3000/users",
+      cache: false,
+      data: {},
+      dataType: "json",
+      success: function (result) {
+        $.each(result, function (index, data) {
+          if (data.block == "true") {
+            userBlock +=
+              "<option value='" + data.name + "'>" + data.name + "</option>";
+          }
+          $("#block-list").html(userBlock);
+        });
+      }
+    });
+  }
+  getBlockData();
 
   //display json data source for delete list
   var userDel =

@@ -38,7 +38,7 @@
       "title": "Contributor",
       "avatar": "user-pic-1",
       "status": "offline",
-      "block": "false"
+      "block": "true"
     },
     {
       "id": "6",
@@ -81,12 +81,12 @@
       "block": "false"
     },
     {
+      "id": "lJ-wpCK",
       "name": "Michael Scott",
       "title": "Boss",
       "avatar": "user-pic-3",
       "status": "offline",
-      "block": "false",
-      "id": "lJ-wpCK"
+      "block": "true"
     },
     {
       "name": "Andy Gray",
@@ -95,14 +95,6 @@
       "status": "offline",
       "block": "false",
       "id": "eU07bM-"
-    },
-    {
-      "id": "DONbTXg",
-      "name": "123",
-      "title": "123",
-      "avatar": "user-pic-1",
-      "status": "offline",
-      "block": "true"
     }
   ]
 }

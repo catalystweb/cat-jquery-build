@@ -99,20 +99,41 @@ $(window).on("load", function () {
   }
   getBlockData();
 
+  //display json data source for delete list
+  function getDelData() {
+    var userDel =
+      "<option value='' selected='false'>Select user from list</option>";
+
+    $.ajax({
+      url: "http://localhost:3000/users",
+      cache: false,
+      data: {},
+      dataType: "jsonp",
+      success: function (result) {
+        $.each(result, function (index, data) {
+          userDel +=
+            "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + "</option>";
+          $("#del-list").html(userDel);
+        });
+      }
+    });
+  }
+  getDelData();
+
   //show useradded successfully modal 
   function userAdded() {
     $(".user-add").css("display","none");
     $(".user-success").fadeIn("fast");
     setTimeout(function () {
       getData();
+      getDelData();
     },3000);
   }
 
-  //delete - delete data from submit button
+  //delete user from json source
   $(document).on("click", function (e) {
     if (e.target.id == "del-button") {
-        var userID = $("#del-list").children(":selected").attr("id");
-        //var userRecord = $("#del-list option:selected").val();      
+        var userID = $("#del-list").children(":selected").attr("id");    
       console.log("user: " + userID);
       $.ajax({
         url: "http://localhost:3000/users",
@@ -121,16 +142,16 @@ $(window).on("load", function () {
         success: function (result) {
           $.each(result, function (index, data) {              
             if (userID == data.id) {
-                console.log("data id: " + data.id); 
-                var payload = data[index];             
+                var payload = delete data.id;             
               $.ajax({
-                url: "http://localhost:3000/users",
+                url: "http://localhost:3000/users/" +userID,
                 type: "DELETE",
                 dataType: "json", 
                 data: payload,               
                 contentType: "application/json",
                 success: function(result) {
-                  console.log("");
+                  getData();
+                  getDelData(); 
                 }         
               });
               return;
@@ -141,7 +162,7 @@ $(window).on("load", function () {
     }
   });  
 
-  //add user to block list 
+  //add user to block list on json source 
   $(document).on("click", function (e) {
     if ($(e.target).hasClass("user-button")) {
       $(e.target).closest("section").fadeOut("slow");
@@ -180,46 +201,6 @@ $(window).on("load", function () {
       });
     }
   }); 
-
-  //display json data source for block list
-  function getBlockData() {
-    var userBlock = "<option value=''>Select blocked user from list</option>";
-
-    $.ajax({
-      url: "http://localhost:3000/users",
-      cache: false,
-      data: {},
-      dataType: "json",
-      success: function (result) {
-        $.each(result, function (index, data) {
-          if (data.block == "true") {
-            userBlock +=
-              "<option value='" + data.name + "'>" + data.name + "</option>";
-          }
-          $("#block-list").html(userBlock);
-        });
-      }
-    });
-  }
-  getBlockData();
-
-  //display json data source for delete list
-  var userDel =
-    "<option value='' selected='false'>Select user from list</option>";
-
-  $.ajax({
-    url: "http://localhost:3000/users",
-    cache: false,
-    data: {},
-    dataType: "jsonp",
-    success: function (result) {
-      $.each(result, function (index, data) {
-        userDel +=
-          "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + "</option>";
-        $("#del-list").html(userDel);
-      });
-    }
-  });
 
   //logo hover event handler 
   $(".logo").hover(function (e) {

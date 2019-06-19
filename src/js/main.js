@@ -65,7 +65,16 @@ $(window).on("load", function () {
                     "</section>";
                 }
               });
+                //apply result to html element
                 $(".content-wrapper").html(userData);
+                //sort desc by default html element and append
+                $(".sort-class").sort(function (a, b) {
+                  return String.prototype.localeCompare.call(
+                    $(a).find("div.user-name").data("name").toLowerCase(),
+                    $(b).find("div.user-name").data("name").toLowerCase()
+                  );
+                }).appendTo(".content-wrapper");
+                //fade in elements
                 $(".content-wrapper").fadeIn("slow");
                 $("footer").fadeIn("slow");
           },
@@ -75,7 +84,7 @@ $(window).on("load", function () {
               '<div class="user-nodata" style="height:100%;">' +
               "<strong> error loading external data </strong>" +
               "</div>";
-            $(".content-wrapper").html(userData);
+            $(".content-wrapper").html(userData);            
             $(".content-wrapper").fadeIn("slow");
             $("footer").fadeIn("slow");
           }        
@@ -393,7 +402,7 @@ $(window).on("load", function () {
         $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
       }
     }
-    if (e.target.classList[0] == "sort") {
+    if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
       if ($(".arrow-sort").hasClass("arrow-spin-down")) {
         $(".arrow-sort").removeClass("arrow-spin-down");
         $(".arrow-sort").addClass("arrow-spin-up");
@@ -403,11 +412,10 @@ $(window).on("load", function () {
       }
     }
 
-    // sort function for asc and desc
-    if (e.target.classList[0] == "sort") {
-      var getStateVal = document.getElementsByClassName("sort-list")[0].id;
-      var alphabeticallyOrderedDivs = $(".sort-class")
-        .sort(function (a, b) {
+    // call sort function for asc and desc on click event    
+    if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
+      var getStateVal = document.getElementsByClassName("sort-list")[0].id;    
+      $(".sort-class").sort(function (a, b) {
           if (getStateVal == "sort-asc") {
             document.getElementsByClassName("sort-list")[0].id = "sort-des";
             return String.prototype.localeCompare.call(
@@ -422,7 +430,7 @@ $(window).on("load", function () {
             );
           }
         }).appendTo(".content-wrapper");
-    }
+    }    
   });
 
   //key function if menu open close during filter function

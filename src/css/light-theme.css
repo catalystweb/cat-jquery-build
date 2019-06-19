@@ -449,12 +449,12 @@ input[type="radio"] {
 }
 
 .arrow-spin-up {
-  transform: rotate(0deg) !important;
+  transform: rotate(180deg) !important;
   transition: 400ms ease-in-out;
 }
 
 .arrow-spin-down {
-  transform: rotate(180deg) !important;
+  transform: rotate(0deg) !important;
   transition: 400ms ease-in-out;
 }
 
@@ -469,7 +469,7 @@ input[type="radio"] {
   border-bottom: solid 10px black;
   border-right: solid 6px transparent;
   border-left: solid 6px transparent;
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 .arrow-sort .empty {
   position: absolute;

@@ -14,7 +14,7 @@
       "title": "Administrator",
       "avatar": "user-pic-1",
       "status": "afk",
-      "block": "false"
+      "block": "true"
     },
     {
       "id": "4",
@@ -30,7 +30,7 @@
       "title": "Contributor",
       "avatar": "user-pic-1",
       "status": "offline",
-      "block": "false"
+      "block": "true"
     },
     {
       "id": "6",
@@ -87,6 +87,14 @@
       "avatar": "user-pic-3",
       "status": "offline",
       "block": "false"
+    },
+    {
+      "name": "Wayne Campbell",
+      "title": "BA",
+      "avatar": "user-pic-1",
+      "status": "offline",
+      "block": "false",
+      "id": "3uLFyMU"
     }
   ]
 }

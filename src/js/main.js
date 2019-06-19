@@ -300,10 +300,6 @@ $(window).on("load", function () {
       var dataName = $("#add-name").val();
       var dataTitle = $("#add-title").val();
       var dataAvatar = $("#add-avatar option:selected").val();
-      
-      console.log("name: " + dataName);
-      console.log("title: " + dataTitle);
-      console.log("avatar: " + dataAvatar);
            
       var payload = {
         name: dataName,
@@ -376,7 +372,6 @@ $(window).on("load", function () {
 
     if (e.target.id == "checkbox-state") {
       if ($("#checkbox-state").prop("checked") == true) {
-        console.log(true);
         $("#del-button").fadeIn("fast");
       } else {
         $("#del-button").fadeOut("fast");

@@ -7,8 +7,14 @@ $(window).on("load", function () {
         $("#del-modal").fadeOut("fast");
         $("#add-modal").fadeOut("fast");
         $("#block-modal").fadeOut("fast");
+        $(".user-success").fadeOut("fast");
         $(".page-container").css("opacity", "1");
       };
+
+      //clear existing field values
+      $("input").val('');
+      $("select").val('');
+      $('input[type=checkbox]').prop('checked',false);
 
       //global json data source
       var userData = "";
@@ -77,8 +83,8 @@ $(window).on("load", function () {
     }
   getData();
 
-   //display json data source for block list
-   function getBlockData() {
+  //display json data source for block list
+  function getBlockData() {
     var userBlock = "<option value=''>Select blocked user from list</option>";
 
     $.ajax({
@@ -90,7 +96,7 @@ $(window).on("load", function () {
         $.each(result, function (index, data) {
           if (data.block == "true") {
             userBlock +=
-              "<option value='" + data.name + "'>" + data.name + "</option>";
+              "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + "</option>";
           }
           $("#block-list").html(userBlock);
         });
@@ -120,8 +126,8 @@ $(window).on("load", function () {
   }
   getDelData();
 
-  //show useradded successfully modal 
-  function userAdded() {
+  //show user add or delete successfully modal 
+  function userAddDel() {
     $(".user-add").css("display","none");
     $(".user-success").fadeIn("fast");
     setTimeout(function () {
@@ -133,8 +139,8 @@ $(window).on("load", function () {
   //delete user from json source
   $(document).on("click", function (e) {
     if (e.target.id == "del-button") {
-        var userID = $("#del-list").children(":selected").attr("id");    
-      console.log("user: " + userID);
+      var userID = $("#del-list").children(":selected").attr("id");  
+
       $.ajax({
         url: "http://localhost:3000/users",
         cache: false,
@@ -150,8 +156,7 @@ $(window).on("load", function () {
                 data: payload,               
                 contentType: "application/json",
                 success: function(result) {
-                  getData();
-                  getDelData(); 
+                  userAddDel() 
                 }         
               });
               return;
@@ -202,6 +207,45 @@ $(window).on("load", function () {
     }
   }); 
 
+  //remove user from block list on json source 
+  $(document).on("click", function (e) {
+    if (e.target.id == "del-block-button") {
+      var userID = $("#block-list").children(":selected").attr("id");
+
+      $.ajax({
+        url: "http://localhost:3000/users",
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+          $.each(result, function (index, data) {              
+            if (userID == data.id) {                
+                var payload = { 
+                  id: data.id,
+                  name: data.name,
+                  title: data.title,
+                  avatar: data.avatar,
+                  status: data.status,
+                  block: "false" 
+                };
+              $.ajax({
+                url: "http://localhost:3000/users/" +userID,
+                type: "PUT",
+                data: JSON.stringify(payload), 
+                dataType: "json",             
+                contentType: "application/json",
+                success: function(result) {
+                  getBlockData()
+                  getData()
+                }         
+              });
+              return;
+            }
+          });  
+        }   
+      });
+    }
+  }); 
+
   //logo hover event handler 
   $(".logo").hover(function (e) {
       $(".catalyst").animate({width: 'toggle'});
@@ -211,6 +255,7 @@ $(window).on("load", function () {
   $(document).on("click", function (e) {
     if (e.target.id == "add-user") {
       $("#add-modal").fadeIn("fast");
+      $(".user-add").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "del-user") {
@@ -260,7 +305,9 @@ $(window).on("load", function () {
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json",
-        success: userAdded
+        success: function(result) {
+          userAddDel()
+        }
       });      
     }     
  

@@ -14,7 +14,7 @@
       "title": "Administrator",
       "avatar": "user-pic-1",
       "status": "afk",
-      "block": "true"
+      "block": "false"
     },
     {
       "id": "4",
@@ -22,7 +22,7 @@
       "title": "Contributor",
       "avatar": "user-pic-1",
       "status": "online",
-      "block": "false"
+      "block": "true"
     },
     {
       "id": "5",
@@ -30,7 +30,7 @@
       "title": "Contributor",
       "avatar": "user-pic-1",
       "status": "offline",
-      "block": "true"
+      "block": "false"
     },
     {
       "id": "6",
@@ -97,20 +97,12 @@
       "id": "3uLFyMU"
     },
     {
+      "id": "KmC8iLX",
       "name": "Test",
       "title": "123",
       "avatar": "user-pic-5",
       "status": "offline",
-      "block": "false",
-      "id": "KmC8iLX"
-    },
-    {
-      "name": "Another Test",
-      "title": "1234",
-      "avatar": "user-pic-4",
-      "status": "offline",
-      "block": "false",
-      "id": "YhK6mcq"
+      "block": "false"
     }
   ]
 }

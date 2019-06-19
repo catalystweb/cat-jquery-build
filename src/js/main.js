@@ -137,13 +137,14 @@ $(window).on("load", function () {
 
   //show user add or delete successfully modal 
   function userAddDel() {
-    $(".user-add").css("display","none");
+    $(".user-mod").css("display","none");
     $(".user-success").fadeIn("fast");
     setTimeout(function () {
       $(".content-wrapper").css("display","none");
       $("footer").css("display","none");
       getData();
       getDelData();
+      getBlockData();
     },2000);
   }
 
@@ -245,10 +246,7 @@ $(window).on("load", function () {
                 dataType: "json",             
                 contentType: "application/json",
                 success: function(result) {
-                  $(".content-wrapper").css("display","none");
-                  $("footer").css("display","none");
-                  getBlockData()
-                  getData()
+                  userAddDel(); 
                 }         
               });
               return;
@@ -268,16 +266,17 @@ $(window).on("load", function () {
   $(document).on("click", function (e) {
     if (e.target.id == "add-user") {
       $("#add-modal").fadeIn("fast");
-      $(".user-add").fadeIn("fast");
+      $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "del-user") {
       $("#del-modal").fadeIn("fast");
-      $(".user-add").fadeIn("fast");
+      $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "block-user") {
       $("#block-modal").fadeIn("fast");
+      $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "change-theme") {

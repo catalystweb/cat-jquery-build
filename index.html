@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="add-modal" class="modal-container" style="display:none;">
-		<div class="modal-content user-add">
+		<div class="modal-content user-mod">
 			<div class="flex">
 				<div>Add user</div>
 				<div class="close transition">&times;</div>
@@ -32,12 +32,12 @@
 		</div>
 		<div class="modal-content user-success" style="display:none;">
 			<div>
-				<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user added successfully</div>
+				<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user added</div>
 			</div>
 		</div>
 	</div>
 	<div id="del-modal" class="modal-container" style="display:none;">
-		<div class="modal-content user-add">
+		<div class="modal-content user-mod">
 			<div class="flex">
 				<div>Delete user</div>
 				<div class="close transition">&times;</div>
@@ -54,23 +54,28 @@
 		</div>
 		<div class="modal-content user-success" style="display:none;">
 			<div>
-				<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user deleted successfully</div>
+				<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user deleted</div>
 			</div>
 		</div>
 	</div>
 	<div id="block-modal" class="modal-container" style="display:none;">
-		<div class="modal-content">
+		<div class="modal-content user-mod">
 			<div class="flex">
 				<div>Block list</div>
 				<div class="close transition">&times;</div>
 			</div>
-				<div>
-						<select id="block-list" class="search-icon-glass border defaultFont margin">									
-						</select>
-						<br><br>
-						<button id="del-block-button" style="display:none;" class="user-button transition">Unblock</button>
+			<div>
+				<select id="block-list" class="search-icon-glass border defaultFont margin">									
+				</select>
+				<br><br>
+				<button id="del-block-button" style="display:none;" class="user-button transition">Unblock</button>
 			</div>
 		</div>
+		<div class="modal-content user-success" style="display:none;">
+				<div>
+					<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user unblocked</div>
+				</div>
+			</div>
 	</div>	
 	<div id="change-theme" class="modal-container" style="display:none;">
 		<div class="modal-content">

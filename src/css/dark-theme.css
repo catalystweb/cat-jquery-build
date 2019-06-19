@@ -220,7 +220,8 @@ input[type="radio"] {
 /* modal css */
 
 .modal-container {
-  width: 60%;
+  width: 60vw;
+  max-width:600px;
   margin:0 auto;
   top: 25%;
   left: 0;
@@ -346,23 +347,28 @@ input[type="radio"] {
 .user-pic-1 {
   background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
     no-repeat;
+  background-size: cover;
 }
 
 .user-pic-2 {
   background: url(../../img/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg)
     bottom center no-repeat;
+  background-size: cover;
 }
 .user-pic-3 {
   background: url(../../img/user-sign-icon-person-symbol-human-avatar-vector-12693201.jpg)
     bottom center no-repeat;
+  background-size: cover;
 }
 .user-pic-4 {
   background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
     no-repeat;
+  background-size: cover;
 }
 .user-pic-5 {
   background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
     no-repeat;
+  background-size: cover;
 }
 
 @media only screen and (max-width: 340px) {

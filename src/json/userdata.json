@@ -14,7 +14,7 @@
       "title": "Administrator",
       "avatar": "user-pic-1",
       "status": "afk",
-      "block": "true"
+      "block": "false"
     },
     {
       "id": "4",
@@ -30,7 +30,7 @@
       "title": "Contributor",
       "avatar": "user-pic-1",
       "status": "offline",
-      "block": "true"
+      "block": "false"
     },
     {
       "id": "6",

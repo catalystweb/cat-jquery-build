@@ -22,17 +22,15 @@ $(window).on("load", function () {
         '<div class="user-nodata" style="height:100%;">' +
         "<strong> loading data </strong>" +
         "</div>";
-      $(".content-wrapper").html(userData);
+      $(".content-wrapper").html(userData);      
 
       $.ajax({
         url: "http://localhost:3000/users",
         cache: false,
         data: {},
         dataType: "jsonp",
-          success: function (result) {   
+          success: function (result) {  
               userData = "";
-              $(".content-wrapper").html(userData);
-
               $.each(result, function (index, data) {
                 if (data.block !== "true") { 
                   userData +=
@@ -68,16 +66,18 @@ $(window).on("load", function () {
                 }
               });
                 $(".content-wrapper").html(userData);
-
+                $(".content-wrapper").fadeIn("slow");
+                $("footer").fadeIn("slow");
           },
           error: function () {
             userData = "";
-            $(".content-wrapper").html(userData);
             userData +=
               '<div class="user-nodata" style="height:100%;">' +
               "<strong> error loading external data </strong>" +
               "</div>";
             $(".content-wrapper").html(userData);
+            $(".content-wrapper").fadeIn("slow");
+            $("footer").fadeIn("slow");
           }        
       });
     }
@@ -131,9 +131,11 @@ $(window).on("load", function () {
     $(".user-add").css("display","none");
     $(".user-success").fadeIn("fast");
     setTimeout(function () {
+      $(".content-wrapper").css("display","none");
+      $("footer").css("display","none");
       getData();
       getDelData();
-    },3000);
+    },2000);
   }
 
   //delete user from json source
@@ -234,6 +236,8 @@ $(window).on("load", function () {
                 dataType: "json",             
                 contentType: "application/json",
                 success: function(result) {
+                  $(".content-wrapper").css("display","none");
+                  $("footer").css("display","none");
                   getBlockData()
                   getData()
                 }         
@@ -260,6 +264,7 @@ $(window).on("load", function () {
     }
     if (e.target.id == "del-user") {
       $("#del-modal").fadeIn("fast");
+      $(".user-add").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "block-user") {

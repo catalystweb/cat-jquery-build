@@ -1,7 +1,8 @@
 $(window).on("load", function () {
   $("#searchField").val("");
-  
+
   function getData() {
+    var localHost = "http://localhost:1352/users/";
       //hide any existing modal 
       if ($(".modal-container").is(":visible")) {
         $("#del-modal").fadeOut("fast");
@@ -25,7 +26,7 @@ $(window).on("load", function () {
       $(".content-wrapper").html(userData);      
 
       $.ajax({
-        url: "http://localhost:3000/users",
+        url: localHost,
         cache: false,
         data: {},
         dataType: "jsonp",
@@ -94,10 +95,11 @@ $(window).on("load", function () {
 
   //display json data source for block list
   function getBlockData() {
+    var localHost = "http://localhost:1352/users/";
     var userBlock = "<option value=''>Select blocked user from list</option>";
 
     $.ajax({
-      url: "http://localhost:3000/users",
+      url: localHost,
       cache: false,
       data: {},
       dataType: "json",
@@ -116,11 +118,12 @@ $(window).on("load", function () {
 
   //display json data source for delete list
   function getDelData() {
+    var localHost = "http://localhost:1352/users/";
     var userDel =
       "<option value='' selected='false'>Select user from list</option>";
 
     $.ajax({
-      url: "http://localhost:3000/users",
+      url: localHost,
       cache: false,
       data: {},
       dataType: "jsonp",
@@ -148,13 +151,15 @@ $(window).on("load", function () {
     },2000);
   }
 
-  //delete user from json source
+  //onclick event handler for api interactions
   $(document).on("click", function (e) {
+    var localHost = "http://localhost:1352/users/";
+    
+    //delete user from json source
     if (e.target.id == "del-button") {
       var userID = $("#del-list").children(":selected").attr("id");  
-
       $.ajax({
-        url: "http://localhost:3000/users",
+        url: localHost,
         cache: false,
         dataType: "json",
         success: function (result) {
@@ -162,7 +167,7 @@ $(window).on("load", function () {
             if (userID == data.id) {
                 var payload = delete data.id;             
               $.ajax({
-                url: "http://localhost:3000/users/" +userID,
+                url: localHost+userID,
                 type: "DELETE",
                 dataType: "json", 
                 data: payload,               
@@ -176,56 +181,12 @@ $(window).on("load", function () {
           });  
         }   
       });
-    }
-  });  
-
-  //add user to block list on json source 
-  $(document).on("click", function (e) {
-    if ($(e.target).hasClass("user-button")) {
-      $(e.target).closest("section").fadeOut("slow");
-
-      var secID = $(e.target).closest("section").attr("id");
-
-      $.ajax({
-        url: "http://localhost:3000/users",
-        cache: false,
-        dataType: "json",
-        success: function (result) {
-          $.each(result, function (index, data) {              
-            if (secID == data.id) {                
-                var payload = { 
-                  id: data.id,
-                  name: data.name,
-                  title: data.title,
-                  avatar: data.avatar,
-                  status: data.status,
-                  block: "true" 
-                };
-              $.ajax({
-                url: "http://localhost:3000/users/" +secID,
-                type: "PUT",
-                data: JSON.stringify(payload), 
-                dataType: "json",             
-                contentType: "application/json",
-                success: function(result) {
-                  getBlockData()
-                }         
-              });
-              return;
-            }
-          });  
-        }   
-      });
-    }
-  }); 
-
-  //remove user from block list on json source 
-  $(document).on("click", function (e) {
+    } 
+    //remove user from block list on json source 
     if (e.target.id == "del-block-button") {
       var userID = $("#block-list").children(":selected").attr("id");
-
       $.ajax({
-        url: "http://localhost:3000/users",
+        url: localHost,
         cache: false,
         dataType: "json",
         success: function (result) {
@@ -240,7 +201,7 @@ $(window).on("load", function () {
                   block: "false" 
                 };
               $.ajax({
-                url: "http://localhost:3000/users/" +userID,
+                url: localHost+userID,
                 type: "PUT",
                 data: JSON.stringify(payload), 
                 dataType: "json",             
@@ -255,6 +216,64 @@ $(window).on("load", function () {
         }   
       });
     }
+    //add user to block list on json source 
+    if ($(e.target).hasClass("user-button")) {
+      $(e.target).closest("section").fadeOut("slow");
+      var secID = $(e.target).closest("section").attr("id");
+      $.ajax({
+        url: localHost,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+          $.each(result, function (index, data) {              
+            if (secID == data.id) {                
+                var payload = { 
+                  id: data.id,
+                  name: data.name,
+                  title: data.title,
+                  avatar: data.avatar,
+                  status: data.status,
+                  block: "true" 
+                };
+              $.ajax({
+                url: localHost +secID,
+                type: "PUT",
+                data: JSON.stringify(payload), 
+                dataType: "json",             
+                contentType: "application/json",
+                success: function(result) {
+                  getBlockData()
+                }         
+              });
+              return;
+            }
+          });  
+        }   
+      });
+    } 
+    //add data from submit button to json source
+    if (e.target.id == "add-button") {
+      var dataName = $("#add-name").val();
+      var dataTitle = $("#add-title").val();
+      var dataAvatar = $("#add-avatar option:selected").val();           
+      var payload = {
+        name: dataName,
+        title: dataTitle,
+        avatar: dataAvatar,
+        status: "offline",
+        block: "false"
+      };
+      $.ajax({
+        url: localHost,
+        type: "POST",
+        data: JSON.stringify(payload),
+        dataType: "json",
+        contentType: "application/json",
+        success: function(result) {
+          userAddDel()
+        }
+      });      
+    }     
   }); 
 
   //logo hover event handler 
@@ -292,33 +311,7 @@ $(window).on("load", function () {
         $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
         $('link[href="src/css/light-theme.css"]').prop("disabled", false);
       }
-    }
-
-    //post - add data from submit button
-    if (e.target.id == "add-button") {
-      var dataName = $("#add-name").val();
-      var dataTitle = $("#add-title").val();
-      var dataAvatar = $("#add-avatar option:selected").val();
-           
-      var payload = {
-        name: dataName,
-        title: dataTitle,
-        avatar: dataAvatar,
-        status: "offline",
-        block: "false"
-      };
-
-      $.ajax({
-        url: "http://localhost:3000/users",
-        type: "POST",
-        data: JSON.stringify(payload),
-        dataType: "json",
-        contentType: "application/json",
-        success: function(result) {
-          userAddDel()
-        }
-      });      
-    }     
+    }   
  
     //add modal display
     if (e.target.id == "add-user") {

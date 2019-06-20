@@ -73,12 +73,12 @@
       "block": "false"
     },
     {
+      "id": "eU07bM-",
       "name": "Andy Gray",
       "title": "Developer",
       "avatar": "user-pic-2",
       "status": "offline",
-      "block": "false",
-      "id": "eU07bM-"
+      "block": "false"
     },
     {
       "id": "-GVCYOv",
@@ -95,14 +95,6 @@
       "status": "offline",
       "block": "false",
       "id": "3uLFyMU"
-    },
-    {
-      "id": "KmC8iLX",
-      "name": "Test",
-      "title": "123",
-      "avatar": "user-pic-5",
-      "status": "offline",
-      "block": "false"
     }
   ]
 }

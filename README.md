@@ -7,7 +7,7 @@ From a practical standpoint the aim was to demonstrate competency in the usage o
 jQuery, Ajax API calls, npm build tool and configuration as well as source control.  
 
 Requires Node.js
-1. Clone the repository (https://github.com/catalystweb/cat-jquery-build.git)
+1. Clone the repository (https://github.com/catalystweb/app-demo.git)
 2. Run the application (npm run start)
 
 Developed by Daniel Kandilas

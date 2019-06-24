@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="src/css/light-theme.css" id="light-css">
 </head>
 <body>
-	<div class="top-container">
+	<div class="header-container">
 		<div id="add-modal" class="modal-container" style="display:none;">
 			<div class="modal-content user-mod">
 				<div class="flex">
@@ -85,21 +85,21 @@
 					<div class="close transition">&times;</div>
 				</div>
 					<div>
-							<div>
-									<label><input id="light" type="radio" name="radio">Light</label>
-							</div>
-							<div>
-								<label><input id="dark" type="radio" name="radio">Dark</label>
-							</div>
-							<div>
-								<label><input id="swMenu" type="checkbox" name="checkbox">Switch Menu</label>
-							</div>
-							<br><br>
-							<button id="submit-theme" class="user-button transition">Submit</button>
+						<div>
+							<label><input id="light" type="radio" name="radio" checked="checked">Light</label>
+						</div>
+						<div>
+							<label><input id="dark" type="radio" name="radio">Dark</label>
+						</div>
+						<div>
+							<label><input id="swMenu" type="checkbox" name="checkbox">Switch Menu</label>
+						</div>
+						<br><br>
+						<button id="submit-theme" class="user-button transition">Submit</button>
 				</div>
 			</div>
 		</div>
-		<div class="side-menu-wrapper">
+		<div class="side-menu-wrapper" style="display:none;">
 				<div class="nav2 nav-side-fix">
 					<ul>
 						<li id="add-user">Add user</li>
@@ -146,12 +146,14 @@
 						<strong> user name does not exist</strong>
 				</div>
 		</div>
+	</div>
+	<div class="footer-container">
 		<footer style="display:none;">
-			<div class="search-wrapper">
-				<div class="search-container">
-					<input id="searchField" type="text" onkeyup="filterFunction()" class="search-icon-glass border defaultFont" placeholder="Search contacts"><span class="fa fa-search search-icon-position" aria-hidden="true"></span></input>
+				<div class="search-wrapper">
+					<div class="search-container">
+						<input id="searchField" type="text" onkeyup="filterFunction()" class="search-icon-glass border defaultFont" placeholder="Search contacts"><span class="fa fa-search search-icon-position" aria-hidden="true"></span></input>
+					</div>
 				</div>
-			</div>
 		</footer>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>

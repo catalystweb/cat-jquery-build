@@ -14,12 +14,12 @@ body {
   background: black;
 }
 
-.top-container {
+.header-container {
   max-width:768px !important;
   margin:0 auto;
   display: flex;
   flex-direction: column;
-  background: black;
+  background: lightgrey;
 }
 
 .page-container {
@@ -27,8 +27,20 @@ body {
   margin:0 auto;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: black;
+  height: 83vh;
+  background: lightgrey;
+  transition: 0.3s ease-in-out;
+}
+
+.footer-container {
+  max-width: 768px !important;
+  margin:0 auto;
+  height: 60px;
+  display: flex;
+  background: lightgrey;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
 section {
@@ -60,9 +72,9 @@ header {
   min-width: 40vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
-  background: silver;
-  border-left: 1px solid black;
-  color: black;
+  background: #00173d;
+  border-left: 1px solid grey;
+  color: silver;
   display: flex;
   position: absolute;
   margin-right: 0;
@@ -127,18 +139,23 @@ nav {
   padding-right: 30px;
 }
 
+.nav-side-fix {
+  padding-inline-start:0;
+  padding-top:20px;
+}
+
 .nav-wrapper {
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
 }
 
-nav ul {
+nav ul, .nav2 ul {
   margin-top: 0px;
   list-style-type: none;
 }
 
-nav li {
+nav li, .nav2 li {
   padding: 3px 0px 3px 0px;
 }
 
@@ -251,15 +268,12 @@ input[type="radio"] {
 /* modal css */
 
 .modal-container {
-  width: 60vw;
-  max-width:600px;
+  max-width:400px;
   top: 25%;
-  left: 15vw;
-  right: 15vw;
+  margin:0 auto;
   background: black;
   color: silver;
   border-radius: 4px;
-  border: 1px solid grey;
   padding: 1.5em;
   position: fixed;
   z-index: 1;
@@ -468,7 +482,7 @@ input[type="radio"] {
   transform: rotate(135deg);
 }
 
-..arrow-spin-up {
+.arrow-spin-up {
   transform: rotate(0deg) !important;
   transition: 400ms ease-in-out;
 }

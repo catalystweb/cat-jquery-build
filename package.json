@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "nodemon --exec npm run build",
-    "build": "concurrently \"http-server -a localhost -p 1355\" \"json-server --watch src/json/userdata.json --port 1355\" \"opener http://localhost:1355/index.html\""
+    "build": "concurrently \"http-server -a localhost -p 1350\" \"json-server --watch src/json/userdata.json --port 1352\" \"opener http://localhost:1350/index.html\""
   },
   "dependencies": {
     "jquery": ">=3.4.0",

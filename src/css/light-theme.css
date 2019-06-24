@@ -21,7 +21,7 @@ body {
 }
 
 .header-container {
-  max-width:768px !important;
+  max-width:1024px !important;
   margin:0 auto;
   display: flex;
   flex-direction: column;
@@ -29,26 +29,13 @@ body {
 }
 
 .page-container {
-  max-width:768px !important;
+  max-width:1024px !important;
   margin:0 auto;
   display: flex;
   flex-direction: column;
-  height: 88vh;
+  height: 100vh;
   background: lightgrey;
   transition: 0.3s ease-in-out;
-}
-
-.footer-container {
-  max-width: 768px !important;
-  margin:0 auto;
-  width:100%;
-  bottom:0;
-  height: 60px;
-  display: flex;
-  background: lightgrey;
-  transition: 0.3s ease-in-out;
-  position: sticky;
-  overflow: hidden;
 }
 section {
   width: 100%;
@@ -76,8 +63,10 @@ header {
 }
 
 .side-menu-wrapper {
+  display:none;
   height: 100vh;
-  min-width: 40vw;
+  width:100%;
+  margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
   background: silver;
@@ -86,7 +75,6 @@ header {
   display: flex;
   position: absolute;
   margin-right: 0;
-  margin-left: 100vw;
   top: 66px;
   justify-content: center;
   z-index: 9999;
@@ -99,8 +87,9 @@ header {
 
 .slideIn {
   display:flex !important;
-  margin-left:60%;
-  transition:margin-left 0.3s ease-in-out;
+  margin-left:0vw;
+  width:100%;
+  transition:margin 0.3s ease-in-out;
 }
 
 footer {
@@ -278,6 +267,8 @@ input[type="radio"] {
 .modal-container {
   max-width:400px;
   top: 25%;
+  left:25%;
+  right:25%;
   margin:0 auto;
   background: silver;
   color: black;

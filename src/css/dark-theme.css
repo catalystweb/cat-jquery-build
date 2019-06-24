@@ -57,9 +57,9 @@ header {
 }
 
 .side-menu-wrapper {
-  display:none;
   height: 100vh;
-  max-width:1024px;
+  width:100%;
+  max-width:1023px;
   margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
@@ -82,13 +82,6 @@ header {
 .slideIn {
   display:flex !important;
   margin-left:0vw;
-  width:100%;
-  transition:margin 0.3s ease-in-out;
-}
-
-.slideOut {
-  display:flex !important;
-  margin-left:100vw;
   width:100%;
   transition:margin 0.3s ease-in-out;
 }

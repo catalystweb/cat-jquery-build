@@ -290,6 +290,7 @@ $(window).on("load", function () {
       }
       $("#add-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
+      $(".side-menu-wrapper").css("display","none");
       $(".page-container").css("opacity", "0.3");
 
     }
@@ -300,6 +301,7 @@ $(window).on("load", function () {
       }
       $("#del-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
+      $(".side-menu-wrapper").css("display","none");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "block-user") {
@@ -309,11 +311,13 @@ $(window).on("load", function () {
       }
       $("#block-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
+      $(".side-menu-wrapper").css("display","none");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "change-theme") {
       if ($(".arrow-spin-right").is(":visible")) {
         $(".side-menu-wrapper").toggleClass("slideIn");
+        $(".side-menu-wrapper").css("display","none");
         $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
       }
       $("#change-theme").fadeIn("fast");
@@ -409,15 +413,25 @@ $(window).on("load", function () {
 
     //arrow spin style for sorting
     if (e.target.classList[0] == "arrow-icon") {
+      if ($(".side-menu-wrapper").is(":visible")) {
+        $("#del-modal").fadeOut("fast");
+        $("#add-modal").fadeOut("fast");
+        $("#block-modal").fadeOut("fast");
+        $(".user-success").fadeOut("fast");
+      }
       if ($('#swMenu').is(":checked")) {
         if ($(".arrow-spin-left").is(":visible")) {
-          $(".side-menu-wrapper").addClass("slideIn").removeClass("slideOut");
+          $(".side-menu-wrapper").css("display","flex");
+          $(".side-menu-wrapper").toggleClass("slideIn");
           $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-right");
           $(".page-container").css("opacity", "0.3");
         } else {
-          $(".side-menu-wrapper").addClass("slideOut").removeClass("slideIn");
+          $(".side-menu-wrapper").toggleClass("slideIn");
           $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
           $(".page-container").css("opacity", "1");
+          setTimeout(function () {
+            $(".side-menu-wrapper").css("display","none");
+          }, 300);
         }
       } else {
         if ($("header").hasClass("slideDown")) {

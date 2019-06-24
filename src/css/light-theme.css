@@ -20,6 +20,14 @@ body {
   background: black;
 }
 
+.top-container {
+  max-width:768px !important;
+  margin:0 auto;
+  display: flex;
+  flex-direction: column;
+  background: lightgrey;
+}
+
 .page-container {
   max-width:768px !important;
   margin:0 auto;
@@ -28,7 +36,6 @@ body {
   height: 100%;
   background: lightgrey;
 }
-
 section {
   width: 100%;
   background: lightgrey;
@@ -54,9 +61,32 @@ header {
   justify-content: flex-end;
 }
 
+.side-menu-wrapper {
+  height: 100vh;
+  min-width: 40vw;
+  transition: margin-left 0.3s ease-in-out;
+  overflow: hidden;
+  background: silver;
+  border-left: 1px solid black;
+  color: black;
+  display: flex;
+  position: absolute;
+  margin-right: 0;
+  margin-left: 100vw;
+  top: 66px;
+  justify-content: center;
+  z-index: 9999;
+}
+
 .slideDown {
   min-height: 185px;
   transition: min-height 0.3s ease-in-out;
+}
+
+.slideIn {
+  display:flex !important;
+  margin-left:60%;
+  transition:margin-left 0.3s ease-in-out;
 }
 
 footer {
@@ -102,18 +132,23 @@ nav {
   padding-right: 30px;
 }
 
+.nav-side-fix {
+  padding-inline-start:0;
+  padding-top:20px;
+}
+
 .nav-wrapper {
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
 }
 
-nav ul {
+nav ul, .nav2 ul {
   margin-top: 0px;
   list-style-type: none;
 }
 
-nav li {
+nav li, .nav2 li {
   padding: 3px 0px 3px 0px;
 }
 
@@ -228,10 +263,9 @@ input[type="radio"] {
 .modal-container {
   width: 60vw;
   max-width:600px;
-  margin:0 auto;
   top: 25%;
-  left: 0;
-  right: 0;
+  left: 15vw;
+  right: 15vw;
   background: silver;
   color: black;
   border-radius: 4px;
@@ -449,17 +483,27 @@ input[type="radio"] {
 }
 
 .arrow-spin-up {
-  transform: rotate(180deg) !important;
+  transform: rotate(0deg) !important;
   transition: 400ms ease-in-out;
 }
 
 .arrow-spin-down {
-  transform: rotate(0deg) !important;
+  transform: rotate(180deg) !important;
   transition: 400ms ease-in-out;
 }
 
 .arrow-spin-down:after {
   margin-left:0.7em;
+}
+
+.arrow-spin-left {
+  transform: rotate(90deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-right {
+  transform: rotate(270deg) !important;
+  transition: 400ms ease-in-out;
 }
 
 .arrow-sort {

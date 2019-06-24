@@ -284,21 +284,38 @@ $(window).on("load", function () {
   //global click event handler
   $(document).on("click", function (e) {
     if (e.target.id == "add-user") {
+      if ($(".arrow-spin-right").is(":visible")) {
+        $(".side-menu-wrapper").toggleClass("slideIn");
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+      }
       $("#add-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
+
     }
     if (e.target.id == "del-user") {
+      if ($(".arrow-spin-right").is(":visible")) {
+        $(".side-menu-wrapper").toggleClass("slideIn");
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+      }
       $("#del-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "block-user") {
+      if ($(".arrow-spin-right").is(":visible")) {
+        $(".side-menu-wrapper").toggleClass("slideIn");
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+      }
       $("#block-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "change-theme") {
+      if ($(".arrow-spin-right").is(":visible")) {
+        $(".side-menu-wrapper").toggleClass("slideIn");
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+      }
       $("#change-theme").fadeIn("fast");
       $('input[type="radio"]').prop("checked", false);
       $(".page-container").css("opacity", "0.3");
@@ -311,8 +328,15 @@ $(window).on("load", function () {
         $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
         $('link[href="src/css/light-theme.css"]').prop("disabled", false);
       }
-    }   
- 
+      if ($('#swMenu').is(":checked")) {        
+        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
+        $("header").toggleClass("slideDown");
+      } else {
+        $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-down");
+        $("header").toggleClass("slideDown");
+      }
+    }  
+
     //add modal display
     if (e.target.id == "add-user") {
       if ($("#add-button").is(":visible")) {
@@ -375,18 +399,30 @@ $(window).on("load", function () {
       $(".modal-container").fadeOut("fast");
       $("input").val('');
       $("select").val('');
-      $('input[type=checkbox]').prop('checked',false);
+      //$('input[type=checkbox]').prop('checked',false);
       $(".page-container").css("opacity", "1");
     }
 
     //arrow spin style for sorting
     if (e.target.classList[0] == "arrow-icon") {
-      if ($("header").hasClass("slideDown")) {
-        $("header").removeClass("slideDown");
-        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
+      if ($('#swMenu').is(":checked")) {
+        if ($(".arrow-spin-left").is(":visible")) {
+          $(".side-menu-wrapper").toggleClass("slideIn");
+          $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-right");
+          $(".page-container").css("opacity", "0.3");
+        } else {
+          $(".side-menu-wrapper").toggleClass("slideIn");
+          $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+          $(".page-container").css("opacity", "1");
+        }
       } else {
-        $("header").addClass("slideDown");
-        $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
+        if ($("header").hasClass("slideDown")) {
+          $("header").removeClass("slideDown");
+          $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
+        } else {
+          $("header").addClass("slideDown");
+          $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
+        }
       }
     }
     if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
@@ -433,7 +469,7 @@ $(window).on("load", function () {
         $(".modal-container").fadeOut("fast");
         $("input").val('');
         $("select").val('');
-        $('input[type=checkbox]').prop('checked',false);
+        //$('input[type=checkbox]').prop('checked',false);
         $(".page-container").css("opacity", "1");
       }
     }

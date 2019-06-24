@@ -15,7 +15,7 @@ body {
 }
 
 .header-container {
-  max-width:768px !important;
+  max-width:1024px !important;
   margin:0 auto;
   display: flex;
   flex-direction: column;
@@ -23,12 +23,12 @@ body {
 }
 
 .page-container {
-  max-width:768px !important;
+  max-width:1024px !important;
   margin:0 auto;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: lightgrey;
+  height: calc(100vh - 65px);
+  background: black;
   transition: 0.3s ease-in-out;
 }
 
@@ -59,7 +59,7 @@ header {
 .side-menu-wrapper {
   display:none;
   height: 100vh;
-  width:100%;
+  max-width:1024px;
   margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
@@ -81,17 +81,28 @@ header {
 
 .slideIn {
   display:flex !important;
-  margin-left:60%;
-  transition:margin-left 0.3s ease-in-out;
+  margin-left:0vw;
+  width:100%;
+  transition:margin 0.3s ease-in-out;
+}
+
+.slideOut {
+  display:flex !important;
+  margin-left:100vw;
+  width:100%;
+  transition:margin 0.3s ease-in-out;
 }
 
 footer {
   flex: 0 0 auto;
   z-index: 1;
+  max-width:1024px;
   padding-top: 10px;
   padding-bottom: 10px;
   border-top: 1px solid grey;
   background: #00173d;
+  position:sticky;
+  bottom:0;
 }
 
 nav {
@@ -265,6 +276,7 @@ input[type="radio"] {
   margin:0 auto;
   background: black;
   color: silver;
+  border:1px solid silver;
   border-radius: 4px;
   padding: 1.5em;
   position: fixed;

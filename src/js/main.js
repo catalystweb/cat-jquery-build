@@ -413,7 +413,8 @@ $(window).on("load", function () {
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
         $("header").removeClass("slideDown");
       } else {
-        $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-down");
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-down");
+        $(".side-menu-wrapper").removeClass("slideIn");
         $("header").addClass("slideDown");
       }
       $("#change-theme").fadeOut("fast");

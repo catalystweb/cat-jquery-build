@@ -170,7 +170,7 @@ $(window).on("load", function () {
                     dataType: "json",             
                     contentType: "application/json",
                     success: function(result) {
-                      $("#add-modal").fadeIn("fast");
+                      $("#edit-modal").fadeIn("fast");
                       $(".page-container").css("opacity","0.3");
                       userAddDel()
                     }         

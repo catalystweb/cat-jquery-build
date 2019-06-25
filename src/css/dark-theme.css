@@ -64,7 +64,6 @@ header {
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
   background: black;
-  border-left: 1px solid grey;
   color: silver;
   display: flex;
   position: absolute;

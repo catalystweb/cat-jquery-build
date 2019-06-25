@@ -64,14 +64,14 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 100vh;
+  height: 150px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
   background: silver;
-  border-left: 1px solid black;
+  border-bottom:1px solid black;
   color: black;
   display: flex;
   position: absolute;

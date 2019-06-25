@@ -523,6 +523,7 @@ input.user-title {
 }
 
 .fas {
+  color:silver;
   margin-left:20px;
   display:none;
 }

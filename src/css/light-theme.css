@@ -527,6 +527,7 @@ input.user-title {
 }
 
 .fas {
+  color:black;
   margin-left:20px;
   display:none;
 }

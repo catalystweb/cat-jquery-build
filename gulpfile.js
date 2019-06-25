@@ -12,20 +12,27 @@ gulp.task('scripts', function() {
         .pipe(dest('app/js'))
 }); 
 
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./"
-        },
-        port:1350
-    });
-});
-
- gulp.task('watch', function(){
+gulp.task('watch', function(){
     gulp.watch("src/js/*.js", gulp.series(concat));
     gulp.watch("src/js/*.js").on('change', browserSync.reload);
     gulp.watch("src/css/*.css").on('change', browserSync.reload);
     gulp.watch("*.html").on('change', browserSync.reload);
 });
 
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        },
+        callbacks: {
+            ready: function(err, bs) {
+                console.log("----------------------------------");
+                console.log("[\x1b[31m v0.2 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
+                console.log("----------------------------------");
+            }
+        },
+        port:1350,
+        ui: false
+    });
+});
 gulp.task('run', gulp.parallel('scripts', 'watch', 'browser-sync'));

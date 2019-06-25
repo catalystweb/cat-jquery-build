@@ -518,6 +518,7 @@ input.user-name, input.user-title {
   border: none;
   width: fit-content;
   color: black;
+  width:150px;
 }
 
 input.user-title {

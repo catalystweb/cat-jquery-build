@@ -1,8 +1,6 @@
 $(window).on("load", function () {
   $("#searchField").val("");
 
-  //set initial width of user input field
-
   function getData() {
     var localHost = "http://localhost:1352/users/";
       //hide any existing modal 
@@ -81,9 +79,9 @@ $(window).on("load", function () {
             $("footer").fadeIn("slow");
           }        
       });
-    }
+  }
   getData();
-
+  
   //display json data source for block list
   function getBlockData() {
     var localHost = "http://localhost:1352/users/";
@@ -357,9 +355,9 @@ $(window).on("load", function () {
   });
 
   $(document).on("mouseleave",".user-name", function () {
-    $(this).next("span").children("i").css("display","inline-block").animate({"margin-left":"20px"}, 200);
-    $(this).next("span").children("i").fadeOut("fast");
-    return false;
+      $(this).next("span").children("i").css("display","inline-block").animate({"margin-left":"20px"}, 200);
+      $(this).next("span").children("i").fadeOut("fast");
+      return false;
   });
 
   //onblur event handler for contenteditable fields  
@@ -368,11 +366,11 @@ $(window).on("load", function () {
     var textVal = $(this).val();
     var idVal = $(this).closest("section").attr("id");
     $(this).each(function(){
+      console.log("in loop");
       var value = $(this).val();
       var size  = value.length;      
-      // playing css width
       size = size*2; // average width of a char
-      $(this).css('width',size*4);    
+      $(this).css('width',size*6);    
     });
     userDirectAdd(classVal,textVal,idVal);
   });
@@ -514,9 +512,11 @@ $(window).on("load", function () {
       } else {
         if ($("header").hasClass("slideDown")) {
           $("header").removeClass("slideDown");
+          $(".arrow-icon").removeClass("arrow-spin-left");
           $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
         } else {
           $("header").addClass("slideDown");
+          $(".arrow-icon").removeClass("arrow-spin-right");
           $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
         }
       }

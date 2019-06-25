@@ -506,6 +506,7 @@ input.user-name, input.user-title {
   border: none;
   width: fit-content;
   color: silver;
+  width:150px;
 }
 
 input.user-title {

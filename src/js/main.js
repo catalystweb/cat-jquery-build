@@ -16,8 +16,9 @@ $(window).on("load", function () {
       //clear existing field values
       $("input").val('');
       $("select").val('');
-      $('input[type=checkbox]').prop('checked',false);
-
+      if (!$('#swMenu').is(":checked")) { 
+        $('input[type=checkbox]').prop('checked',false);
+      }
       //global json data source
       var userData = "";
       userData +=
@@ -46,7 +47,7 @@ $(window).on("load", function () {
                     '<div class="user-status ' + data.status + '"></div>' +
                     '</div >' +
                     '<div class="user-info"><div>' +
-                    '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
+                    '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="hideshow display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
                     '<input class="user-title" value="' + data.title + '"></input>' +
                     '</div>' +
                     '<button class="user-button transition">Block</button>' +
@@ -452,9 +453,8 @@ $(window).on("load", function () {
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
         $("header").removeClass("slideDown");
       } else {
-        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-down");
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-up");
         $(".side-menu-wrapper").removeClass("slideIn");
-        $("header").addClass("slideDown");
       }
       $("#change-theme").fadeOut("fast");
       $(".page-container").css("opacity", "1");
@@ -569,7 +569,7 @@ $(window).on("load", function () {
           $(".page-container").css("opacity", "1");
           setTimeout(function () {
             $(".side-menu-wrapper").css("display","none");
-          }, 500);
+          }, 700);
         }
       } else {
         if ($("header").hasClass("slideDown")) {
@@ -578,6 +578,7 @@ $(window).on("load", function () {
           $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
         } else {
           $("header").addClass("slideDown");
+          $(".side-menu-wrapper").removeClass("slideIn").addClass("slideOut");
           $(".arrow-icon").removeClass("arrow-spin-right");
           $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
         }

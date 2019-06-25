@@ -26,9 +26,13 @@
 
     .user-name {
         padding-top:10px;
+        text-align:center;
+        margin:0 auto;
     }
     .user-title {
         padding-bottom:10px;
+        text-align:center;
+        margin:0 auto;
     }
   
     .user-button {
@@ -51,7 +55,11 @@
       width: 4em;
       height: 4em;
     }
-  
+
+    .hideshow {
+      display:none;
+    }
+      
     .cat-inner {
       width: 120px;
       text-align: center;

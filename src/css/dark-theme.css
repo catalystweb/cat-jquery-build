@@ -84,14 +84,14 @@ header {
   margin-left:0vw;
   width:100%;
   background:#00173d;
-  transition:margin 0.3s ease-in-out;
+  transition:margin-left 0.3s ease-in-out;
 }
 
 .slideOut {
   margin-left:100vw;
   width:100%;
   background:#00173d;
-  transition:margin 0.3s ease-in-out;
+  transition:margin-left 0.3s ease-in-out;
 }
 
 footer {

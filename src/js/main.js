@@ -1,6 +1,8 @@
 $(window).on("load", function () {
   $("#searchField").val("");
 
+  //set initial width of user input field
+
   function getData() {
     var localHost = "http://localhost:1352/users/";
       //hide any existing modal 
@@ -45,8 +47,8 @@ $(window).on("load", function () {
                     '<div class="user-status ' + data.status + '"></div>' +
                     '</div >' +
                     '<div class="user-info"><div>' +
-                    '<div class="user-name" contenteditable="true" data-name="'+ data.name+'">'+ data.name +"</div><span class='display-inline padding-left-10'><i class='fas fa-arrow-left'></i></span>" +
-                    '<div class="user-title" contenteditable="true">' + data.title + '</div>' +
+                    '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
+                    '<input class="user-title" value="' + data.title + '"></input>' +
                     '</div>' +
                     '<button class="user-button transition">Block</button>' +
                     "</div>" +
@@ -60,8 +62,8 @@ $(window).on("load", function () {
                 //sort desc by default html element and append
                 $(".sort-class").sort(function (a, b) {
                   return String.prototype.localeCompare.call(
-                    $(a).find("div.user-name").data("name").toLowerCase(),
-                    $(b).find("div.user-name").data("name").toLowerCase()
+                    $(a).find("input.user-name").data("name").toLowerCase(),
+                    $(b).find("input.user-name").data("name").toLowerCase()
                   );
                 }).appendTo(".content-wrapper");
                 //fade in elements
@@ -141,7 +143,7 @@ $(window).on("load", function () {
   }
 
 
-// update json data when contenteditable values changed //  
+  // update json data when contenteditable values changed //  
   function userDirectAdd(getClass,getText,getID) {
       var localHost = "http://localhost:1352/users/";
       if (getClass == "user-name") {
@@ -357,15 +359,21 @@ $(window).on("load", function () {
   $(document).on("mouseleave",".user-name", function () {
     $(this).next("span").children("i").css("display","inline-block").animate({"margin-left":"20px"}, 200);
     $(this).next("span").children("i").fadeOut("fast");
-    return
+    return false;
   });
-
 
   //onblur event handler for contenteditable fields  
   $(document).on("blur", ".user-name, .user-title", function() { 
     var classVal = $(this).attr("class");
-    var textVal = $(this).text();
+    var textVal = $(this).val();
     var idVal = $(this).closest("section").attr("id");
+    $(this).each(function(){
+      var value = $(this).val();
+      var size  = value.length;      
+      // playing css width
+      size = size*2; // average width of a char
+      $(this).css('width',size*4);    
+    });
     userDirectAdd(classVal,textVal,idVal);
   });
 
@@ -530,14 +538,14 @@ $(window).on("load", function () {
           if (getStateVal == "sort-asc") {
             document.getElementsByClassName("sort-list")[0].id = "sort-des";
             return String.prototype.localeCompare.call(
-              $(a).find("div.user-name").data("name").toLowerCase(),
-              $(b).find("div.user-name").data("name").toLowerCase()
+              $(a).find("input.user-name").data("name").toLowerCase(),
+              $(b).find("input.user-name").data("name").toLowerCase()
             );
           } else {
             document.getElementsByClassName("sort-list")[0].id = "sort-asc";
             return String.prototype.localeCompare.call(
-              $(b).find("div.user-name").data("name").toLowerCase(),
-              $(a).find("div.user-name").data("name").toLowerCase()
+              $(b).find("input.user-name").data("name").toLowerCase(),
+              $(a).find("input.user-name").data("name").toLowerCase()
             );
           }
         }).appendTo(".content-wrapper");

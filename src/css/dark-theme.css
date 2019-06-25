@@ -499,3 +499,20 @@ input[type="radio"] {
   border-right: solid 21px transparent;
   border-left: solid 21px transparent;
 }
+
+input.user-name, input.user-title {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background: black;
+  border: none;
+  width: fit-content;
+  color: silver;
+}
+
+input.user-title {
+  display:block;
+}
+
+.fas {
+  margin-left:20px;
+  display:none;
+}

@@ -512,6 +512,18 @@ input[type="radio"] {
   border-left: solid 21px transparent;
 }
 
+input.user-name, input.user-title {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background: lightgrey;
+  border: none;
+  width: fit-content;
+  color: black;
+}
+
+input.user-title {
+  display:block;
+}
+
 .fas {
   margin-left:20px;
   display:none;

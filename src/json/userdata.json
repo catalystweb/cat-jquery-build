@@ -6,7 +6,7 @@
       "title": "Contributor",
       "avatar": "user-pic-1",
       "status": "offline",
-      "block": "false"
+      "block": "true"
     },
     {
       "id": "3",
@@ -74,7 +74,7 @@
     },
     {
       "id": "eU07bM-",
-      "name": "Andy Gray",
+      "name": "Andrew Gray",
       "title": "Developer",
       "avatar": "user-pic-2",
       "status": "offline",
@@ -95,6 +95,22 @@
       "status": "offline",
       "block": "false",
       "id": "3uLFyMU"
+    },
+    {
+      "id": "fzWyNZo",
+      "name": "James Dellow",
+      "title": "Moderator",
+      "avatar": "user-pic-5",
+      "status": "offline",
+      "block": "false"
+    },
+    {
+      "name": "Sally Fenn",
+      "title": "Junior Developer",
+      "avatar": "user-pic-3",
+      "status": "offline",
+      "block": "false",
+      "id": "UKqC7Mj"
     }
   ]
 }

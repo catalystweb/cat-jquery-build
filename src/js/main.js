@@ -41,24 +41,13 @@ $(window).on("load", function () {
                     '<div class="user-wrapper">' +
                     '<div class="user-container">' +
                     '<div class="user-img-container">' +
-                    '<div class="user-avatar ' +
-                    data.avatar +
-                    '"></div >' +
-                    '<div class="user-status ' +
-                    data.status +
-                    '"></div>' +
-                    "</div >" +
-                    '<div class="user-info">' +
-                    "<div>" +
-                    '<div class="user-name" data-name="' +
-                    data.name +
-                    '" contenteditable="true">' +
-                    data.name +
-                    "</div>" +
-                    '<div class="user-title" contenteditable="true">' +
-                    data.title +
-                    "</div>" +
-                    "</div>" +
+                    '<div class="user-avatar ' + data.avatar + '"></div >' +
+                    '<div class="user-status ' + data.status + '"></div>' +
+                    '</div >' +
+                    '<div class="user-info"><div>' +
+                    '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
+                    '<input class="user-title" value="' + data.title + '"></input>' +
+                    '</div>' +
                     '<button class="user-button transition">Block</button>' +
                     "</div>" +
                     "</div>" +
@@ -71,8 +60,8 @@ $(window).on("load", function () {
                 //sort desc by default html element and append
                 $(".sort-class").sort(function (a, b) {
                   return String.prototype.localeCompare.call(
-                    $(a).find("div.user-name").data("name").toLowerCase(),
-                    $(b).find("div.user-name").data("name").toLowerCase()
+                    $(a).find("input.user-name").data("name").toLowerCase(),
+                    $(b).find("input.user-name").data("name").toLowerCase()
                   );
                 }).appendTo(".content-wrapper");
                 //fade in elements
@@ -90,9 +79,9 @@ $(window).on("load", function () {
             $("footer").fadeIn("slow");
           }        
       });
-    }
+  }
   getData();
-
+  
   //display json data source for block list
   function getBlockData() {
     var localHost = "http://localhost:1352/users/";
@@ -151,6 +140,83 @@ $(window).on("load", function () {
     },2000);
   }
 
+
+  // update json data when contenteditable values changed //  
+  function userDirectAdd(getClass,getText,getID) {
+      var localHost = "http://localhost:1352/users/";
+      if (getClass == "user-name") {
+        $.ajax({
+          url: localHost,
+          cache: false,
+          dataType: "json",
+          success: function (result) {
+            $.each(result, function (index, data) {             
+              if (getText != data.name) {
+                if (getID == data.id) {                
+                    var payload = { 
+                      id: data.id,
+                      name: getText,
+                      title: data.title,
+                      avatar: data.avatar,
+                      status: data.status,
+                      block: data.block 
+                    };
+                  $.ajax({
+                    url: localHost +getID,
+                    type: "PUT",
+                    data: JSON.stringify(payload), 
+                    dataType: "json",             
+                    contentType: "application/json",
+                    success: function(result) {
+                      $("#add-modal").fadeIn("fast");
+                      $(".page-container").css("opacity","0.3");
+                      userAddDel()
+                    }         
+                  });
+                  return
+                }
+              }
+            });  
+          }   
+        });
+      } else {
+        $.ajax({
+          url: localHost,
+          cache: false,
+          dataType: "json",
+          success: function (result) {
+            $.each(result, function (index, data) {    
+              if (getText != data.title) {          
+                if (getID == data.id) {                
+                    var payload = { 
+                      id: data.id,
+                      name: data.name,
+                      title: getText,
+                      avatar: data.avatar,
+                      status: data.status,
+                      block: data.block 
+                    };
+                  $.ajax({
+                    url: localHost +getID,
+                    type: "PUT",
+                    data: JSON.stringify(payload), 
+                    dataType: "json",             
+                    contentType: "application/json",
+                    success: function() {
+                      $("#add-modal").fadeIn("fast");
+                      $(".page-container").css("opacity","0.3");
+                      userAddDel()
+                    }         
+                  });
+                  return;
+                }
+              }
+            });  
+          }   
+        });   
+      }
+  }
+
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
     var localHost = "http://localhost:1352/users/";
@@ -172,7 +238,7 @@ $(window).on("load", function () {
                 dataType: "json", 
                 data: payload,               
                 contentType: "application/json",
-                success: function(result) {
+                success: function() {
                   userAddDel() 
                 }         
               });
@@ -206,7 +272,7 @@ $(window).on("load", function () {
                 data: JSON.stringify(payload), 
                 dataType: "json",             
                 contentType: "application/json",
-                success: function(result) {
+                success: function() {
                   userAddDel(); 
                 }         
               });
@@ -241,7 +307,7 @@ $(window).on("load", function () {
                 data: JSON.stringify(payload), 
                 dataType: "json",             
                 contentType: "application/json",
-                success: function(result) {
+                success: function() {
                   getBlockData()
                 }         
               });
@@ -269,7 +335,7 @@ $(window).on("load", function () {
         data: JSON.stringify(payload),
         dataType: "json",
         contentType: "application/json",
-        success: function(result) {
+        success: function() {
           userAddDel()
         }
       });      
@@ -277,30 +343,62 @@ $(window).on("load", function () {
   }); 
 
   //logo hover event handler 
-  $(".logo").hover(function (e) {
+  $(".logo").hover(function () {
       $(".catalyst").animate({width: 'toggle'});
   });
 
-  //global click event handler
+  //jquery global hover event handler
+  $(document).on("mouseover", ".user-name", function () {
+      $(this).next("span").children("i").css("display","inline-block").animate({"margin-left":"0px"}, 200);
+      $(this).next("span").children("i").fadeIn("fast");
+      return false;
+  });
+
+  $(document).on("mouseleave",".user-name", function () {
+      $(this).next("span").children("i").css("display","inline-block").animate({"margin-left":"20px"}, 200);
+      $(this).next("span").children("i").fadeOut("fast");
+      return false;
+  });
+
+  //onblur event handler for contenteditable fields  
+  $(document).on("blur", ".user-name, .user-title", function() { 
+    var classVal = $(this).attr("class");
+    var textVal = $(this).val();
+    var idVal = $(this).closest("section").attr("id");
+    $(this).each(function(){
+      console.log("in loop");
+      var value = $(this).val();
+      var size  = value.length;      
+      size = size*2; // average width of a char
+      $(this).css('width',size*6);    
+    });
+    userDirectAdd(classVal,textVal,idVal);
+  });
+
+  //jquery global click event handler
   $(document).on("click", function (e) {
     if (e.target.id == "add-user") {
+      $(".modal-container").fadeOut("fast");
       $("#add-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
+
     }
     if (e.target.id == "del-user") {
+      $(".modal-container").fadeOut("fast");
       $("#del-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "block-user") {
+      $(".modal-container").fadeOut("fast");
       $("#block-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "change-theme") {
+      $(".modal-container").fadeOut("fast");
       $("#change-theme").fadeIn("fast");
-      $('input[type="radio"]').prop("checked", false);
       $(".page-container").css("opacity", "0.3");
     }
     if (e.target.id == "submit-theme") {
@@ -311,8 +409,18 @@ $(window).on("load", function () {
         $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
         $('link[href="src/css/light-theme.css"]').prop("disabled", false);
       }
-    }   
- 
+      if ($('#swMenu').is(":checked")) {        
+        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
+        $("header").removeClass("slideDown");
+      } else {
+        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-down");
+        $(".side-menu-wrapper").removeClass("slideIn");
+        $("header").addClass("slideDown");
+      }
+      $("#change-theme").fadeOut("fast");
+      $(".page-container").css("opacity", "1");
+    }  
+
     //add modal display
     if (e.target.id == "add-user") {
       if ($("#add-button").is(":visible")) {
@@ -373,20 +481,45 @@ $(window).on("load", function () {
     //close statement if user clicks close icon
     if (e.target.classList[0] == "close") {
       $(".modal-container").fadeOut("fast");
-      $("input").val('');
+      if (! $('input[type="radio').is(':radio')) {
+        $("input").val('');
+      }
       $("select").val('');
-      $('input[type=checkbox]').prop('checked',false);
       $(".page-container").css("opacity", "1");
     }
 
     //arrow spin style for sorting
     if (e.target.classList[0] == "arrow-icon") {
-      if ($("header").hasClass("slideDown")) {
-        $("header").removeClass("slideDown");
-        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
+      if ($(".side-menu-wrapper").is(":visible")) {
+        $("#del-modal").fadeOut("fast");
+        $("#add-modal").fadeOut("fast");
+        $("#block-modal").fadeOut("fast");
+        $(".user-success").fadeOut("fast");
+      }
+      if ($('#swMenu').is(":checked")) {
+        if ($(".arrow-spin-left").is(":visible")) {
+          $(".side-menu-wrapper").css("display","flex");
+          $(".side-menu-wrapper").removeClass("slideOut").addClass("slideIn");
+          $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-right");
+          $(".page-container").css("opacity", "0.3");
+        } else {
+          $(".side-menu-wrapper").removeClass("slideIn").addClass("slideOut");
+          $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+          $(".page-container").css("opacity", "1");
+          setTimeout(function () {
+            $(".side-menu-wrapper").css("display","none");
+          }, 500);
+        }
       } else {
-        $("header").addClass("slideDown");
-        $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
+        if ($("header").hasClass("slideDown")) {
+          $("header").removeClass("slideDown");
+          $(".arrow-icon").removeClass("arrow-spin-left");
+          $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
+        } else {
+          $("header").addClass("slideDown");
+          $(".arrow-icon").removeClass("arrow-spin-right");
+          $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");
+        }
       }
     }
     if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
@@ -406,18 +539,26 @@ $(window).on("load", function () {
           if (getStateVal == "sort-asc") {
             document.getElementsByClassName("sort-list")[0].id = "sort-des";
             return String.prototype.localeCompare.call(
-              $(a).find("div.user-name").data("name").toLowerCase(),
-              $(b).find("div.user-name").data("name").toLowerCase()
+              $(a).find("input.user-name").data("name").toLowerCase(),
+              $(b).find("input.user-name").data("name").toLowerCase()
             );
           } else {
             document.getElementsByClassName("sort-list")[0].id = "sort-asc";
             return String.prototype.localeCompare.call(
-              $(b).find("div.user-name").data("name").toLowerCase(),
-              $(a).find("div.user-name").data("name").toLowerCase()
+              $(b).find("input.user-name").data("name").toLowerCase(),
+              $(a).find("input.user-name").data("name").toLowerCase()
             );
           }
         }).appendTo(".content-wrapper");
     }    
+  });
+
+  // prevent enter key creating new line for contenteditable attribute //
+  $(document).on("keypress", ".user-name, .user-title", function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      $(this).blur();
+    }
   });
 
   //key function if menu open close during filter function
@@ -431,9 +572,10 @@ $(window).on("load", function () {
     if ($(".modal-container").is(":visible")) {
       if (e.key === "Escape") {
         $(".modal-container").fadeOut("fast");
-        $("input").val('');
+        if (! $('input[type="radio').is(':radio')) {
+          $("input").val('');
+        }
         $("select").val('');
-        $('input[type=checkbox]').prop('checked',false);
         $(".page-container").css("opacity", "1");
       }
     }

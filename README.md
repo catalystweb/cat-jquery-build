@@ -1,4 +1,4 @@
-demo app build v0.1
+demo app build v0.2
 
 This is a demo applicaiton to demonstrate my development skills via the iteration process, this should give an in-depth overview,
 Of my logic and thought processes as well as the execution of them.

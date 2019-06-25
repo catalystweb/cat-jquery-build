@@ -1,13 +1,32 @@
-var { src, dest, parallel } = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+var gulp        = require('gulp');
+var browserSync = require('browser-sync').create();
 
-function js() {
-  return src('src/js/*.js')
-    .pipe(concat('app.min.js'))
-    .pipe(uglify())
-    .pipe(dest('app/js'))
-}
+// process JS files and return the stream.
+gulp.task('js', function () {
+    return gulp.src('js/*js')
+        .pipe(browserify())
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
+});
 
-exports.js = js;
-exports.default = parallel(js);
+// create a task that ensures the `js` task is complete before
+// reloading browsers
+gulp.task('js-watch', ['js'], function (done) {
+    browserSync.reload();
+    done();
+});
+
+// use default task to launch Browsersync and watch JS files
+gulp.task('default', ['js'], function () {
+
+    // Serve files from the root of this project
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+
+    // add browserSync.reload to the tasks array to make
+    // all browsers reload after tasks are complete.
+    gulp.watch("js/*.js", ['js-watch']);
+});

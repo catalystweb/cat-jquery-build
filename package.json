@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "npm run build",
-    "build": "gulp js && concurrently \"http-server -a localhost -p 1350\" \"json-server --watch src/json/userdata.json --port 1352\" \"opener http://localhost:1350/index.html\""
+    "start": "gulp js && npm run build",
+    "build": "concurrently \"http-server -a localhost -p 1350\" \"json-server --watch src/json/userdata.json --port 1352\" \"opener http://localhost:1350/index.html\""
   },
   "dependencies": {
     "jquery": "3.4.1",

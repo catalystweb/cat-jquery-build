@@ -8,6 +8,7 @@ $(window).on("load", function () {
         $("#del-modal").fadeOut("fast");
         $("#add-modal").fadeOut("fast");
         $("#block-modal").fadeOut("fast");
+        $("#edit-modal").fadeOut("fast");
         $(".user-success").fadeOut("fast");
         $(".page-container").css("opacity", "1");
       };
@@ -41,7 +42,7 @@ $(window).on("load", function () {
                     '<div class="user-wrapper">' +
                     '<div class="user-container">' +
                     '<div class="user-img-container">' +
-                    '<div class="user-avatar ' + data.avatar + '"></div >' +
+                    '<div class="user-avatar ' + data.avatar + '" data-name="' + data.avatar + '"></div >' +
                     '<div class="user-status ' + data.status + '"></div>' +
                     '</div >' +
                     '<div class="user-info"><div>' +
@@ -91,7 +92,7 @@ $(window).on("load", function () {
       url: localHost,
       cache: false,
       data: {},
-      dataType: "json",
+      dataType: "jsonp",
       success: function (result) {
         $.each(result, function (index, data) {
           if (data.block == "true") {
@@ -217,6 +218,67 @@ $(window).on("load", function () {
       }
   }
 
+  //add data from submit button to json source
+  function userAddEdit(getName,getID) {
+    var localHost = "http://localhost:1352/users/";    
+    if (getName != null) {
+      var editAvatar = $("#edit-avatar option:selected").val(); 
+      $.ajax({
+        url: localHost,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+          $.each(result, function (index, data) { 
+            if (getID == data.id) {
+                var payload = { 
+                  id: data.id,
+                  name: data.name,
+                  title: data.title,
+                  avatar: editAvatar,
+                  status: data.status,
+                  block: data.block 
+                };
+              $.ajax({
+                url: localHost +getID,
+                type: "PUT",
+                data: JSON.stringify(payload), 
+                dataType: "json",             
+                contentType: "application/json",
+                success: function(result) {
+                  $("#add-modal").fadeIn("fast");
+                  $(".page-container").css("opacity","0.3");
+                  userAddDel()
+                }         
+              });                    
+              return  
+            } 
+          });            
+        }
+      });
+    } else {      
+      var dataName = $("#add-name").val();
+      var dataTitle = $("#add-title").val();
+      var dataAvatar = $("#add-avatar option:selected").val();           
+      var payload = {
+          name: dataName,
+          title: dataTitle,
+          avatar: dataAvatar,
+          status: "offline",
+          block: "false"
+      };
+      $.ajax({
+          url: localHost,
+          type: "POST",
+          data: JSON.stringify(payload),
+          dataType: "json",
+          contentType: "application/json",
+          success: function() {
+            userAddDel()
+          }
+      });      
+    }
+}       
+
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
     var localHost = "http://localhost:1352/users/";
@@ -284,63 +346,41 @@ $(window).on("load", function () {
     }
     //add user to block list on json source 
     if ($(e.target).hasClass("user-button")) {
-      $(e.target).closest("section").fadeOut("slow");
-      var secID = $(e.target).closest("section").attr("id");
-      $.ajax({
-        url: localHost,
-        cache: false,
-        dataType: "json",
-        success: function (result) {
-          $.each(result, function (index, data) {              
-            if (secID == data.id) {                
-                var payload = { 
-                  id: data.id,
-                  name: data.name,
-                  title: data.title,
-                  avatar: data.avatar,
-                  status: data.status,
-                  block: "true" 
-                };
-              $.ajax({
-                url: localHost +secID,
-                type: "PUT",
-                data: JSON.stringify(payload), 
-                dataType: "json",             
-                contentType: "application/json",
-                success: function() {
-                  getBlockData()
-                }         
-              });
-              return;
-            }
-          });  
-        }   
-      });
-    } 
-    //add data from submit button to json source
-    if (e.target.id == "add-button") {
-      var dataName = $("#add-name").val();
-      var dataTitle = $("#add-title").val();
-      var dataAvatar = $("#add-avatar option:selected").val();           
-      var payload = {
-        name: dataName,
-        title: dataTitle,
-        avatar: dataAvatar,
-        status: "offline",
-        block: "false"
-      };
-      $.ajax({
-        url: localHost,
-        type: "POST",
-        data: JSON.stringify(payload),
-        dataType: "json",
-        contentType: "application/json",
-        success: function() {
-          userAddDel()
-        }
-      });      
-    }     
-  }); 
+        $(e.target).closest("section").fadeOut("slow");
+        var secID = $(e.target).closest("section").attr("id");
+        $.ajax({
+          url: localHost,
+          cache: false,
+          dataType: "json",
+          success: function (result) {
+            $.each(result, function (index, data) {              
+              if (secID == data.id) {                
+                  var payload = { 
+                    id: data.id,
+                    name: data.name,
+                    title: data.title,
+                    avatar: data.avatar,
+                    status: data.status,
+                    block: "true" 
+                  };
+                $.ajax({
+                  url: localHost +secID,
+                  type: "PUT",
+                  data: JSON.stringify(payload), 
+                  dataType: "json",             
+                  contentType: "application/json",
+                  success: function() {
+                    getBlockData()
+                  }         
+                });
+                return;
+              }
+            });  
+          }   
+        });
+      } 
+    }); 
+        
 
   //logo hover event handler 
   $(".logo").hover(function () {
@@ -366,7 +406,6 @@ $(window).on("load", function () {
     var textVal = $(this).val();
     var idVal = $(this).closest("section").attr("id");
     $(this).each(function(){
-      console.log("in loop");
       var value = $(this).val();
       var size  = value.length;      
       size = size*2; // average width of a char
@@ -421,6 +460,10 @@ $(window).on("load", function () {
       $(".page-container").css("opacity", "1");
     }  
 
+    if (e.target.id == "add-button") {
+      userAddEdit(null,null);
+    }
+
     //add modal display
     if (e.target.id == "add-user") {
       if ($("#add-button").is(":visible")) {
@@ -437,6 +480,23 @@ $(window).on("load", function () {
               }
         });
       });      
+    }
+
+    //avatar edit display
+    if ($(e.target).hasClass("user-avatar")) {
+      var dataName = $(e.target).parent().next("div").find(".user-name").data("name");
+      var dataID = $(e.target).parent().parent().parent().parent("section").attr("id");
+      $("#edit-modal").fadeIn("fast");
+      $(".user-mod").fadeIn("fast");
+      $(".page-container").css("opacity","0.3");
+      $("#edit-avatar").on("change", function () {  
+        if ($("#edit-avatar option").filter(":selected").text() != "Select Avatar") {
+          $("#edit-button").fadeIn("fast");
+          $("#edit-button").on("click", function () {
+            userAddEdit(dataName,dataID);
+          });
+        }
+      });   
     }
 
     //block modal display
@@ -494,6 +554,7 @@ $(window).on("load", function () {
         $("#del-modal").fadeOut("fast");
         $("#add-modal").fadeOut("fast");
         $("#block-modal").fadeOut("fast");
+        $("#edit-modal").fadeOut("fast");
         $(".user-success").fadeOut("fast");
       }
       if ($('#swMenu').is(":checked")) {
@@ -591,7 +652,7 @@ function filterFunction() {
 
   for (i = 0; i < selector.length; i++) {
     getName = selector[i].getElementsByClassName("user-name")[0];
-    nameVal = getName.textContent || getName.innerText;
+    nameVal = getName.value || getName.innerText;
     if (nameVal.toLowerCase().indexOf(filter) > -1) {
       selector[i].style.display = "";
     } else {

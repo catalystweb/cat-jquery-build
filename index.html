@@ -22,11 +22,11 @@
 				<div><input id="add-title" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Title"></input></div>
 				<div><select id="add-avatar" class="search-icon-glass border defaultFont margin">
 								<option value="" disabled selected>Select Avatar</option>
-								<option value="user-pic-1">Smile Guy</option>
-								<option value="user-pic-2">Suit Guy 1</option>
-								<option value="user-pic-3">Lady</option>
-								<option value="user-pic-4">Hip Guy</option>
-								<option value="user-pic-5">Suit Guy 2</option>
+								<option value="smile-guy-1">Smile Guy</option>
+								<option value="suit-guy-1">Suit Guy 1</option>
+								<option value="lady-1">Lady</option>
+								<option value="hip-guy-1">Hip Guy</option>
+								<option value="suit-guy-2">Suit Guy 2</option>
 						</select>
 						<br><br>
 					<button id="add-button" class="user-button transition" style="display:none;">Submit</button>
@@ -35,6 +35,30 @@
 			<div class="modal-content user-success" style="display:none;">
 				<div>
 					<div class="green">user added</div>
+				</div>
+			</div>
+		</div>
+		<div id="edit-modal" class="modal-container" style="display:none;">
+			<div class="modal-content user-mod">
+				<div class="flex">
+					<div>Add user</div>
+					<div class="close transition">&times;</div>
+				</div>
+				<div><select id="edit-avatar" class="search-icon-glass border defaultFont margin">
+								<option value="" disabled selected>Select Avatar</option>
+								<option value="smile-guy-1">Smile Guy</option>
+								<option value="suit-guy-1">Suit Guy 1</option>
+								<option value="lady-1">Lady</option>
+								<option value="hip-guy-1">Hip Guy</option>
+								<option value="suit-guy-2">Suit Guy 2</option>
+						</select>
+						<br><br>
+					<button id="edit-button" class="user-button transition" style="display:none;">Submit</button>
+				</div>
+			</div>
+			<div class="modal-content user-success" style="display:none;">
+				<div>
+					<div class="green">user edited</div>
 				</div>
 			</div>
 		</div>

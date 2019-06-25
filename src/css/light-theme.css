@@ -362,6 +362,7 @@ input[type="radio"] {
 }
 
 .user-avatar {
+  cursor:pointer;
   background-size: cover;
   width: 3em;
   height: 3em;
@@ -415,29 +416,29 @@ input[type="radio"] {
   margin-right: 20px;
 }
 
-.user-pic-1 {
-  background: url(../../img/lawyer-avatar-flat-icon-01-.jpg) bottom center
+.smile-guy-1 {
+  background: url(../../img/smile-guy.jpg) bottom center
     no-repeat;
   background-size: cover;
 }
 
-.user-pic-2 {
-  background: url(../../img/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg)
+.suit-guy-1 {
+  background: url(../../img/suit-1.jpg)
     bottom center no-repeat;
   background-size: cover;
 }
-.user-pic-3 {
-  background: url(../../img/user-sign-icon-person-symbol-human-avatar-vector-12693201.jpg)
+.lady-1 {
+  background: url(../../img/lady-1.jpg)
     bottom center no-repeat;
   background-size: cover;
 }
-.user-pic-4 {
-  background: url(../../img/boy-2.jpg) bottom center
+.hip-guy-1 {
+  background: url(../../img/hippie-1.jpg) bottom center
     no-repeat;
   background-size: cover;
 }
-.user-pic-5 {
-  background: url(../../img/suit-1.png) bottom center
+.suit-guy-2 {
+  background: url(../../img/suit-2.png) bottom center
     no-repeat;
   background-size: cover;
 }

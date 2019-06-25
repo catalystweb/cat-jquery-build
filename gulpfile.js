@@ -1,29 +1,13 @@
-const { src, dest, parallel } = require('gulp');
-const pug = require('gulp-pug');
-const less = require('gulp-less');
-const minifyCSS = require('gulp-csso');
-const concat = require('gulp-concat');
-
-function html() {
-  return src('src/*.html')
-    .pipe(pug())
-    .pipe(dest('app/html'))
-}
-
-function css() {
-  return src('src/css/*.css')
-    .pipe(less())
-    .pipe(minifyCSS())
-    .pipe(dest('app/css'))
-}
+var { src, dest, parallel } = require('gulp');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 function js() {
-  return src('src/js/*.js', { sourcemaps: true })
+  return src('src/js/*.js')
     .pipe(concat('app.min.js'))
-    .pipe(dest('app/js', { sourcemaps: true }))
+    .pipe(uglify())
+    .pipe(dest('app/js'))
 }
 
 exports.js = js;
-exports.css = css;
-exports.html = html;
-exports.default = parallel(html, css, js);
+exports.default = parallel(js);

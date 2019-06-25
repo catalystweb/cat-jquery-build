@@ -1,32 +1,26 @@
-var gulp        = require('gulp');
+var { src, dest } = require('gulp');
+var gulp = require('gulp');
+var concat = require('gulp-concat');
 var browserSync = require('browser-sync').create();
 
-// process JS files and return the stream.
-gulp.task('js', function () {
-    return gulp.src('js/*js')
-        .pipe(browserify())
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/js'));
-});
+gulp.task('scripts', function() {
+    return src('src/js/*.js')
+        .pipe(concat('app.min.js'))
+        .pipe(dest('app/js'))
+}); 
 
-// create a task that ensures the `js` task is complete before
-// reloading browsers
-gulp.task('js-watch', ['js'], function (done) {
-    browserSync.reload();
-    done();
-});
-
-// use default task to launch Browsersync and watch JS files
-gulp.task('default', ['js'], function () {
-
-    // Serve files from the root of this project
+gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
             baseDir: "./"
-        }
+        },
+        port:1350
     });
-
-    // add browserSync.reload to the tasks array to make
-    // all browsers reload after tasks are complete.
-    gulp.watch("js/*.js", ['js-watch']);
 });
+
+// gulp.task('watch', ['browser-sync'], function () {
+//     gulp.watch("src/js/*.js", ['scripts']);
+//     gulp.watch("*.html").on('change', browserSync.reload);
+// });
+
+gulp.task('run', gulp.parallel('scripts', 'browser-sync'));

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "gulp js && npm run build",
-    "build": "concurrently \"http-server -a localhost -p 1350\" \"json-server --watch src/json/userdata.json --port 1352\" \"opener http://localhost:1350/index.html\""
+    "start": "npm run build",
+    "build": "concurrently \"json-server --watch src/json/userdata.json --port 1352\" \"gulp run\""
   },
   "dependencies": {
     "jquery": "3.4.1",
@@ -21,6 +21,7 @@
     "concurrently": "^4.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
+    "gulp-json-srv": "^1.2.0",
     "gulp-uglify": "^3.0.2",
     "http-server": "^0.11.1",
     "sleep-ms": "^2.0.1"

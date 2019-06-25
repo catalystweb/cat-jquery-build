@@ -1,4 +1,3 @@
-//this code will be used when node.js script configured to allow writing to json file //
 
 // prevent enter key creating new line for contenteditable attribute //
 $(document).on("keypress", ".user-name, .user-title", function(e) {
@@ -14,63 +13,78 @@ $(document).on("blur", ".user-name, .user-title", function() {
   console.log("this class: " + this_class);
 
   if (this_class == "user-name") {
-    var dataID = $(this)
-      .closest("section")
-      .attr("id");
+    var dataID = $(this).closest("section").attr("id");
     var dataName = $(this).text();
-    var dataTitle = $(this).text();
 
     console.log("section id: " + dataID);
     console.log("name: " + dataName);
 
     $.ajax({
-      url: "https://catalystweb.github.io/json/json/data.json",
+      url: localHost,
       cache: false,
-      data: {},
       dataType: "json",
-      success: function(result) {
-        $.each(result, function(index, data) {
-          console.log("data id: " + dataID);
-          if (data.id == dataID) {
-            $.post(
-              "src/json/data.json",
-              JSON.stringify({ name: +dataName }),
-              function(result) {
-                console.log("new data name: " + data.name);
-              }
-            );
+      success: function (result) {
+        $.each(result, function (index, data) {              
+          if (dataID == data.id) {                
+              var payload = { 
+                id: data.id,
+                name: dataName,
+                title: data.title,
+                avatar: data.avatar,
+                status: data.status,
+                block: data.block 
+              };
+            $.ajax({
+              url: localHost +dataID,
+              type: "PUT",
+              data: JSON.stringify(payload), 
+              dataType: "json",             
+              contentType: "application/json",
+              success: function(result) {
+                getData()
+              }         
+            });
+            return;
           }
-        });
-      }
+        });  
+      }   
     });
   } else {
-    var dataID = $(this)
-      .closest("section")
-      .attr("id");
+    var dataID = $(this).closest("section").attr("id");
     var dataTitle = $(this).text();
 
     console.log("section id: " + dataID);
     console.log("title: " + dataTitle);
 
     $.ajax({
-      url: "http://localhost:3000/users",
+      url: localHost,
       cache: false,
-      data: {},
       dataType: "json",
       success: function (result) {
-        $.each(result, function(index, data) {
-          console.log("data id: " + dataID);
-          if (data.id == dataID) {
-            $.post(
-              "src/json/data.json",
-              JSON.stringify({ title: +dataTitle }),
-              function(result) {
-                console.log("success:");
-              }
-            );
+        $.each(result, function (index, data) {              
+          if (dataID == data.id) {                
+              var payload = { 
+                id: data.id,
+                name: data.name,
+                title: dataTitle,
+                avatar: data.avatar,
+                status: data.status,
+                block: data.block 
+              };
+            $.ajax({
+              url: localHost +dataID,
+              type: "PUT",
+              data: JSON.stringify(payload), 
+              dataType: "json",             
+              contentType: "application/json",
+              success: function(result) {
+                getData()
+              }         
+            });
+            return;
           }
-        });
-      }
-    });    
+        });  
+      }   
+    });   
   }
 });

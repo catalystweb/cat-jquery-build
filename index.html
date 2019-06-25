@@ -7,7 +7,8 @@
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="stylesheet" href="src/css/dark-theme.css" id="dark-css" />
-	<link rel="stylesheet" href="src/css/light-theme.css" id="light-css">
+	<link rel="stylesheet" href="src/css/light-theme.css" id="light-css" />
+	<link rel="stylesheet" href="src/css/media-query.css" />
 </head>
 <body>
 	<div class="header-container">
@@ -33,7 +34,7 @@
 			</div>
 			<div class="modal-content user-success" style="display:none;">
 				<div>
-					<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user added</div>
+					<div class="green">user added</div>
 				</div>
 			</div>
 		</div>
@@ -55,7 +56,7 @@
 			</div>
 			<div class="modal-content user-success" style="display:none;">
 				<div>
-					<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user deleted</div>
+					<div class="green">user deleted</div>
 				</div>
 			</div>
 		</div>
@@ -74,9 +75,9 @@
 			</div>
 			<div class="modal-content user-success" style="display:none;">
 					<div>
-						<div style="display:flex; justify-content: center; color:darkgreen; font-weight: bold;">user unblocked</div>
+						<div class="green">user unblocked</div>
 					</div>
-				</div>
+			</div>
 		</div>	
 		<div id="change-theme" class="modal-container" style="display:none;">
 			<div class="modal-content">
@@ -114,7 +115,7 @@
 					<div class="nav-wrapper">
 						<div class="logo"><img src="img/logo-trans.png" height="55"/>
 							<div class="catalyst">
-								<div class="cat-inner">catalyst app build 0.1</div>
+								<div class="cat-inner">catalyst v0.2</div>
 							</div>
 						</div>					
 						<div class="nav">					

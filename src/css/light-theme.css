@@ -45,7 +45,6 @@ section {
 
 .content-wrapper {
   flex: 1 1 auto;
-  height:100vh;
   position: relative;
   overflow-y: auto;
   background: silver;
@@ -94,6 +93,13 @@ header {
   transition:margin 0.3s ease-in-out;
 }
 
+.slideOut {
+  margin-left:100vw;
+  width:100%;
+  background:silver;
+  transition:margin 0.3s ease-in-out;
+}
+
 footer {
   flex: 0 0 auto;
   z-index: 1;
@@ -124,7 +130,7 @@ nav {
 .cat-inner {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-  width:300px;
+  width:200px;
 }
 
 .nav {
@@ -164,6 +170,14 @@ nav li, .nav2 li {
   display: flex;
   justify-content: space-between;
   padding-bottom: 10px;
+}
+
+.display-inline {
+  display:inline-block;
+}
+
+.padding-left-10 {
+  padding-left:10px;
 }
 
 .sort-list {
@@ -282,6 +296,13 @@ input[type="radio"] {
   z-index: 1;
 }
 
+.green {
+  display:flex; 
+  justify-content: center; 
+  color:darkgreen; 
+  font-weight: bold;
+}
+
 /* nav css */
 
 #add-user {
@@ -358,11 +379,14 @@ input[type="radio"] {
 }
 
 .user-name {
+  cursor: pointer;
+  display:inline-block;
   font-size: 18px;
   padding-bottom: 5px;
 }
 
 .user-title {
+  cursor: pointer;
   font-size: 14px;
 }
 
@@ -416,51 +440,6 @@ input[type="radio"] {
   background: url(../../img/suit-1.png) bottom center
     no-repeat;
   background-size: cover;
-}
-
-@media only screen and (max-width: 340px) {
-  .user-img,
-  .user-info,
-  .user-status,
-  .user-button,
-  .user-avatar {
-    float: none;
-  }
-
-  .user-info {
-    display: block;
-    width: 90%;
-    padding-left: 0;
-    margin: auto;
-    padding-bottom: 10px;
-    text-align: center;
-  }
-
-  .user-button {
-    display: block;
-    width: 70%;
-    padding-left: 0;
-    margin: auto;
-    text-align: center;
-  }
-
-  .user-img-container {
-    width: 55vw;
-    height: auto;
-    margin: auto;
-  }
-
-  .user-avatar {
-    display: inline-block;
-    margin-left: 25%;
-    width: 4em;
-    height: 4em;
-  }
-
-  .cat-inner {
-    width: 120px;
-    text-align: center;
-  }
 }
 
 /* arrow-icons */
@@ -531,4 +510,9 @@ input[type="radio"] {
   border-bottom: solid 36px black;
   border-right: solid 21px transparent;
   border-left: solid 21px transparent;
+}
+
+.fas {
+  margin-left:20px;
+  display:none;
 }

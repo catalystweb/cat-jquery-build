@@ -57,13 +57,14 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 100vh;
+  height: 150px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
   background: black;
+  border-bottom:1px solid silver;
   color: silver;
   display: flex;
   position: absolute;
@@ -116,7 +117,7 @@ nav {
 .cat-inner {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-  width:300px;
+  width:200px;
 }
 
 .nav {
@@ -156,6 +157,14 @@ nav li, .nav2 li {
   display: flex;
   justify-content: space-between;
   padding-bottom: 10px;
+}
+
+.display-inline {
+  display:inline-block;
+}
+
+.padding-left-10 {
+  padding-left:10px;
 }
 
 .sort-list {
@@ -275,6 +284,13 @@ input[type="radio"] {
   z-index: 1;
 }
 
+.green {
+  display:flex; 
+  justify-content: center; 
+  color:darkgreen; 
+  font-weight: bold;
+}
+
 /* nav css */
 
 #add-user {
@@ -351,11 +367,14 @@ input[type="radio"] {
 }
 
 .user-name {
+  cursor: pointer;
+  display:inline-block;
   font-size: 18px;
   padding-bottom: 5px;
 }
 
 .user-title {
+  cursor: pointer;
   font-size: 14px;
 }
 
@@ -409,46 +428,6 @@ input[type="radio"] {
   background: url(../../img/suit-1.png) bottom center
     no-repeat;
   background-size: cover;
-}
-
-@media only screen and (max-width: 340px) {
-  .user-img,
-  .user-info,
-  .user-status,
-  .user-button,
-  .user-avatar {
-    float: none;
-  }
-
-  .user-info {
-    display: block;
-    width: 90%;
-    padding-left: 0;
-    margin: auto;
-    padding-bottom: 10px;
-    text-align: center;
-  }
-
-  .user-button {
-    display: block;
-    width: 70%;
-    padding-left: 0;
-    margin: auto;
-    text-align: center;
-  }
-
-  .user-img-container {
-    width: 55vw;
-    height: auto;
-    margin: auto;
-  }
-
-  .user-avatar {
-    display: inline-block;
-    margin-left: 25%;
-    width: 4em;
-    height: 4em;
-  }
 }
 
 /* arrow-icons */

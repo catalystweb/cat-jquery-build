@@ -103,6 +103,14 @@
       "avatar": "user-pic-5",
       "status": "offline",
       "block": "false"
+    },
+    {
+      "name": "Sally Fenn",
+      "title": "Junior Developer",
+      "avatar": "user-pic-3",
+      "status": "offline",
+      "block": "false",
+      "id": "UKqC7Mj"
     }
   ]
 }

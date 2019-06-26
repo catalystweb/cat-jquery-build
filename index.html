@@ -21,7 +21,7 @@
 							<img src="img/logo-trans.png" height="55"/>	
 						</div>	
 					<div class="text-center">Login</div>
-					<div><input id="login-email" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Email"></input></div>
+					<div><input id="login-email" type="email" class="search-icon-glass border defaultFont margin" placeholder="Enter Email"></input></div>
 					<div><input id="login-password" type="password" class="search-icon-glass border defaultFont margin" placeholder="Enter Password"></input></div>
 					<br>
 					<div class="flex-center">	
@@ -32,6 +32,11 @@
 					<div>
 						<div class="green">login successfull</div>
 					</div>
+				</div>
+				<div class="modal-content user-fail" style="display:none;">
+						<div>
+							<div class="red">incorrect details</div>
+						</div>
 				</div>
 		</div>
 	</div>
@@ -44,6 +49,7 @@
 				</div>
 				<div><input id="add-name" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Name"></input></div>
 				<div><input id="add-title" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Title"></input></div>
+				<div><input id="add-email" type="email" class="search-icon-glass border defaultFont margin" placeholder="Enter Email"></input></div>
 				<div><select id="add-avatar" class="search-icon-glass border defaultFont margin">
 								<option value="" disabled selected>Select Avatar</option>
 								<option value="smile-guy-1">Smile Guy</option>
@@ -148,6 +154,23 @@
 				</div>
 			</div>
 		</div>	
+		<div id="logout-modal" class="modal-container" style="display:none;">
+				<div class="modal-content user-mod">
+					<div class="flex">
+						<div>Log out?</div>
+						<div class="close transition">&times;</div>
+					</div>			
+					<div>
+						<br>
+						<button id="logout-button" style="display:none;" class="user-button transition">Yes</button>
+					</div>
+				</div>
+				<div class="modal-content user-success" style="display:none;">
+					<div>
+						<div class="green">log out successfull</div>
+					</div>
+				</div>
+			</div>
 		<div class="side-menu-wrapper" style="display:none;">
 				<div class="nav2 nav-side-fix">
 					<ul>
@@ -176,7 +199,8 @@
 							<li id="add-user">Add user</li>
 							<li id="del-user">Delete user</li> 	
 							<li id="block-user">Block list</li>						
-							<li id="change-theme">Change Theme</li>		
+							<li id="change-theme">Change Theme</li>
+							<li id="log-out">Log out</li>		
 						</ul>
 					</div>
 				</nav>
@@ -204,5 +228,6 @@
 		</footer>
 	</div>
 	<script src="app/js/app.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </body>
 </html>

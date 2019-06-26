@@ -2,12 +2,7 @@ $(window).on("load", function () {
     //logo hover event handler 
     $(".logo").hover(function () {
         $(".catalyst").animate({width: 'toggle'});
-    });
-    
-    //hide login button on load
-    if ($("#login-button").is(":visible")) {
-        $("#login-button").css("display","none");
-    }      
+    });      
 
     //jquery global hover event handler
     $(document).on("mouseover", ".user-name", function () {
@@ -24,28 +19,33 @@ $(window).on("load", function () {
     //jquery global click event handler
     $(document).on("click", function(e) {
         if (e.target.id == "add-user") {
-        $(".modal-container").fadeOut("fast");
-        $("#add-modal").fadeIn("fast");
-        $(".user-mod").fadeIn("fast");
-        $(".page-container").css("opacity", "0.3");
+            $(".modal-container").fadeOut("fast");
+            $("#add-modal").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".page-container").css("opacity", "0.3");
     
         }
         if (e.target.id == "del-user") {
-        $(".modal-container").fadeOut("fast");
-        $("#del-modal").fadeIn("fast");
-        $(".user-mod").fadeIn("fast");
-        $(".page-container").css("opacity", "0.3");
+            $(".modal-container").fadeOut("fast");
+            $("#del-modal").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "block-user") {
-        $(".modal-container").fadeOut("fast");
-        $("#block-modal").fadeIn("fast");
-        $(".user-mod").fadeIn("fast");
-        $(".page-container").css("opacity", "0.3");
+            $(".modal-container").fadeOut("fast");
+            $("#block-modal").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "change-theme") {
-        $(".modal-container").fadeOut("fast");
-        $("#change-theme").fadeIn("fast");
-        $(".page-container").css("opacity", "0.3");
+            $(".modal-container").fadeOut("fast");
+            $("#change-theme").fadeIn("fast");
+            $(".page-container").css("opacity", "0.3");
+        }
+        if (e.target.id == "log-out") {
+            $(".modal-container").fadeOut("fast");
+            $("#logout-modal").fadeIn("fast");
+            $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "submit-theme") {
             if ($("#dark").is(":checked")) {
@@ -65,16 +65,27 @@ $(window).on("load", function () {
             $("#change-theme").fadeOut("fast");
             $(".page-container").css("opacity", "1");
         } 
+
+        //regex function for email validation
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }  
+
         //add modal display
         if (e.target.id == "add-user") {
             if ($("#add-button").is(":visible")) {
-            $("#add-button").css("display","none");
+                $("#add-button").css("display","none");
             }
+            //regex function to validate email            
             $(this).on("input", function () {  
-                $("#add-modal input[type='text']").bind("keyup change", function () {
-                    if ($("#add-name").val() != "" && $("#add-title").val() != "") {
-                        $("button").prop("disabled", false);
-                        $("#add-button").fadeIn("fast");
+                $("#add-modal input[type='email'], #add-modal input[type='password']").bind("keyup change", function () {
+                    if ($("#add-email").val() != "" && $("#add-password").val() != "") {
+                        var email = $("#add-email").val();
+                        if (validateEmail(email)) {
+                          $("button").prop("disabled", false);
+                          $("#add-button").fadeIn("fast");
+                        }
                     } else {
                         $("button").prop("disabled", true);
                         $("#add-button").fadeOut("fast");
@@ -82,7 +93,7 @@ $(window).on("load", function () {
                 });
             });      
         }
-
+          
         //block modal display
         if (e.target.id == "block-user") {
             if ($("#del-block-button").is(":visible")) {

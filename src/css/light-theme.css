@@ -89,7 +89,7 @@ header {
 }
 
 .slideDown {
-  min-height: 185px;
+  min-height: 205px;
   transition: min-height 0.3s ease-in-out;
 }
 
@@ -246,8 +246,8 @@ button:hover {
   transition: color 0.2s ease-out, background 0.2s ease-in;
 }
 
-input[type="text"], input[type="password"],
-input[type="text"]::placeholder, input[type="password"]::placeholder,
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
 select {
   width: 100%;
   color: #404040;
@@ -330,6 +330,13 @@ input[type="radio"] {
   font-weight: bold;
 }
 
+.red {
+  display:flex; 
+  justify-content: center; 
+  color:darkred; 
+  font-weight: bold;
+}
+
 /* nav css */
 
 #add-user {
@@ -345,6 +352,10 @@ input[type="radio"] {
 }
 
 #change-theme {
+  cursor: pointer;
+}
+
+#log-out {
   cursor: pointer;
 }
 

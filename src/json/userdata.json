@@ -4,31 +4,9 @@
       "id": "1",
       "name": "Kerem Suer",
       "title": "Contributor",
+      "email": "kerem@kerum.com",
+      "password": "test",
       "avatar": "suit-guy-1",
-      "status": "offline",
-      "block": "true"
-    },
-    {
-      "id": "3",
-      "name": "Oykun Yilmaz",
-      "title": "Administrator",
-      "avatar": "suit-guy-1",
-      "status": "afk",
-      "block": "false"
-    },
-    {
-      "id": "4",
-      "name": "Rogie King",
-      "title": "Contributor",
-      "avatar": "user-pic-3",
-      "status": "online",
-      "block": "true"
-    },
-    {
-      "id": "5",
-      "name": "Victor Erixon",
-      "title": "Contributor",
-      "avatar": "smile-guy-1",
       "status": "offline",
       "block": "false"
     },
@@ -36,81 +14,59 @@
       "id": "6",
       "name": "Daniel Kandilas",
       "title": "Developer",
-      "avatar": "suit-guy-1",
+      "email": "daniel@catalystweb.com.au",
+      "password": "test",
+      "avatar": "lady-1",
       "status": "offline",
       "block": "false"
     },
     {
-      "id": "7",
-      "name": "Neil Wang",
-      "title": "Developer",
-      "avatar": "suit-guy-1",
-      "status": "online",
-      "block": "false"
-    },
-    {
-      "id": "8",
-      "name": "David Kandilas",
-      "title": "Noob",
-      "avatar": "smile-guy-1",
-      "status": "online",
-      "block": "false"
-    },
-    {
-      "id": "9",
-      "name": "Mark Menegus",
-      "title": "Jits-master",
+      "name": "Test",
+      "title": "Test",
+      "email": "test@test.com",
       "avatar": "hip-guy-1",
       "status": "offline",
-      "block": "false"
+      "block": "false",
+      "id": "eafPQdj"
     },
     {
-      "id": "10",
-      "name": "Julie Kandilas",
-      "title": "Wife",
-      "avatar": "lady-1",
-      "status": "online",
-      "block": "false"
-    },
-    {
-      "id": "eU07bM-",
-      "name": "Andrew Gray",
-      "title": "Developer",
-      "avatar": "smile-guy-1",
-      "status": "offline",
-      "block": "false"
-    },
-    {
-      "id": "-GVCYOv",
-      "name": "Lydia Kandilas",
-      "title": "Daughter",
-      "avatar": "lady-1",
-      "status": "offline",
-      "block": "false"
-    },
-    {
-      "id": "3uLFyMU",
-      "name": "Wayne Campbell",
-      "title": "Business Analyst",
-      "avatar": "smile-guy-1",
-      "status": "offline",
-      "block": "false"
-    },
-    {
-      "id": "fzWyNZo",
-      "name": "James Dellow",
-      "title": "Moderator",
+      "name": "Test1",
+      "title": "Test1",
+      "email": "test1@test1.com",
       "avatar": "suit-guy-2",
       "status": "offline",
-      "block": "false"
+      "block": "false",
+      "id": "ywJ-H5N"
     },
     {
-      "id": "UKqC7Mj",
-      "name": "Sally Fenn",
-      "title": "Junior Developer",
+      "name": "test2",
+      "title": "test2",
+      "email": "test2@test.com",
+      "password": "65283",
+      "avatar": "smile-guy-1",
+      "status": "offline",
+      "block": "false",
+      "id": "P-XwnTw"
+    },
+    {
+      "name": "Julie Kandilas",
+      "title": "Wife",
+      "email": "jules.newman86@gmail.com",
+      "password": "70510",
       "avatar": "lady-1",
       "status": "offline",
-      "block": "false"
+      "block": "false",
+      "id": "gqzmMLE"
+    },
+    {
+      "name": "Andy Gray",
+      "title": "Developer",
+      "email": "a.gray@gmail.com",
+      "password": "7555",
+      "avatar": "hip-guy-1",
+      "status": "offline",
+      "block": "false",
+      "id": "j2xsH6v"
     }
   ]
 }

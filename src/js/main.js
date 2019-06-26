@@ -1,39 +1,8 @@
 $(window).on("load", function () {
   $("#searchField").val("");
-
-  function login() {
-    $("#login-modal").fadeIn("fast");
-
-    //jquery change listener for login modal
-    $(document).on("change", "input", function() {
-        if ($(".modal-login").is(":visible")) {
-            $("#login-modal input[type='text'], #login-modal input[type='password']").bind("keyup change", function () {
-                if ($("#login-email").val() != "" && $("#login-password").val() != "") {
-                    $("button").prop("disabled", false);
-                    $("#login-button").fadeIn("fast");
-                } else {
-                    $("button").prop("disabled", true);
-                    $("#login-button").fadeOut("fast");
-                }
-            });
-        }
-    });  
-
-    //jquery click listener for login modal
-    $(document).on("click", function(e) {
-        if (e.target.id == "login-button") {
-            $(".user-mod").css("display","none");
-            $(".user-success").fadeIn("fast");
-            setTimeout(function () {
-              $(".login-container").fadeOut("fast");
-              $(".header-container").fadeIn("fast");
-              $(".content-wrapper").fadeIn("fast");
-              $(".page-container").fadeIn("fast");
-              $("footer").fadeIn("fast");
-            },2000);
-        }
-    });
-  }
+  $("#login-modal").fadeIn("fast");
+  $("input").val('');
+  $("select").val('');
 
   function getData() {
     var localHost = "http://localhost:1352/users/";
@@ -100,8 +69,8 @@ $(window).on("load", function () {
                     $(b).find("input.user-name").data("name").toLowerCase()
                   );
                 }).appendTo(".content-wrapper");
-                //call Login function
-                login();
+                $(".content-wrapper").fadeIn("slow");
+                $("footer").fadeIn("slow");
           },
           error: function () {
             userData = "";
@@ -116,6 +85,32 @@ $(window).on("load", function () {
       });
   }
   getData();
+
+  function login(dataEmail,dataPass) {
+    //jquery click listener for login modal
+      var localHost = "http://localhost:1352/users/";
+      $(document).on("click", function (e) {  
+
+        if (e.target.id == "login-button") {
+          $.ajax({
+              url: localHost,
+              cache: false,
+              dataType: "json",
+              success: function (result) {
+                $.each(result, function (index, data) {      
+                  console.log("dataEmail: " + dataEmail + " data.email: " + data.email + " dataPass: " + dataPass + " data.password: " + data.password);
+                    if (dataEmail == data.email && dataPass == data.password) {
+                      Cookies.set('user','true');
+                      console.log("cookie added: " + Cookies.get('user'));
+                      return
+                    }
+                });
+              }   
+          });          
+        }      
+      });
+  }
+  login();
   
   //display json data source for block list
   function getBlockData() {
@@ -297,13 +292,19 @@ $(window).on("load", function () {
       });
     
     //add new record to json data 
-    } else {      
+    } else {            
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(99999));
+      }      
       var dataName = $("#add-name").val();
       var dataTitle = $("#add-title").val();
+      var dataEmail = $("#add-email").val();
       var dataAvatar = $("#add-avatar option:selected").val();           
       var payload = {
           name: dataName,
           title: dataTitle,
+          email: dataEmail,
+          password: ""+getRandomInt(9999)+"",
           avatar: dataAvatar,
           status: "offline",
           block: "false"
@@ -421,8 +422,7 @@ $(window).on("load", function () {
           }   
         });
       } 
-    }); 
-        
+  });    
 
   //onblur event handler callback for editable input
   $(document).on("blur", ".user-name, .user-title", function() { 
@@ -438,12 +438,57 @@ $(window).on("load", function () {
     userDirectAdd(classVal,textVal,idVal);
   });
 
+  
+  //regex function for email validation
+  function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }     
+
+   //jquery change listener for login modal
+  $(document).on("change", "input", function() {
+    if ($(".modal-login").is(":visible")) {
+        $("#login-modal input[type='email'], #login-modal input[type='password']").bind("keyup change", function () {
+            if ($("#login-email").val() != "" && $("#login-password").val() != "") {
+                console.log($("#login-email").val());
+                console.log($("#login-password").val());
+                var email = $("#login-email").val();
+                if (validateEmail(email)) {
+                $("button").prop("disabled", false);
+                $("#login-button").fadeIn("fast");
+                }
+            } else {
+                $("button").prop("disabled", true);
+                $("#login-button").fadeOut("fast");
+            }
+        });
+    }
+  }); 
+
+
   //click event handler with callback dependancies
   $(document).on("click", function (e) {
-
+    //add button callback
     if (e.target.id == "add-button") {
       userAddEdit(null,null);
     }
+    //login button callback
+    if (e.target.id == "login-button") {
+      var dataEmail = $("#login-email").val();
+      var dataPass =  $("#login-password").val();
+      console.log(dataEmail);
+      console.log(dataPass);
+      login(dataEmail,dataPass);
+    }
+
+    //logout modal display
+    if (e.target.id == "log-out") {
+        $("#logout-button").fadeIn("fast"); 
+        $("#logout-button").on("click", function() {
+          $("#logout-modal").fadeOut("fast");
+          login(true);
+        });                 
+    }   
 
     //avatar edit display
     if ($(e.target).hasClass("user-avatar")) {

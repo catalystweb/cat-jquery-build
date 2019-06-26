@@ -20,12 +20,19 @@ body {
   background: black;
 }
 
+.login-container {
+  height:100%;
+  width:100%;
+  transition: 0.3s ease-in-out;
+}
+
 .header-container {
   max-width:1024px !important;
   margin:0 auto;
   display: flex;
   flex-direction: column;
   background: lightgrey;
+  transition: 0.3s ease-in-out;
 }
 
 .page-container {
@@ -48,6 +55,7 @@ section {
   position: relative;
   overflow-y: auto;
   background: silver;
+  transition: 0.3s ease-in-out;
 }
 
 header {
@@ -171,6 +179,16 @@ nav li, .nav2 li {
   justify-content: space-between;
   padding-bottom: 10px;
 }
+.flex-center {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
 
 .display-inline {
   display:inline-block;
@@ -228,8 +246,8 @@ button:hover {
   transition: color 0.2s ease-out, background 0.2s ease-in;
 }
 
-input[type="text"],
-input[type="text"]::placeholder,
+input[type="text"], input[type="password"],
+input[type="text"]::placeholder, input[type="password"]::placeholder,
 select {
   width: 100%;
   color: #404040;
@@ -294,6 +312,15 @@ input[type="radio"] {
   padding: 1.5em;
   position: fixed;
   z-index: 1;
+}
+
+.modal-login {
+  max-width:300px;
+}
+
+.text-center {
+  text-align: center;
+  padding-bottom:10px;
 }
 
 .green {
@@ -414,6 +441,10 @@ input[type="radio"] {
   display: inline-flex;
   justify-content: space-evenly;
   margin-right: 20px;
+}
+
+.user-button-no-margin {
+  margin-right:0;
 }
 
 .smile-guy-1 {

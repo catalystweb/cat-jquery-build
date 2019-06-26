@@ -11,7 +11,31 @@
 	<link rel="stylesheet" href="src/css/media-query.css" />
 </head>
 <body>
-	<div class="header-container">
+	<div class="login-container">
+		<div id="login-modal" class="modal-container modal-login" style="display:none;">
+				<div class="modal-content user-mod">
+						<div class="flex-end">
+								skip<span style="padding-right:5px;"></span> <div class="close transition"> &times;</div>	
+						</div>
+						<div class="flex-center">
+							<img src="img/logo-trans.png" height="55"/>	
+						</div>	
+					<div class="text-center">Login</div>
+					<div><input id="login-email" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Email"></input></div>
+					<div><input id="login-password" type="password" class="search-icon-glass border defaultFont margin" placeholder="Enter Password"></input></div>
+					<br>
+					<div class="flex-center">	
+						<button id="login-button" class="user-button transition user-button-no-margin " style="display:none;">Submit</button>
+					</div>
+				</div>
+				<div class="modal-content user-success" style="display:none;">
+					<div>
+						<div class="green">login successfull</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="header-container">		
 		<div id="add-modal" class="modal-container" style="display:none;">
 			<div class="modal-content user-mod">
 				<div class="flex">

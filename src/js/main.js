@@ -1,6 +1,40 @@
 $(window).on("load", function () {
   $("#searchField").val("");
 
+  function login() {
+    $("#login-modal").fadeIn("fast");
+
+    //jquery change listener for login modal
+    $(document).on("change", "input", function() {
+        if ($(".modal-login").is(":visible")) {
+            $("#login-modal input[type='text'], #login-modal input[type='password']").bind("keyup change", function () {
+                if ($("#login-email").val() != "" && $("#login-password").val() != "") {
+                    $("button").prop("disabled", false);
+                    $("#login-button").fadeIn("fast");
+                } else {
+                    $("button").prop("disabled", true);
+                    $("#login-button").fadeOut("fast");
+                }
+            });
+        }
+    });  
+
+    //jquery click listener for login modal
+    $(document).on("click", function(e) {
+        if (e.target.id == "login-button") {
+            $(".user-mod").css("display","none");
+            $(".user-success").fadeIn("fast");
+            setTimeout(function () {
+              $(".login-container").fadeOut("fast");
+              $(".header-container").fadeIn("fast");
+              $(".content-wrapper").fadeIn("fast");
+              $(".page-container").fadeIn("fast");
+              $("footer").fadeIn("fast");
+            },2000);
+        }
+    });
+  }
+
   function getData() {
     var localHost = "http://localhost:1352/users/";
       //hide any existing modal 
@@ -66,9 +100,8 @@ $(window).on("load", function () {
                     $(b).find("input.user-name").data("name").toLowerCase()
                   );
                 }).appendTo(".content-wrapper");
-                //fade in elements
-                $(".content-wrapper").fadeIn("slow");
-                $("footer").fadeIn("slow");
+                //call Login function
+                login();
           },
           error: function () {
             userData = "";

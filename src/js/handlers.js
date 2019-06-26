@@ -3,6 +3,11 @@ $(window).on("load", function () {
     $(".logo").hover(function () {
         $(".catalyst").animate({width: 'toggle'});
     });
+    
+    //hide login button on load
+    if ($("#login-button").is(":visible")) {
+        $("#login-button").css("display","none");
+    }      
 
     //jquery global hover event handler
     $(document).on("mouseover", ".user-name", function () {
@@ -95,8 +100,8 @@ $(window).on("load", function () {
         //delete modal display
         if (e.target.id == "del-user") {
             if ($("#confirm-del").is(":visible")) {
-            $("#confirm-del").css("display","none");
-            $("#del-button").css("display","none");
+                $("#confirm-del").css("display","none");
+                $("#del-button").css("display","none");
             }
             $("#del-list").on("change", function () {  
             if ($("#del-list option").filter(":selected").text() != "Select user from list") {
@@ -170,6 +175,13 @@ $(window).on("load", function () {
             if (! $('input[type="radio').is(':radio')) {
                 $("input").val('');
             }
+            if($(".login-container").is(":visible")) {
+                $(".login-container").fadeOut("fast");
+                $(".content-wrapper").fadeIn("slow");
+                $(".page-container").css("opacity","1");
+                $(".header-container").css("opacity","1");
+                $("footer").fadeIn("slow");
+            }
             $("select").val('');
             $(".page-container").css("opacity", "1");
         }
@@ -207,7 +219,14 @@ $(window).on("load", function () {
             if (e.key === "Escape") {
                 $(".modal-container").fadeOut("fast");
                 if (! $('input[type="radio').is(':radio')) {
-                $("input").val('');
+                    $("input").val('');
+                }
+                if($(".login-container").is(":visible")) {
+                    $(".login-container").fadeOut("fast");
+                    $(".content-wrapper").fadeIn("slow");
+                    $(".page-container").css("opacity","1");
+                    $(".header-container").css("opacity","1");
+                    $("footer").fadeIn("slow");
                 }
                 $("select").val('');
                 $(".page-container").css("opacity", "1");

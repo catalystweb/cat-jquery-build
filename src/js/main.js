@@ -1,45 +1,63 @@
 $(window).on("load", function () {
   $("#searchField").val("");
-  $("#login-modal").fadeIn("fast");
   $("input").val('');
-  $("select").val('');
+  $("select").val('');  
+
+  function login(getEmail,getPass) {
+    //jquery click listener for login modal
+      var localHost = "http://localhost:1352/users/"; 
+        $.ajax({
+            url: localHost,
+            cache: false,
+            dataType: "json",
+            success: function (result) {
+              $.each(result, function (index, data) {                     
+                  if (getEmail == data.email && getPass == data.password) {
+                    Cookies.set('user','true');
+                    console.log("cookie added: " + Cookies.get('user'));
+                    return
+                  }
+              });
+              getData()
+            }   
+        });                 
+  }
 
   function getData() {
     var localHost = "http://localhost:1352/users/";
-      //hide any existing modal 
-      if ($(".modal-container").is(":visible")) {
+    //hide any existing modal 
+    if ($(".modal-container").is(":visible")) {
         $("#del-modal").fadeOut("fast");
         $("#add-modal").fadeOut("fast");
         $("#block-modal").fadeOut("fast");
         $("#edit-modal").fadeOut("fast");
         $(".user-success").fadeOut("fast");
-        $(".page-container").css("opacity", "1");
-      };
+    };
 
-      //clear existing field values
-      $("input").val('');
-      $("select").val('');
-      if (!$('#swMenu').is(":checked")) { 
+    //clear existing field values
+    $("input").val('');
+    $("select").val('');
+    if (!$('#swMenu').is(":checked")) { 
         $('input[type=checkbox]').prop('checked',false);
-      }
-      //global json data source
-      var userData = "";
-      userData +=
+    }
+    //global json data source
+    var userData = "";
+    userData +=
         '<div class="user-nodata" style="height:100%;">' +
         "<strong> loading data </strong>" +
         "</div>";
-      $(".content-wrapper").html(userData);      
+    $(".content-wrapper").html(userData);      
 
-      $.ajax({
+    $.ajax({
         url: localHost,
         cache: false,
         data: {},
         dataType: "jsonp",
-          success: function (result) {  
-              userData = "";
-              $.each(result, function (index, data) {
+        success: function (result) {  
+            userData = "";
+            $.each(result, function (index, data) {
                 if (data.block !== "true") { 
-                  userData +=
+                userData +=
                     "<section id=" +
                     data.id +
                     " class='sort-class'>" +
@@ -59,58 +77,48 @@ $(window).on("load", function () {
                     "</div>" +
                     "</section>";
                 }
-              });
+            });
                 //apply result to html element
                 $(".content-wrapper").html(userData);
                 //sort desc by default html element and append
                 $(".sort-class").sort(function (a, b) {
-                  return String.prototype.localeCompare.call(
+                return String.prototype.localeCompare.call(
                     $(a).find("input.user-name").data("name").toLowerCase(),
                     $(b).find("input.user-name").data("name").toLowerCase()
-                  );
+                );
                 }).appendTo(".content-wrapper");
-                $(".content-wrapper").fadeIn("slow");
+                $(".login-container").fadeOut("slow");
+                $(".page-container").fadeIn("fast");
+                $(".content-wrapper").fadeIn("fast");
+                $(".header-container").fadeIn("fast");
                 $("footer").fadeIn("slow");
-          },
-          error: function () {
+        },
+        error: function () {
             userData = "";
             userData +=
-              '<div class="user-nodata" style="height:100%;">' +
-              "<strong> error loading external data </strong>" +
-              "</div>";
+            '<div class="user-nodata" style="height:100%;">' +
+            "<strong> error loading external data </strong>" +
+            "</div>";
             $(".content-wrapper").html(userData);            
             $(".content-wrapper").fadeIn("slow");
             $("footer").fadeIn("slow");
-          }        
-      });
+        }        
+    });
   }
-  getData();
+    
+  var cookies = Cookies.get('user');
+  console.log(cookies);
 
-  function login(dataEmail,dataPass) {
-    //jquery click listener for login modal
-      var localHost = "http://localhost:1352/users/";
-      $(document).on("click", function (e) {  
-
-        if (e.target.id == "login-button") {
-          $.ajax({
-              url: localHost,
-              cache: false,
-              dataType: "json",
-              success: function (result) {
-                $.each(result, function (index, data) {      
-                  console.log("dataEmail: " + dataEmail + " data.email: " + data.email + " dataPass: " + dataPass + " data.password: " + data.password);
-                    if (dataEmail == data.email && dataPass == data.password) {
-                      Cookies.set('user','true');
-                      console.log("cookie added: " + Cookies.get('user'));
-                      return
-                    }
-                });
-              }   
-          });          
-        }      
-      });
+  if (cookies == 'true') {
+    $('#loadingDiv').hide().ajaxStart(function() {
+        $(this).show();
+        getData();
+    }).ajaxStop(function() {
+        $(this).hide();
+    });
+  } else {
+    $("#login-modal").fadeIn("fast");
   }
-  login();
   
   //display json data source for block list
   function getBlockData() {
@@ -320,8 +328,8 @@ $(window).on("load", function () {
           }
       });      
     }
-}       
-
+  }    
+  
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
     var localHost = "http://localhost:1352/users/";
@@ -437,48 +445,43 @@ $(window).on("load", function () {
     });
     userDirectAdd(classVal,textVal,idVal);
   });
-
   
+  
+
   //regex function for email validation
   function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
-  }     
-
-   //jquery change listener for login modal
-  $(document).on("change", "input", function() {
-    if ($(".modal-login").is(":visible")) {
-        $("#login-modal input[type='email'], #login-modal input[type='password']").bind("keyup change", function () {
-            if ($("#login-email").val() != "" && $("#login-password").val() != "") {
-                console.log($("#login-email").val());
-                console.log($("#login-password").val());
-                var email = $("#login-email").val();
-                if (validateEmail(email)) {
-                $("button").prop("disabled", false);
-                $("#login-button").fadeIn("fast");
-                }
-            } else {
-                $("button").prop("disabled", true);
-                $("#login-button").fadeOut("fast");
-            }
+  }    
+         
+  $("#login-modal").on("input", function () {  
+      $("#login-modal input[type='email'], #login-modal input[type='password']").bind("keyup change", function () {
+          if ($("#login-email").val() != "" && $("#login-password").val() != "") {
+              var email = $("#login-email").val();
+              if (validateEmail(email)) {
+              $("button").prop("disabled", false);
+              $("#login-button").fadeIn("fast");
+              }
+          } else {
+              $("button").prop("disabled", true);
+              $("#login-button").fadeOut("fast");
+          }
         });
-    }
-  }); 
-
-
+  });         
+  
   //click event handler with callback dependancies
   $(document).on("click", function (e) {
     //add button callback
     if (e.target.id == "add-button") {
       userAddEdit(null,null);
     }
+
     //login button callback
     if (e.target.id == "login-button") {
       var dataEmail = $("#login-email").val();
       var dataPass =  $("#login-password").val();
-      console.log(dataEmail);
-      console.log(dataPass);
-      login(dataEmail,dataPass);
+      console.log("onclick pre login() fire");
+        login(dataEmail,dataPass);
     }
 
     //logout modal display
@@ -489,6 +492,25 @@ $(window).on("load", function () {
           login(true);
         });                 
     }   
+
+    //close statement if user clicks close icon
+    if (e.target.classList[0] == "close") {
+        $(".modal-container").fadeOut("fast");
+        if (! $('input[type="radio').is(':radio')) {
+            $("input").val('');
+        }
+        if($(".login-container").is(":visible")) {
+            $(".login-container").fadeOut("fast");
+            $(".content-wrapper").fadeIn("slow");
+            $(".page-container").css("opacity","1");
+            $(".header-container").css("opacity","1");
+            $("footer").fadeIn("slow");
+            getData();
+        }
+        $("select").val('');
+        $(".page-container").css("opacity", "1");       
+    }
+    
 
     //avatar edit display
     if ($(e.target).hasClass("user-avatar")) {

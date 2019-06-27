@@ -9,7 +9,7 @@ gulp.task('scripts', function() {
     return src('src/js/*.js')
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(dest('app/js'))
+        .pipe(dest('app/'))
 }); 
 
 gulp.task('watch', function(){

@@ -180,23 +180,6 @@ $(window).on("load", function () {
             }
         }
 
-        //close statement if user clicks close icon
-        if (e.target.classList[0] == "close") {
-            $(".modal-container").fadeOut("fast");
-            if (! $('input[type="radio').is(':radio')) {
-                $("input").val('');
-            }
-            if($(".login-container").is(":visible")) {
-                $(".login-container").fadeOut("fast");
-                $(".content-wrapper").fadeIn("slow");
-                $(".page-container").css("opacity","1");
-                $(".header-container").css("opacity","1");
-                $("footer").fadeIn("slow");
-            }
-            $("select").val('');
-            $(".page-container").css("opacity", "1");
-        }
-
         // call sort function for asc and desc on click event    
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             var getStateVal = document.getElementsByClassName("sort-list")[0].id;    
@@ -227,7 +210,7 @@ $(window).on("load", function () {
             }
         }
         if ($(".modal-container").is(":visible")) {
-            if (e.key === "Escape") {
+            if (e.key === "Escape" && !$("#login-modal").is(":visible")) {
                 $(".modal-container").fadeOut("fast");
                 if (! $('input[type="radio').is(':radio')) {
                     $("input").val('');
@@ -250,6 +233,6 @@ $(window).on("load", function () {
         if (e.which == 13) {
             e.preventDefault();
             $(this).blur();
-        }
+        }        
     });
 });

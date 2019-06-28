@@ -316,6 +316,15 @@ input[type="radio"] {
   cursor: pointer;
 }
 
+#log-in {
+  cursor: pointer;
+}
+
+#log-out {
+  cursor: pointer;
+}
+
+
 /* search module */
 
 .search-wrapper {

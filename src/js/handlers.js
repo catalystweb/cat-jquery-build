@@ -72,6 +72,11 @@ $(window).on("load", function () {
             return re.test(email);
         }  
 
+        //log-in redirect
+        if (e.target.id == "log-in") {
+            location.reload();
+        }
+
         //add modal display
         if (e.target.id == "add-user") {
             if ($("#add-button").is(":visible")) {

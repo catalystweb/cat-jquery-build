@@ -5,45 +5,16 @@ $(window).on("load", function () {
 
   var cookies = Cookies.get('user');
 
-  if (cookies == 'true') {
-    $("#login-modal").css("display","none");
-    getData();
-  } else {
-    $("#login-modal").fadeIn("fast");
-  }
+    if (cookies == 'true') {
+      console.log("cookie exists: " +cookies)
+      $("#login-modal").css("display","none");
+      getData("true");
+    } else {
+      console.log("cookie exists: false");
+      $("#login-modal").fadeIn("fast");
+    }
 
-  function login(getEmail,getPass) {
-    //jquery click listener for login modal
-      var localHost = "http://localhost:1352/users/"; 
-        $.ajax({
-            url: localHost,
-            cache: false,
-            dataType: "json",
-            success: function (result) {
-              console.log(getEmail);
-              console.log(getPass);
-              $.each(result, function (index, data) {                     
-                  if (getEmail == data.email && getPass == data.password && cookies != 'true') {
-                    Cookies.set('user','true');
-                    console.log("cookie added: " + Cookies.get('user'));
-                    getData()
-                    return
-                  } else {
-                    console.log("error");
-                    $(".user-mod").css("display","none");
-                    $(".user-fail").fadeIn("fast");
-                    setTimeout(function () {
-                      $(".user-fail").css("display","none");
-                      $(".user-mod").fadeIn("fast");
-                      $("input").val('');
-                    },2000);
-                  }
-              });              
-            }   
-        });                 
-  }
-
-  function getData() {
+  function getData(cookieVar) {
     var localHost = "http://localhost:1352/users/";
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {
@@ -116,10 +87,16 @@ $(window).on("load", function () {
                 );
                 }).appendTo(".content-wrapper");
                 setTimeout(function () {
-                  $(".header-container").fadeIn("slow");
-                  $(".page-container").fadeIn("slow");
-                  $(".content-wrapper").fadeIn("slow");
-                  $("footer").fadeIn("slow");
+                  console.log(cookieVar);
+                  if (cookieVar == "true") {
+                    $("li#log-in").css("display","none");
+                  } else {
+                    $("li#log-out").css("display","none");
+                  }
+                  $(".header-container").fadeIn("fast");
+                  $(".page-container").fadeIn("fast");
+                  $(".content-wrapper").fadeIn("fast");
+                  $("footer").fadeIn("fast");
                 },500);
         },
         error: function () {
@@ -133,6 +110,34 @@ $(window).on("load", function () {
             $("footer").fadeIn("slow");
         }        
     });
+  }
+
+  function login(getEmail,getPass,getLogout) {
+    //jquery click listener for login modal
+      var localHost = "http://localhost:1352/users/"; 
+        if (getLogout != true) {
+          $.ajax({
+              url: localHost,
+              cache: false,
+              dataType: "json",
+              success: function (result) {
+                $.each(result, function (index, data) {                     
+                    if (getEmail == data.email && getPass == data.password) {
+                      Cookies.set('user','true');
+                      console.log("cookie added: " + Cookies.get('user'));
+                      var cookieVar = "true";
+                      $("#login-modal").fadeOut("fast");
+                      getData(cookieVar)
+                    }
+                });              
+              }   
+          });  
+        } else {                    
+            Cookies.remove('user');
+            console.log("cookie removed: " + Cookies.get('user'));
+            location.reload();
+            return                              
+        }               
   }
       
   //display json data source for block list
@@ -495,8 +500,7 @@ $(window).on("load", function () {
     if (e.target.id == "login-button") {
       var dataEmail = $("#login-email").val();
       var dataPass =  $("#login-password").val();
-      console.log("onclick pre login() fire");
-        login(dataEmail,dataPass);
+        login(dataEmail,dataPass,false);
     }
 
     //logout modal display
@@ -504,7 +508,7 @@ $(window).on("load", function () {
         $("#logout-button").fadeIn("fast"); 
         $("#logout-button").on("click", function() {
           $("#logout-modal").fadeOut("fast");
-          login(true);
+          login(null,null,true);
         });                 
     }   
 

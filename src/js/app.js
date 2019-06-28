@@ -11,9 +11,15 @@ $(window).on("load", function () {
       this.console.log("theme: " +theme);
       this.console.log("menu: " +menu);
       if (theme == "dark") {
+        $("#dark").prop("checked",true);
         $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
         $('link[href="src/css/light-theme.css"]').prop("disabled", true);
-      } 
+      }  else {
+        theme == "light"
+        $("#light").prop("checked",true);
+        $('link[href="src/css/dark-theme.css"]').prop("disabled", true);
+        $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+      }
       if (menu == "right") {
         $("#swMenu").attr( 'checked', true )
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");

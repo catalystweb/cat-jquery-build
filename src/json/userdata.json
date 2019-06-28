@@ -2,11 +2,9 @@
   "users": [
     {
       "id": "1",
-      "name": "Kerem Suer",
+      "name": "Kerem Suerd",
       "title": "Contributor",
-      "email": "kerem@kerum.com",
-      "password": "test",
-      "avatar": "suit-guy-1",
+      "avatar": "hip-guy-1",
       "status": "offline",
       "block": "false"
     },
@@ -21,13 +19,12 @@
       "block": "false"
     },
     {
+      "id": "eafPQdj",
       "name": "Test",
       "title": "Test",
-      "email": "test@test.com",
       "avatar": "hip-guy-1",
       "status": "offline",
-      "block": "false",
-      "id": "eafPQdj"
+      "block": "false"
     },
     {
       "name": "Test1",
@@ -67,16 +64,6 @@
       "status": "offline",
       "block": "false",
       "id": "j2xsH6v"
-    },
-    {
-      "name": "test3",
-      "title": "test3",
-      "email": "test3@test.com",
-      "password": "95684",
-      "avatar": "suit-guy-1",
-      "status": "offline",
-      "block": "false",
-      "id": "P__7LOE"
     },
     {
       "id": "T65uRQ8",

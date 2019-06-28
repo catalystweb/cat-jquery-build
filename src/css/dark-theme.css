@@ -57,14 +57,14 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 150px;
+  height: 141px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
   background: black;
-  border-bottom:1px solid silver;
+  border-bottom:1px solid gray;
   color: silver;
   display: flex;
   position: absolute;
@@ -85,6 +85,8 @@ header {
   width:100%;
   background:#00173d;
   transition:margin-left 0.3s ease-in-out;
+  padding-left:1px;
+  margin-top:-1px;
 }
 
 .slideOut {
@@ -143,7 +145,6 @@ nav {
 
 .nav-side-fix {
   padding-inline-start:0;
-  padding-top:20px;
 }
 
 .nav-wrapper {

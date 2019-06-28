@@ -15,9 +15,43 @@ $(window).on("load", function () {
         $(this).next("span").children("i").fadeOut("fast");
         return false;
     });
-
+ 
     //jquery global click event handler
     $(document).on("click", function(e) {
+        
+        if (e.target.id == "submit-theme") {
+            if ($("#dark").is(":checked")) {
+                $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
+                $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+                if ($('#swMenu').is(":checked")) {
+                    $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
+                    $(".page-container").css("opacity", "0.3");
+                }
+                theme = Cookies.set('theme','dark');
+
+            } 
+            if ($("#light").is(":checked")) {
+                $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
+                $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+                if ($('#swMenu').is(":checked")) {
+                    $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
+                    $(".page-container").css("opacity", "0.3");
+                }
+                theme = Cookies.set('theme','light');
+            }
+            if ($('#swMenu').is(":checked")) {        
+                $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
+                $("header").removeClass("slideDown");
+                menu =  Cookies.set('menu','right');
+            } else {
+                $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-up");
+                $(".side-menu-wrapper").removeClass("slideIn");
+                menu =  Cookies.set('menu','top');
+            }
+            $("#change-theme").fadeOut("fast");
+            $(".page-container").css("opacity", "1");
+        } 
+        
         if (e.target.id == "add-user") {
             $(".modal-container").fadeOut("fast");
             $("#add-modal").fadeIn("fast");
@@ -47,28 +81,6 @@ $(window).on("load", function () {
             $("#logout-modal").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");
         }
-        if (e.target.id == "submit-theme") {
-            if ($("#dark").is(":checked")) {
-                $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
-                $('link[href="src/css/light-theme.css"]').prop("disabled", true);
-                theme = Cookies.set('theme','dark');
-            } else {
-                $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
-                $('link[href="src/css/light-theme.css"]').prop("disabled", false);
-                theme = Cookies.set('theme','light');
-            }
-            if ($('#swMenu').is(":checked")) {        
-                $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
-                $("header").removeClass("slideDown");
-                menu =  Cookies.set('menu','right');
-            } else {
-                $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-up");
-                $(".side-menu-wrapper").removeClass("slideIn");
-                menu =  Cookies.set('menu','top');
-            }
-            $("#change-theme").fadeOut("fast");
-            $(".page-container").css("opacity", "1");
-        } 
 
         //regex function for email validation
         function validateEmail(email) {
@@ -141,7 +153,6 @@ $(window).on("load", function () {
             }
         }
 
-        //arrow spin style for sorting
         if (e.target.classList[0] == "arrow-icon") {
             if ($(".side-menu-wrapper").is(":visible")) {
                 $("#del-modal").fadeOut("fast");
@@ -179,6 +190,7 @@ $(window).on("load", function () {
                 }
             }
         }
+        
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             if ($(".arrow-sort").hasClass("arrow-spin-down")) {
                 $(".arrow-sort").removeClass("arrow-spin-down");

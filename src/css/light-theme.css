@@ -70,11 +70,11 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 150px;
+  height: 141px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
-  transition: margin-left 0.3s ease-in-out;
+  transition: margin-left 0.4s ease-in-out;
   overflow: hidden;
   background: silver;
   border-bottom:1px solid black;
@@ -93,18 +93,19 @@ header {
 }
 
 .slideIn {
-  display:flex !important;
   margin-left:0vw;
   width:100%;
   background:silver;
-  transition:margin-left 0.3s ease-in-out;
+  transition:margin-left 0.4s ease-in-out;
+  padding-left:1px;
+  margin-top:-1px;
 }
 
 .slideOut {
   margin-left:100vw;
   width:100%;
   background:silver;
-  transition:margin-left 0.3s ease-in-out;
+  transition:margin-left 0.4s ease-in-out;
 }
 
 footer {
@@ -155,7 +156,6 @@ nav {
 
 .nav-side-fix {
   padding-inline-start:0;
-  padding-top:20px;
 }
 
 .nav-wrapper {
@@ -499,6 +499,7 @@ input[type="radio"] {
   background: white;
   margin-left: 0.75em;
   cursor: pointer;
+  transition: 0.4s ease-in-out;
 }
 
 .arrow-icon:after {
@@ -522,7 +523,7 @@ input[type="radio"] {
 
 .arrow-spin-down {
   transform: rotate(180deg) !important;
-  transition: 400ms ease-in-out;
+  transition:  400ms ease-in-out;
 }
 
 .arrow-spin-down:after {

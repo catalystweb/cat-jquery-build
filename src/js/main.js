@@ -3,6 +3,20 @@ $(window).on("load", function () {
   $("input").val('');
   $("select").val('');  
 
+  var cookies = Cookies.get('user');
+  console.log(cookies);
+
+  if (cookies == 'true') {
+    $('.spin-wrapper').ajaxStart(function() {
+        $("#login-modal").css("display","none");
+        //getData();
+    }).ajaxStop(function() {
+        $(this).hide();
+    });
+  } else {
+    $("#login-modal").fadeIn("fast");
+  }
+
   function login(getEmail,getPass) {
     //jquery click listener for login modal
       var localHost = "http://localhost:1352/users/"; 
@@ -12,13 +26,21 @@ $(window).on("load", function () {
             dataType: "json",
             success: function (result) {
               $.each(result, function (index, data) {                     
-                  if (getEmail == data.email && getPass == data.password) {
+                  if (getEmail == data.email && getPass == data.password && !cookies == "true") {
                     Cookies.set('user','true');
                     console.log("cookie added: " + Cookies.get('user'));
+                    getData()
                     return
+                  } else {
+                    $(".user-mod").css("display","none");
+                    $(".user-fail").fadeIn("fast");
+                    setTimeout(function () {
+                      $(".user-fail").css("display","none");
+                      $(".user-mod").fadeIn("fast");
+                      $("input").val('');
+                    },2000);
                   }
-              });
-              getData()
+              });              
             }   
         });                 
   }
@@ -32,6 +54,7 @@ $(window).on("load", function () {
         $("#block-modal").fadeOut("fast");
         $("#edit-modal").fadeOut("fast");
         $(".user-success").fadeOut("fast");
+        $(".page-container").css("opacity","1");
     };
 
     //clear existing field values
@@ -105,21 +128,7 @@ $(window).on("load", function () {
         }        
     });
   }
-    
-  var cookies = Cookies.get('user');
-  console.log(cookies);
-
-  if (cookies == 'true') {
-    $('#loadingDiv').hide().ajaxStart(function() {
-        $(this).show();
-        getData();
-    }).ajaxStop(function() {
-        $(this).hide();
-    });
-  } else {
-    $("#login-modal").fadeIn("fast");
-  }
-  
+      
   //display json data source for block list
   function getBlockData() {
     var localHost = "http://localhost:1352/users/";

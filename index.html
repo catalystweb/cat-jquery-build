@@ -8,11 +8,24 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="stylesheet" href="src/css/dark-theme.css" id="dark-css" />
 	<link rel="stylesheet" href="src/css/light-theme.css" id="light-css" />
+	<link rel="stylesheet" href="src/css/spinner.css" id="light-css" />
 	<link rel="stylesheet" href="src/css/media-query.css" />
 </head>
 <body>
 	<div class="login-container">
-		<div id="login-modal" class="modal-container modal-login" style="display:none;">
+		<div class="spin-wrapper" style="display:none;">
+			<div class="lds-ring">
+				<div>			
+				</div>
+				<div>
+				</div>
+				<div>
+				</div>
+				<div>
+				</div>
+			</div>
+		</div>
+		<div id="login-modal" class="modal-container modal-login">
 				<div class="modal-content user-mod">
 						<div class="flex-end">
 								skip<span style="padding-right:5px;"></span> <div class="close transition"> &times;</div>	

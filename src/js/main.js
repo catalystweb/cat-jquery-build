@@ -4,15 +4,10 @@ $(window).on("load", function () {
   $("select").val('');  
 
   var cookies = Cookies.get('user');
-  console.log(cookies);
 
   if (cookies == 'true') {
-    $('.spin-wrapper').ajaxStart(function() {
-        $("#login-modal").css("display","none");
-        //getData();
-    }).ajaxStop(function() {
-        $(this).hide();
-    });
+    $("#login-modal").css("display","none");
+    getData();
   } else {
     $("#login-modal").fadeIn("fast");
   }
@@ -25,13 +20,16 @@ $(window).on("load", function () {
             cache: false,
             dataType: "json",
             success: function (result) {
+              console.log(getEmail);
+              console.log(getPass);
               $.each(result, function (index, data) {                     
-                  if (getEmail == data.email && getPass == data.password && !cookies == "true") {
+                  if (getEmail == data.email && getPass == data.password && cookies != 'true') {
                     Cookies.set('user','true');
                     console.log("cookie added: " + Cookies.get('user'));
                     getData()
                     return
                   } else {
+                    console.log("error");
                     $(".user-mod").css("display","none");
                     $(".user-fail").fadeIn("fast");
                     setTimeout(function () {
@@ -72,6 +70,13 @@ $(window).on("load", function () {
     $(".content-wrapper").html(userData);      
 
     $.ajax({
+      beforeSend: function(){
+        $('.spin-wrapper').fadeIn("slow");
+        $(".login-container").fadeOut("slow");
+      },
+      complete: function () {
+        $('.spin-wrapper').fadeOut("slow");
+      },
         url: localHost,
         cache: false,
         data: {},
@@ -110,11 +115,12 @@ $(window).on("load", function () {
                     $(b).find("input.user-name").data("name").toLowerCase()
                 );
                 }).appendTo(".content-wrapper");
-                $(".login-container").fadeOut("slow");
-                $(".page-container").fadeIn("fast");
-                $(".content-wrapper").fadeIn("fast");
-                $(".header-container").fadeIn("fast");
-                $("footer").fadeIn("slow");
+                setTimeout(function () {
+                  $(".header-container").fadeIn("slow");
+                  $(".page-container").fadeIn("slow");
+                  $(".content-wrapper").fadeIn("slow");
+                  $("footer").fadeIn("slow");
+                },500);
         },
         error: function () {
             userData = "";

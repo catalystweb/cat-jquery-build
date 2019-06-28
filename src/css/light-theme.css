@@ -33,7 +33,6 @@ body {
   display: flex;
   flex-direction: column;
   background: lightgrey;
-  transition: 0.3s ease-in-out;
 }
 
 .page-container {
@@ -43,7 +42,6 @@ body {
   flex-direction: column;
   height: calc(100vh - 65px);
   background: lightgrey;
-  transition: 0.3s ease-in-out;
 }
 
 section {
@@ -56,7 +54,6 @@ section {
   position: relative;
   overflow-y: auto;
   background: silver;
-  transition: 0.3s ease-in-out;
 }
 
 header {

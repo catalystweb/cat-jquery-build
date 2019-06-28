@@ -1,3 +1,7 @@
+.spin-wrapper {
+  margin-left: calc(50% - 32px);
+  margin-top:calc(50vh - 32px);
+}
 .lds-ring {
   display: inline-block;
   position: relative;

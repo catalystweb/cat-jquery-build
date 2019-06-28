@@ -15,6 +15,7 @@ $(window).on("load", function () {
         $('link[href="src/css/light-theme.css"]').prop("disabled", true);
       } 
       if (menu == "right") {
+        $("#swMenu").attr( 'checked', true )
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
         $("header").removeClass("slideDown");
       }

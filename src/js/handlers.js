@@ -55,6 +55,7 @@ $(window).on("load", function () {
             } else {
                 $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
                 $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+                theme = Cookies.set('theme','light');
             }
             if ($('#swMenu').is(":checked")) {        
                 $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
@@ -63,6 +64,7 @@ $(window).on("load", function () {
             } else {
                 $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-up");
                 $(".side-menu-wrapper").removeClass("slideIn");
+                menu =  Cookies.set('menu','top');
             }
             $("#change-theme").fadeOut("fast");
             $(".page-container").css("opacity", "1");

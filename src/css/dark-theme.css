@@ -29,6 +29,7 @@ body {
   flex-direction: column;
   height: calc(100vh - 65px);
   background: black;
+  transition:0.3s ease-in-out;
 }
 
 section {
@@ -74,7 +75,7 @@ header {
 }
 
 .slideDown {
-  min-height: 185px;
+  min-height: 205px;
   transition: min-height 0.3s ease-in-out;
 }
 
@@ -222,8 +223,8 @@ button:hover {
   transition: color 0.2s ease-out, background 0.2s ease-in;
 }
 
-input[type="text"],
-input[type="text"]::placeholder,
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
 select {
   width: 100%;
   color: black;

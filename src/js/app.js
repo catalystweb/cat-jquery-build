@@ -4,8 +4,20 @@ $(window).on("load", function () {
   $("select").val('');  
 
   var cookies = Cookies.get('user');
+  var theme = Cookies.get('theme');
+  var menu = Cookies.get('menu');
 
     if (cookies == 'true') {
+      this.console.log("theme: " +theme);
+      this.console.log("menu: " +menu);
+      if (theme == "dark") {
+        $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
+        $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+      } 
+      if (menu == "right") {
+        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
+        $("header").removeClass("slideDown");
+      }
       console.log("cookie exists: " +cookies)
       $("#login-modal").css("display","none");
       getData("true");
@@ -134,6 +146,8 @@ $(window).on("load", function () {
           });  
         } else {                    
             Cookies.remove('user');
+            Cookies.remove('theme');
+            Cookies.remove('menu');
             console.log("cookie removed: " + Cookies.get('user'));
             location.reload();
             return                              

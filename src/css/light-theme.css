@@ -42,6 +42,7 @@ body {
   flex-direction: column;
   height: calc(100vh - 65px);
   background: lightgrey;
+  transition:0.3s ease-in-out;
 }
 
 section {

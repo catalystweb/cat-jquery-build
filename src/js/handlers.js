@@ -51,6 +51,7 @@ $(window).on("load", function () {
             if ($("#dark").is(":checked")) {
                 $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
                 $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+                theme = Cookies.set('theme','dark');
             } else {
                 $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
                 $('link[href="src/css/light-theme.css"]').prop("disabled", false);
@@ -58,6 +59,7 @@ $(window).on("load", function () {
             if ($('#swMenu').is(":checked")) {        
                 $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
                 $("header").removeClass("slideDown");
+                menu =  Cookies.set('menu','right');
             } else {
                 $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-up");
                 $(".side-menu-wrapper").removeClass("slideIn");

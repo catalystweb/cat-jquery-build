@@ -159,24 +159,24 @@ $(window).on("load", function () {
                 $("#add-modal").fadeOut("fast");
                 $("#block-modal").fadeOut("fast");
                 $("#edit-modal").fadeOut("fast");
+                $("#change-theme").fadeOut("fast");
                 $(".user-success").fadeOut("fast");
             }
             if ($('#swMenu').is(":checked")) {
-                if ($(".arrow-spin-left").is(":visible")) {
-                    $(".side-menu-wrapper").css("display","flex");
-                    setTimeout(function () {
-                    $(".side-menu-wrapper").removeClass("slideOut").addClass("slideIn");
-                    },100);
-                    $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-right");
-                    $(".page-container").css("opacity", "0.3");
-                } else {
-                    $(".side-menu-wrapper").removeClass("slideIn").addClass("slideOut");
-                    $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
-                    $(".page-container").css("opacity", "1");
-                    setTimeout(function () {
-                    $(".side-menu-wrapper").css("display","none");
-                    },200);
-                }
+                    if ($(".arrow-icon").hasClass("arrow-spin-right")) {
+                        $(".arrow-icon").removeClass("arrow-spin-right").addClass("arrow-spin-left");
+                        setTimeout(function () {
+                            $(".side-menu-wrapper").removeClass("slideIn").addClass("slideOut");
+                        },100);
+                        $(".page-container").css("opacity", "1");
+                    } else {
+                        $(".side-menu-wrapper").css("display","flex");
+                        setTimeout(function () {
+                            $(".side-menu-wrapper").removeClass("slideOut").addClass("slideIn");
+                        },100);
+                        $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-right");
+                        $(".page-container").css("opacity", "0.3");
+                    }
             } else {
                 if ($("header").hasClass("slideDown")) {
                     $("header").removeClass("slideDown");

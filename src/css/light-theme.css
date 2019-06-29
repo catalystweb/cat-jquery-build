@@ -466,9 +466,13 @@ input[type="radio"] {
     no-repeat;
   background-size: cover;
 }
-
 .suit-guy-1 {
   background: url(../../img/suit-1.jpg)
+    bottom center no-repeat;
+  background-size: cover;
+}
+.red-head {
+  background: url(../../img/red-head.jpg)
     bottom center no-repeat;
   background-size: cover;
 }
@@ -477,8 +481,23 @@ input[type="radio"] {
     bottom center no-repeat;
   background-size: cover;
 }
+.lady-2 {
+  background: url(../../img/lady-2.jpg)
+    bottom center no-repeat;
+  background-size: cover;
+}
 .hip-guy-1 {
   background: url(../../img/hippie-1.jpg) bottom center
+    no-repeat;
+  background-size: cover;
+}
+.shirt-guy-1 {
+  background: url(../../img/shirt-guy.jpg) bottom center
+    no-repeat;
+  background-size: cover;
+}
+.singlet-guy-1 {
+  background: url(../../img/wife-beater.jpg) bottom center
     no-repeat;
   background-size: cover;
 }
@@ -487,6 +506,7 @@ input[type="radio"] {
     no-repeat;
   background-size: cover;
 }
+
 
 /* arrow-icons */
 

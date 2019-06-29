@@ -12,9 +12,7 @@
       "id": "6",
       "name": "Daniel Kandilas",
       "title": "Developer",
-      "email": "daniel@catalystweb.com.au",
-      "password": "test",
-      "avatar": "lady-1",
+      "avatar": "lady-2",
       "status": "offline",
       "block": "false"
     },
@@ -46,24 +44,20 @@
       "id": "P-XwnTw"
     },
     {
+      "id": "gqzmMLE",
       "name": "Julie Kandilas",
       "title": "Wife",
-      "email": "jules.newman86@gmail.com",
-      "password": "70510",
-      "avatar": "lady-1",
+      "avatar": "lady-2",
       "status": "offline",
-      "block": "false",
-      "id": "gqzmMLE"
+      "block": "false"
     },
     {
+      "id": "j2xsH6v",
       "name": "Andy Gray",
       "title": "Developer",
-      "email": "a.gray@gmail.com",
-      "password": "7555",
-      "avatar": "hip-guy-1",
+      "avatar": "shirt-guy-1",
       "status": "offline",
-      "block": "false",
-      "id": "j2xsH6v"
+      "block": "false"
     },
     {
       "id": "T65uRQ8",
@@ -72,6 +66,16 @@
       "avatar": "lady-1",
       "status": "offline",
       "block": "false"
+    },
+    {
+      "name": "Raaaaachel",
+      "title": "Big tits",
+      "email": "rachel@rach.com",
+      "password": "23529",
+      "avatar": "lady-1",
+      "status": "offline",
+      "block": "false",
+      "id": "u8l9PkD"
     }
   ]
 }

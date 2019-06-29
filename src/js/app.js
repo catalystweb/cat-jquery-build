@@ -48,6 +48,7 @@ $(window).on("load", function () {
     //clear existing field values
     $("input").val('');
     $("select").val('');
+    $("#checkbox-state").prop("checked",false);
     if (!$('#swMenu').is(":checked")) { 
         $('input[type=checkbox]').prop('checked',false);
     }
@@ -106,7 +107,7 @@ $(window).on("load", function () {
                 );
                 }).appendTo(".content-wrapper");
                 setTimeout(function () {
-                  console.log(cookieVar);
+                  console.log("getData() post cookie: " +cookieVar);
                   if (cookieVar == "true") {
                     $("li#log-in").css("display","none");
                   } else {
@@ -238,6 +239,8 @@ $(window).on("load", function () {
                       id: data.id,
                       name: getText,
                       title: data.title,
+                      email: data.email,
+                      email: data.password,
                       avatar: data.avatar,
                       status: data.status,
                       block: data.block 
@@ -275,6 +278,8 @@ $(window).on("load", function () {
                       id: data.id,
                       name: data.name,
                       title: getText,
+                      email: data.email,
+                      password: data.password,
                       avatar: data.avatar,
                       status: data.status,
                       block: data.block 
@@ -318,6 +323,8 @@ $(window).on("load", function () {
                   id: data.id,
                   name: data.name,
                   title: data.title,
+                  email: data.email,
+                  password: data.password,
                   avatar: editAvatar,
                   status: data.status,
                   block: data.block 
@@ -416,6 +423,8 @@ $(window).on("load", function () {
                   id: data.id,
                   name: data.name,
                   title: data.title,
+                  email: data.email,
+                  password: data.password,
                   avatar: data.avatar,
                   status: data.status,
                   block: "false" 
@@ -451,6 +460,8 @@ $(window).on("load", function () {
                     id: data.id,
                     name: data.name,
                     title: data.title,
+                    email: data.email,
+                    password: data.password,
                     avatar: data.avatar,
                     status: data.status,
                     block: "true" 

@@ -11,14 +11,14 @@
       "block": "false"
     },
     {
+      "id": "2eK_SaI",
       "name": "Ben Newman",
       "title": "Brother in law",
       "email": "newy@gmail.com",
       "password": "90757",
       "avatar": "shirt-guy-1",
       "status": "offline",
-      "block": "false",
-      "id": "2eK_SaI"
+      "block": "false"
     },
     {
       "id": "F5Tr_Cv",
@@ -44,8 +44,6 @@
       "id": "Qy-L9zF",
       "name": "Julie Kandilas",
       "title": "Wife",
-      "email": "jules.newman86@gmail.com",
-      "password": "dnj@)!^",
       "avatar": "lady-2",
       "status": "offline",
       "block": "false"
@@ -74,8 +72,8 @@
       "id": "9042tQN",
       "name": "Sally Fenn",
       "title": "Developer",
-      "email" : "Sallyf@gmail.com",
-      "password" : "blah",
+      "email": "Sallyf@gmail.com",
+      "password": "blah",
       "avatar": "lady-1",
       "status": "offline",
       "block": "false"
@@ -91,14 +89,14 @@
       "block": "false"
     },
     {
-      "name": "test user ",
-      "title": "test guy",
-      "email": "test@test.com",
-      "password": "78572",
-      "avatar": "smile-guy-1",
+      "name": "Rachel Luca",
+      "title": "Sister in law",
+      "email": "r.luca@gmail.com",
+      "password": 52120,
+      "avatar": "lady-1",
       "status": "offline",
       "block": "false",
-      "id": "Wda0FwJ"
+      "id": "6I8MPeo"
     }
   ]
 }

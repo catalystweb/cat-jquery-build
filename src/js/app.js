@@ -217,16 +217,31 @@ $(window).on("load", function () {
   getDelData();
 
   //show user add or delete successfully modal 
-  function userAddDel() {
-    $(".user-mod").css("display","none");
-    $(".user-success").fadeIn("fast");
-    setTimeout(function () {
-      $(".content-wrapper").css("display","none");
-      $("footer").css("display","none");
-      getData();
-      getDelData();
-      getBlockData();
-    },2000);
+  function userAddDel(Pass) {
+    if (Pass != null) {
+      $(".user-mod").css("display","none");
+      var userPass = "";
+      userPass += "<div class='green pass'>password =  '"+Pass+"'</div>"
+      $("div").find(".pass").html(userPass); 
+      $(".user-success").fadeIn("fast");
+      setTimeout(function () {
+        $(".content-wrapper").css("display","none");
+        $("footer").css("display","none");
+        getData();
+        getDelData();
+        getBlockData();
+      },3000);
+    } else {
+      $(".user-mod").css("display","none");
+      $(".user-success").fadeIn("fast");
+      setTimeout(function () {
+        $(".content-wrapper").css("display","none");
+        $("footer").css("display","none");
+        getData();
+        getDelData();
+        getBlockData();
+      },2000);
+    }
   }
 
 
@@ -364,12 +379,13 @@ $(window).on("load", function () {
       var dataName = $("#add-name").val();
       var dataTitle = $("#add-title").val();
       var dataEmail = $("#add-email").val();
-      var dataAvatar = $("#add-avatar option:selected").val();           
+      var dataAvatar = $("#add-avatar option:selected").val();     
+      var dataPass = getRandomInt(9999);      
       var payload = {
           name: dataName,
           title: dataTitle,
           email: dataEmail,
-          password: ""+getRandomInt(9999)+"",
+          password: dataPass,
           avatar: dataAvatar,
           status: "offline",
           block: "false"
@@ -381,7 +397,7 @@ $(window).on("load", function () {
           dataType: "json",
           contentType: "application/json",
           success: function() {
-            userAddDel()
+            userAddDel(dataPass)
           }
       });      
     }

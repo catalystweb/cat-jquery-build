@@ -153,10 +153,6 @@ $(window).on("load", function () {
                         setTimeout(function() {
                           $("#login-modal .user-fail").fadeIn("fast");
                         },200);
-                        $("#login-modal .user-fail").fadeOut("fast");
-                        setTimeout(function() {                      
-                          location.reload();                      
-                        },2200);
                     }
                 });              
               }   
@@ -219,25 +215,21 @@ $(window).on("load", function () {
   //show user add or delete successfully modal 
   function userAddDel(Pass) {
     if (Pass != null) {
+      console.log("password: " +Pass);
       $(".user-mod").css("display","none");
       var userPass = "";
-      userPass += "<div class='green pass'>password =  '"+Pass+"'</div>"
+      userPass += "<div class='green pass'>password =  "+Pass+"</div><div class='close transition'>&times;</div>"
       $("div").find(".pass").html(userPass); 
       $(".user-success").fadeIn("fast");
-      setTimeout(function () {
-        $(".content-wrapper").css("display","none");
-        $("footer").css("display","none");
-        getData();
-        getDelData();
-        getBlockData();
-      },3000);
+      return false;
     } else {
+      console.log("no password:" +Pass);
       $(".user-mod").css("display","none");
       $(".user-success").fadeIn("fast");
       setTimeout(function () {
         $(".content-wrapper").css("display","none");
         $("footer").css("display","none");
-        getData();
+        getData(cookies);
         getDelData();
         getBlockData();
       },2000);
@@ -572,6 +564,10 @@ $(window).on("load", function () {
     //close statement if user clicks close icon
     if (e.target.classList[0] == "close") {
         $(".modal-container").fadeOut("fast");
+        if ($(".green").is(":visible")) {
+          $(".user-success").fadeOut("fast");
+          userAddDel();   
+        }    
         if (! $('input[type="radio').is(':radio')) {
             $("input").val('');
         }
@@ -581,12 +577,44 @@ $(window).on("load", function () {
             $(".page-container").css("opacity","1");
             $(".header-container").css("opacity","1");
             $("footer").fadeIn("slow");
-            getData();
+            getData(cookies);
         }
         $("select").val('');
         $(".page-container").css("opacity", "1");       
     }
-    
+
+    //key function if menu open close during filter function
+    $(document).keyup(function (e) {
+      if (e.target.id == "searchField") {
+          if ($("header").hasClass("slideDown")) {
+              $("header").removeClass("slideDown");
+              $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
+          }
+      }
+      if ($(".modal-container").is(":visible")) {
+          if (e.key === "Escape" && !$("#login-modal").is(":visible")) {
+              if ($(".green").is(":visible")) {
+                  $(".modal-container").fadeOut("fast");
+                  $(".user-success").fadeOut("fast");
+                  userAddDel();   
+              }  
+              $(".modal-container").fadeOut("fast");            
+              if (! $('input[type="radio').is(':radio')) {
+                  $("input").val('');
+              }
+              if($(".login-container").is(":visible")) {
+                  $(".login-container").fadeOut("fast");
+                  $(".content-wrapper").fadeIn("slow");
+                  $(".page-container").css("opacity","1");
+                  $(".header-container").css("opacity","1");
+                  $("footer").fadeIn("slow");
+              }
+
+              $("select").val('');
+              $(".page-container").css("opacity", "1");
+          }
+        }
+    });    
 
     //avatar edit display
     if ($(e.target).hasClass("user-avatar")) {

@@ -92,11 +92,21 @@
       "name": "Rachel Luca",
       "title": "Sister in law",
       "email": "r.luca@gmail.com",
-      "password": 52120,
+      "password": "52120",
       "avatar": "lady-1",
       "status": "offline",
       "block": "false",
       "id": "6I8MPeo"
+    },
+    {
+      "name": "test",
+      "title": "test",
+      "email": "test@test.com",
+      "password": 38485,
+      "avatar": "",
+      "status": "offline",
+      "block": "false",
+      "id": "YwyhKJg"
     }
   ]
 }

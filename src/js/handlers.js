@@ -28,7 +28,6 @@ $(window).on("load", function () {
                     $(".page-container").css("opacity", "0.3");
                 }
                 theme = Cookies.set('theme','dark');
-
             } 
             if ($("#light").is(":checked")) {
                 $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
@@ -220,34 +219,7 @@ $(window).on("load", function () {
                 }
             }).appendTo(".content-wrapper");
         } 
-    });
-
-    //key function if menu open close during filter function
-    $(document).keyup(function (e) {
-        if (e.target.id == "searchField") {
-            if ($("header").hasClass("slideDown")) {
-                $("header").removeClass("slideDown");
-                $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
-            }
-        }
-        if ($(".modal-container").is(":visible")) {
-            if (e.key === "Escape" && !$("#login-modal").is(":visible")) {
-                $(".modal-container").fadeOut("fast");
-                if (! $('input[type="radio').is(':radio')) {
-                    $("input").val('');
-                }
-                if($(".login-container").is(":visible")) {
-                    $(".login-container").fadeOut("fast");
-                    $(".content-wrapper").fadeIn("slow");
-                    $(".page-container").css("opacity","1");
-                    $(".header-container").css("opacity","1");
-                    $("footer").fadeIn("slow");
-                }
-                $("select").val('');
-                $(".page-container").css("opacity", "1");
-            }
-        }
-    });
+    });   
     
     // prevent enter key creating new line for editable input field //
     $(document).on("keypress", ".user-name, .user-title", function(e) {

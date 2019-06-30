@@ -107,7 +107,6 @@ $(window).on("load", function () {
                 );
                 }).appendTo(".content-wrapper");
                 setTimeout(function () {
-                  console.log("getData() post cookie: " +cookieVar);
                   if (cookieVar == "true") {
                     $("li#log-in").css("display","none");
                   } else {
@@ -144,10 +143,20 @@ $(window).on("load", function () {
                 $.each(result, function (index, data) {                     
                     if (getEmail == data.email && getPass == data.password) {
                       Cookies.set('user','true');
-                      console.log("cookie added: " + Cookies.get('user'));
-                      var cookieVar = "true";
                       $("#login-modal").fadeOut("fast");
-                      getData(cookieVar)
+                      setTimeout(function() {
+                        location.reload();
+                      },200);
+                    }
+                    if (cookies != 'true') {
+                      $("#login-modal .user-mod").fadeOut("fast");     
+                        setTimeout(function() {
+                          $("#login-modal .user-fail").fadeIn("fast");
+                        },200);
+                        $("#login-modal .user-fail").fadeOut("fast");
+                        setTimeout(function() {                      
+                          location.reload();                      
+                        },2200);
                     }
                 });              
               }   

@@ -59,14 +59,13 @@
       "block": "false"
     },
     {
-      "name": "Andy Gray",
+      "id": "Y1Tt9GG",
+      "name": "Andy Grays",
       "title": "Developer",
-      "email": "andy.gray@gmail.com",
-      "password": "10188",
+      "email": "10188",
       "avatar": "hip-guy-1",
       "status": "offline",
-      "block": "false",
-      "id": "Y1Tt9GG"
+      "block": "false"
     },
     {
       "id": "9042tQN",
@@ -97,6 +96,16 @@
       "status": "offline",
       "block": "false",
       "id": "6I8MPeo"
+    },
+    {
+      "name": "test",
+      "title": "test2",
+      "email": "test@test.com",
+      "password": 5645,
+      "avatar": "",
+      "status": "offline",
+      "block": "false",
+      "id": "rjuXA_8"
     }
   ]
 }

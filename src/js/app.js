@@ -54,26 +54,21 @@ $(window).on("load", function () {
     }
     //global json data source
     var userData = "";
-    userData +=
-        '<div class="user-nodata" style="height:100%;">' +
-        "<strong> loading data </strong>" +
-        "</div>";
-    $(".content-wrapper").html(userData);      
+    // userData +=
+    //     '<div class="user-nodata" style="height:100%;">' +
+    //     "<strong> loading data </strong>" +
+    //     "</div>";
+    // $(".content-wrapper").html(userData);      
 
     $.ajax({
       beforeSend: function(){
         $('.spin-wrapper').fadeIn("slow");
-        $(".login-container").fadeOut("slow");
-      },
-      complete: function () {
-        $('.spin-wrapper').fadeOut("slow");
       },
         url: localHost,
         cache: false,
         data: {},
         dataType: "jsonp",
         success: function (result) {  
-            userData = "";
             $.each(result, function (index, data) {
                 if (data.block !== "true") { 
                 userData +=
@@ -106,6 +101,7 @@ $(window).on("load", function () {
                     $(b).find("input.user-name").data("name").toLowerCase()
                 );
                 }).appendTo(".content-wrapper");
+                $('.login-container, .spin-wrapper').fadeOut("slow");
                 setTimeout(function () {
                   if (cookieVar == "true") {
                     $("li#log-in").css("display","none");
@@ -113,10 +109,10 @@ $(window).on("load", function () {
                     $("li#log-out").css("display","none");
                   }
                   $(".header-container").fadeIn("fast");
-                  $(".page-container").fadeIn("fast");
-                  $(".content-wrapper").fadeIn("fast");
-                  $("footer").fadeIn("fast");
-                },500);
+                  $(".page-container").fadeIn("slow");
+                  $(".content-wrapper").fadeIn("slow");
+                  $("footer").fadeIn("slow");
+                },900);
         },
         error: function () {
             userData = "";
@@ -213,17 +209,7 @@ $(window).on("load", function () {
   getDelData();
 
   //show user add or delete successfully modal 
-  function userAddDel(Pass) {
-    if (Pass != null) {
-      console.log("password: " +Pass);
-      $(".user-mod").css("display","none");
-      var userPass = "";
-      userPass += "<div class='green pass'>password =  "+Pass+"</div><div class='close transition'>&times;</div>"
-      $(".pass").replaceWith(userPass); 
-      $(".user-success").fadeIn("fast");
-      return false;
-    } else {
-      console.log("no password:" +Pass);
+  function userAddDel() {
       $(".user-mod").css("display","none");
       $(".user-success").fadeIn("fast");
       setTimeout(function () {
@@ -233,6 +219,19 @@ $(window).on("load", function () {
         getDelData();
         getBlockData();
       },2000);
+  }
+
+  //show user pass after record added
+  function userShowPass(Pass) {
+    if (Pass != null) {
+      console.log("password: " +Pass);
+      $(".user-mod").css("display","none");
+      var userPass = "";
+      userPass += "<div class='flex pass' style='margin-left:25%;'>" +
+                  "<div class='green'>password =  "+Pass+"</div><div class='close transition'>&times;</div>" +
+                  "</div>";
+      $(".pass").replaceWith(userPass);       
+      $(".user-success").fadeIn("fast");
     }
   }
 
@@ -389,7 +388,7 @@ $(window).on("load", function () {
           dataType: "json",
           contentType: "application/json",
           success: function() {
-            userAddDel(dataPass)
+            userShowPass(dataPass);
           }
       });      
     }
@@ -563,24 +562,20 @@ $(window).on("load", function () {
 
     //close statement if user clicks close icon
     if (e.target.classList[0] == "close") {
-        $(".modal-container").fadeOut("fast");
-        if ($(".green").is(":visible")) {
-          $(".user-success").fadeOut("fast");
-          userAddDel();   
-        }    
+        $(".modal-container").fadeOut("fast");  
         if (! $('input[type="radio').is(':radio')) {
             $("input").val('');
         }
-        if($(".login-container").is(":visible")) {
-            $(".login-container").fadeOut("fast");
-            $(".content-wrapper").fadeIn("slow");
-            $(".page-container").css("opacity","1");
-            $(".header-container").css("opacity","1");
-            $("footer").fadeIn("slow");
-            getData(cookies);
-        }
-        $("select").val('');
-        $(".page-container").css("opacity", "1");       
+        if ($(".pass").is(":visible")) {
+          $(".user-success").fadeOut("fast");
+          $(".content-wrapper").css("display","none");
+          $("footer").css("display","none");
+          getData(cookies);
+
+        } else {  
+          $(".user-success").fadeOut("fast");
+          getData(cookies);
+        }     
     }
 
     //key function if menu open close during filter function
@@ -593,25 +588,18 @@ $(window).on("load", function () {
       }
       if ($(".modal-container").is(":visible")) {
           if (e.key === "Escape" && !$("#login-modal").is(":visible")) {
-              if ($(".green").is(":visible")) {
-                  $(".modal-container").fadeOut("fast");
-                  $(".user-success").fadeOut("fast");
-                  userAddDel();   
-              }  
-              $(".modal-container").fadeOut("fast");            
-              if (! $('input[type="radio').is(':radio')) {
-                  $("input").val('');
-              }
-              if($(".login-container").is(":visible")) {
-                  $(".login-container").fadeOut("fast");
-                  $(".content-wrapper").fadeIn("slow");
-                  $(".page-container").css("opacity","1");
-                  $(".header-container").css("opacity","1");
-                  $("footer").fadeIn("slow");
-              }
-
-              $("select").val('');
-              $(".page-container").css("opacity", "1");
+            $(".modal-container").fadeOut("fast");  
+            if (! $('input[type="radio').is(':radio')) {
+                $("input").val('');
+            }
+            if ($(".pass").is(":visible")) {
+              $(".user-success").fadeOut("fast");
+              getData(cookies);
+    
+            } else {  
+              $(".user-success").fadeOut("fast");
+              getData(cookies);
+            }
           }
         }
     });    

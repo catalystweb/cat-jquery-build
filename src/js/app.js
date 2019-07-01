@@ -25,11 +25,9 @@ $(window).on("load", function () {
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
         $("header").removeClass("slideDown");
       }
-      console.log("cookie exists: " +cookies)
       $("#login-modal").css("display","none");
       getData("true");
     } else {
-      console.log("cookie exists: false");
       $("#login-modal").fadeIn("fast");
     }
 
@@ -54,12 +52,6 @@ $(window).on("load", function () {
     }
     //global json data source
     var userData = "";
-    // userData +=
-    //     '<div class="user-nodata" style="height:100%;">' +
-    //     "<strong> loading data </strong>" +
-    //     "</div>";
-    // $(".content-wrapper").html(userData);      
-
     $.ajax({
       beforeSend: function(){
         $('.spin-wrapper').fadeIn("slow");
@@ -139,15 +131,13 @@ $(window).on("load", function () {
                 $.each(result, function (index, data) {                     
                     if (getEmail == data.email && getPass == data.password) {
                       Cookies.set('user','true');
-                      console.log("cookie exists:")
                       $("#login-modal").fadeOut("fast");
                       setTimeout(function() {
                         location.reload();
                       },200);
                     }
                     if (cookies != 'true') {
-                      $("#login-modal .user-mod").fadeOut("fast");  
-                        console.log("no cookie:")   
+                      $("#login-modal .user-mod").fadeOut("fast");   
                         setTimeout(function() {
                           $("#login-modal .user-fail").fadeIn("fast");
                         },200);
@@ -162,7 +152,6 @@ $(window).on("load", function () {
             Cookies.remove('user');
             Cookies.remove('theme');
             Cookies.remove('menu');
-            console.log("cookie removed: " + Cookies.get('user'));
             location.reload();
             return                              
         }               

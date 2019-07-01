@@ -4,12 +4,14 @@ $(window).on("load", function () {
   $("select").val('');  
 
   var cookies = Cookies.get('user');
+  var validate = Cookies.get('validate');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
 
     if (cookies == 'true') {
       this.console.log("theme: " +theme);
       this.console.log("menu: " +menu);
+      this.console.log("pass:" +validate);
       if (theme == "dark") {
         $("#dark").prop("checked",true);
         $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
@@ -26,12 +28,12 @@ $(window).on("load", function () {
         $("header").removeClass("slideDown");
       }
       $("#login-modal").css("display","none");
-      getData("true");
+      getData("true",validate);
     } else {
       $("#login-modal").fadeIn("fast");
     }
 
-  function getData(cookieVar) {
+  function getData(cookieVar,passVar) {
     var localHost = "http://localhost:1352/users/";
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {
@@ -62,27 +64,51 @@ $(window).on("load", function () {
         dataType: "jsonp",
         success: function (result) {  
             $.each(result, function (index, data) {
+                if (cookieVar == 'true') {
+                  if (passVar == data.password) {
+                        var payload = { 
+                          id: data.id,
+                          name: data.name,
+                          title: data.title,
+                          email: data.email,
+                          password: data.password,
+                          avatar: data.avatar,
+                          status: "online",
+                          block: data.block 
+                        };
+                      $.ajax({
+                        url: localHost +data.id,
+                        type: "PUT",
+                        data: JSON.stringify(payload), 
+                        dataType: "json",             
+                        contentType: "application/json",
+                        success: function(result) {
+                          console.log("status now: " +data.status);
+                        }         
+                      });           
+                   }
+                }                  
                 if (data.block !== "true") { 
-                userData +=
-                    "<section id=" +
-                    data.id +
-                    " class='sort-class'>" +
-                    '<div class="user-wrapper">' +
-                    '<div class="user-container">' +
-                    '<div class="user-img-container">' +
-                    '<div class="user-avatar ' + data.avatar + '" data-name="' + data.avatar + '"></div >' +
-                    '<div class="user-status ' + data.status + '"></div>' +
-                    '</div >' +
-                    '<div class="user-info"><div>' +
-                    '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="hideshow display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
-                    '<input class="user-title" value="' + data.title + '"></input>' +
-                    '</div>' +
-                    '<button class="user-button transition">Block</button>' +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</section>";
-                }
+                  userData +=
+                  "<section id=" +
+                  data.id +
+                  " class='sort-class'>" +
+                  '<div class="user-wrapper">' +
+                  '<div class="user-container">' +
+                  '<div class="user-img-container">' +
+                  '<div class="user-avatar ' + data.avatar + '" data-name="' + data.avatar + '"></div >' +
+                  '<div class="user-status ' + data.status + '"></div>' +
+                  '</div >' +
+                  '<div class="user-info"><div>' +
+                  '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="hideshow display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
+                  '<input class="user-title" value="' + data.title + '"></input>' +
+                  '</div>' +
+                  '<button class="user-button transition">Block</button>' +
+                  "</div>" +
+                  "</div>" +
+                  "</div>" +
+                  "</section>";
+                }       
             });
                 //apply result to html element
                 $(".content-wrapper").html(userData);
@@ -131,6 +157,7 @@ $(window).on("load", function () {
                 $.each(result, function (index, data) {                     
                     if (getEmail == data.email && getPass == data.password) {
                       Cookies.set('user','true');
+                      Cookies.set('validate',''+getPass+'');
                       $("#login-modal").fadeOut("fast");
                       setTimeout(function() {
                         location.reload();
@@ -209,7 +236,7 @@ $(window).on("load", function () {
       setTimeout(function () {
         $(".content-wrapper").css("display","none");
         $("footer").css("display","none");
-        getData(cookies);
+        getData(cookies,validate);
         getDelData();
         getBlockData();
       },2000);
@@ -369,7 +396,7 @@ $(window).on("load", function () {
           name: dataName,
           title: dataTitle,
           email: dataEmail,
-          password: dataPass,
+          password: ""+dataPass+"",
           avatar: dataAvatar,
           status: "offline",
           block: "false"
@@ -563,11 +590,11 @@ $(window).on("load", function () {
           $(".user-success").fadeOut("fast");
           $(".content-wrapper").css("display","none");
           $("footer").css("display","none");
-          getData(cookies);
+          getData(cookies,validate);
 
         } else {  
           $(".user-success").fadeOut("fast");
-          getData(cookies);
+          getData(cookies,validate);
         }     
     }
 
@@ -587,11 +614,11 @@ $(window).on("load", function () {
             }
             if ($(".pass").is(":visible")) {
               $(".user-success").fadeOut("fast");
-              getData(cookies);
+              getData(cookies,validate);
     
             } else {  
               $(".user-success").fadeOut("fast");
-              getData(cookies);
+              getData(cookies,validate);
             }
           }
         }

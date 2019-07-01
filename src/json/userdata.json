@@ -31,14 +31,14 @@
       "block": "false"
     },
     {
+      "id": "kd-l-B4",
       "name": "Daniel Kandilas",
       "title": "Developer",
       "email": "daniel@catalystweb.com.au",
       "password": "test",
       "avatar": "singlet-guy-1",
-      "status": "offline",
-      "block": "false",
-      "id": "kd-l-B4"
+      "status": "online",
+      "block": "false"
     },
     {
       "id": "Qy-L9zF",
@@ -62,7 +62,6 @@
       "id": "Y1Tt9GG",
       "name": "Andy Grays",
       "title": "Developer",
-      "email": "10188",
       "avatar": "hip-guy-1",
       "status": "offline",
       "block": "false"
@@ -96,16 +95,6 @@
       "status": "offline",
       "block": "false",
       "id": "6I8MPeo"
-    },
-    {
-      "name": "test",
-      "title": "test2",
-      "email": "test@test.com",
-      "password": 5645,
-      "avatar": "",
-      "status": "offline",
-      "block": "false",
-      "id": "rjuXA_8"
     }
   ]
 }

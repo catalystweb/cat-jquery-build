@@ -4,14 +4,11 @@ $(window).on("load", function () {
   $("select").val('');  
 
   var cookies = Cookies.get('user');
-  var validate = Cookies.get('validate');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
+  var validate = Cookies.get('validate');
 
     if (cookies == 'true') {
-      this.console.log("theme: " +theme);
-      this.console.log("menu: " +menu);
-      this.console.log("pass:" +validate);
       if (theme == "dark") {
         $("#dark").prop("checked",true);
         $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
@@ -27,13 +24,48 @@ $(window).on("load", function () {
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
         $("header").removeClass("slideDown");
       }
-      $("#login-modal").css("display","none");
-      getData("true",validate);
+      if (validate != null) {
+        var localHost = "http://localhost:1352/users/";
+            $.ajax({
+                url: localHost,
+                cache: false,
+                data: {},
+                dataType: "jsonp",
+                success: function (result) {  
+                    $.each(result, function (index, data) {
+                        if (cookies == 'true') {
+                            if (validate == data.password) {
+                                  var payload = { 
+                                    id: data.id,
+                                    name: data.name,
+                                    title: data.title,
+                                    email: data.email,
+                                    password: data.password,
+                                    avatar: data.avatar,
+                                    status: "online",
+                                    block: data.block 
+                                  };
+                                $.ajax({
+                                  url: localHost +data.id,
+                                  type: "PUT",
+                                  data: JSON.stringify(payload), 
+                                  dataType: "json",             
+                                  contentType: "application/json",
+                                  success: function(result) {
+                                    getData("true");
+                                  }         
+                                });           
+                            }
+                        }
+                    });                  
+                }
+            });
+        } 
     } else {
       $("#login-modal").fadeIn("fast");
     }
 
-  function getData(cookieVar,passVar) {
+  function getData(cookieVar) {
     var localHost = "http://localhost:1352/users/";
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {
@@ -63,31 +95,7 @@ $(window).on("load", function () {
         data: {},
         dataType: "jsonp",
         success: function (result) {  
-            $.each(result, function (index, data) {
-                if (cookieVar == 'true') {
-                  if (passVar == data.password) {
-                        var payload = { 
-                          id: data.id,
-                          name: data.name,
-                          title: data.title,
-                          email: data.email,
-                          password: data.password,
-                          avatar: data.avatar,
-                          status: "online",
-                          block: data.block 
-                        };
-                      $.ajax({
-                        url: localHost +data.id,
-                        type: "PUT",
-                        data: JSON.stringify(payload), 
-                        dataType: "json",             
-                        contentType: "application/json",
-                        success: function(result) {
-                          console.log("status now: " +data.status);
-                        }         
-                      });           
-                   }
-                }                  
+            $.each(result, function (index, data) {                 
                 if (data.block !== "true") { 
                   userData +=
                   "<section id=" +
@@ -175,13 +183,44 @@ $(window).on("load", function () {
                 });              
               }   
           });  
-        } else {                    
-            Cookies.remove('user');
-            Cookies.remove('theme');
-            Cookies.remove('menu');
-            location.reload();
-            return                              
-        }               
+        } else {    
+          $.ajax({
+            url: localHost,
+            cache: false,
+            dataType: "json",
+            success: function (result) {   
+              $.each(result, function (index, data) {
+                    if (getPass == data.password) {
+                      console.log("password: " +getPass);
+                          var payload = { 
+                            id: data.id,
+                            name: data.name,
+                            title: data.title,
+                            email: data.email,
+                            password: data.password,
+                            avatar: data.avatar,
+                            status: "offline",
+                            block: data.block 
+                          };
+                        $.ajax({
+                          url: localHost +data.id,
+                          type: "PUT",
+                          data: JSON.stringify(payload), 
+                          dataType: "json",             
+                          contentType: "application/json",
+                          success: function(result) {
+                            Cookies.remove('user');
+                            Cookies.remove('theme');
+                            Cookies.remove('menu');
+                            Cookies.remove('validate');  
+                            location.reload();
+                          }         
+                        });           
+                    }                                                                          
+                });
+              }               
+            });
+        }
   }
       
   //display json data source for block list
@@ -236,7 +275,7 @@ $(window).on("load", function () {
       setTimeout(function () {
         $(".content-wrapper").css("display","none");
         $("footer").css("display","none");
-        getData(cookies,validate);
+        getData(cookies);
         getDelData();
         getBlockData();
       },2000);
@@ -483,36 +522,46 @@ $(window).on("load", function () {
     }
     //add user to block list on json source 
     if ($(e.target).hasClass("user-button")) {
-        $(e.target).closest("section").fadeOut("slow");
         var secID = $(e.target).closest("section").attr("id");
         $.ajax({
           url: localHost,
           cache: false,
           dataType: "json",
           success: function (result) {
-            $.each(result, function (index, data) {              
+            $.each(result, function (index, data) {            
               if (secID == data.id) {                
-                  var payload = { 
-                    id: data.id,
-                    name: data.name,
-                    title: data.title,
-                    email: data.email,
-                    password: data.password,
-                    avatar: data.avatar,
-                    status: data.status,
-                    block: "true" 
-                  };
-                $.ajax({
-                  url: localHost +secID,
-                  type: "PUT",
-                  data: JSON.stringify(payload), 
-                  dataType: "json",             
-                  contentType: "application/json",
-                  success: function() {
-                    getBlockData()
-                  }         
-                });
-                return;
+                if (validate != data.password) {              
+                    var payload = { 
+                      id: data.id,
+                      name: data.name,
+                      title: data.title,
+                      email: data.email,
+                      password: data.password,
+                      avatar: data.avatar,
+                      status: data.status,
+                      block: "true" 
+                    };
+                  $.ajax({
+                    url: localHost +secID,
+                    type: "PUT",
+                    data: JSON.stringify(payload), 
+                    dataType: "json",             
+                    contentType: "application/json",
+                    success: function() {
+                      $(e.target).closest("section").fadeOut("slow");
+                      getBlockData()
+                    }         
+                  });
+                  return;
+                } else {
+                  $(".user-mod").css("display","none");
+                  $("#block-modal, .user-fail").fadeIn("fast");
+                  $(".page-container").css("opacity","0.3");
+                  setTimeout(function () {
+                    $("#block-modal, .user-fail").fadeOut("fast");
+                    $(".page-container").css("opacity","1");
+                  },2000);
+                }
               }
             });  
           }   
@@ -576,7 +625,7 @@ $(window).on("load", function () {
         $("#logout-button").fadeIn("fast"); 
         $("#logout-button").on("click", function() {
           $("#logout-modal").fadeOut("fast");
-          login(null,null,true);
+          login(null,validate,true);
         });                 
     }   
 
@@ -590,11 +639,11 @@ $(window).on("load", function () {
           $(".user-success").fadeOut("fast");
           $(".content-wrapper").css("display","none");
           $("footer").css("display","none");
-          getData(cookies,validate);
+          getData(cookies);
 
         } else {  
           $(".user-success").fadeOut("fast");
-          getData(cookies,validate);
+          getData(cookies);
         }     
     }
 
@@ -614,11 +663,11 @@ $(window).on("load", function () {
             }
             if ($(".pass").is(":visible")) {
               $(".user-success").fadeOut("fast");
-              getData(cookies,validate);
+              getData(cookies);
     
             } else {  
               $(".user-success").fadeOut("fast");
-              getData(cookies,validate);
+              getData(cookies);
             }
           }
         }

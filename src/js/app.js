@@ -139,16 +139,21 @@ $(window).on("load", function () {
                 $.each(result, function (index, data) {                     
                     if (getEmail == data.email && getPass == data.password) {
                       Cookies.set('user','true');
+                      console.log("cookie exists:")
                       $("#login-modal").fadeOut("fast");
                       setTimeout(function() {
                         location.reload();
                       },200);
                     }
                     if (cookies != 'true') {
-                      $("#login-modal .user-mod").fadeOut("fast");     
+                      $("#login-modal .user-mod").fadeOut("fast");  
+                        console.log("no cookie:")   
                         setTimeout(function() {
                           $("#login-modal .user-fail").fadeIn("fast");
                         },200);
+                        setTimeout(function() {
+                          location.reload()
+                        },2000);
                     }
                 });              
               }   

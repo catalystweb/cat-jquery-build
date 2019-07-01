@@ -644,10 +644,14 @@ $(window).on("load", function () {
           $(".content-wrapper").css("display","none");
           $("footer").css("display","none");
           getData(cookies);
+          getDelData();
+          getBlockData();
 
         } else {  
           $(".user-success").fadeOut("fast");
           getData(cookies);
+          getDelData();
+          getBlockData();
         }     
     }
 

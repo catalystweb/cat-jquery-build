@@ -219,7 +219,7 @@ $(window).on("load", function () {
       $(".user-mod").css("display","none");
       var userPass = "";
       userPass += "<div class='green pass'>password =  "+Pass+"</div><div class='close transition'>&times;</div>"
-      $("div").find(".pass").html(userPass); 
+      $(".pass").replaceWith(userPass); 
       $(".user-success").fadeIn("fast");
       return false;
     } else {

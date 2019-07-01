@@ -179,10 +179,12 @@ $(window).on("load", function () {
             } else {
                 if ($("header").hasClass("slideDown")) {
                     $("header").removeClass("slideDown");
+                    $(".content-wrapper").css("padding-bottom","0");
                     $(".arrow-icon").removeClass("arrow-spin-left");
                     $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-up");
                 } else {
                     $("header").addClass("slideDown");
+                    $(".content-wrapper").css("padding-bottom","13%");
                     $(".side-menu-wrapper").removeClass("slideIn").addClass("slideOut");
                     $(".arrow-icon").removeClass("arrow-spin-right");
                     $(".arrow-icon").removeClass("arrow-spin-up").addClass("arrow-spin-down");

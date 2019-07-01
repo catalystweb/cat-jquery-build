@@ -8,10 +8,47 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="stylesheet" href="src/css/dark-theme.css" id="dark-css" />
 	<link rel="stylesheet" href="src/css/light-theme.css" id="light-css" />
+	<link rel="stylesheet" href="src/css/spinner.css" />
 	<link rel="stylesheet" href="src/css/media-query.css" />
 </head>
 <body>
-	<div class="header-container">
+	<div class="login-container">
+		<div class="spin-wrapper" style="display:none;">
+			<div class="lds-ring">
+				<div>			
+				</div>
+				<div>
+				</div>
+				<div>
+				</div>
+				<div>
+				</div>
+			</div>
+		</div>
+		<div id="login-modal" class="modal-container modal-login" style="display:none;">
+				<div class="modal-content user-mod">
+						<div class="flex-end">
+								skip<span style="padding-right:5px;"></span> <div class="close transition"> &times;</div>	
+						</div>
+						<div class="flex-center">
+							<img src="img/logo-trans.png" height="55"/>	
+						</div>	
+					<div class="text-center">Login</div>
+					<div><input id="login-email" type="email" class="search-icon-glass border defaultFont margin" placeholder="Enter Email"></input></div>
+					<div><input id="login-password" type="password" class="search-icon-glass border defaultFont margin" placeholder="Enter Password"></input></div>
+					<br>
+					<div class="flex-center">	
+						<button id="login-button" class="user-button transition user-button-no-margin " style="display:none;">Submit</button>
+					</div>
+				</div>
+				<div class="modal-content user-fail" style="display:none;">
+						<div>
+							<div class="red">incorrect details</div>
+						</div>
+				</div>
+		</div>
+	</div>
+	<div class="header-container" style="display:none;">		
 		<div id="add-modal" class="modal-container" style="display:none;">
 			<div class="modal-content user-mod">
 				<div class="flex">
@@ -20,13 +57,18 @@
 				</div>
 				<div><input id="add-name" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Name"></input></div>
 				<div><input id="add-title" type="text" class="search-icon-glass border defaultFont margin" placeholder="Enter Title"></input></div>
+				<div><input id="add-email" type="email" class="search-icon-glass border defaultFont margin" placeholder="Enter Email"></input></div>
 				<div><select id="add-avatar" class="search-icon-glass border defaultFont margin">
 								<option value="" disabled selected>Select Avatar</option>
 								<option value="smile-guy-1">Smile Guy</option>
 								<option value="suit-guy-1">Suit Guy 1</option>
-								<option value="lady-1">Lady</option>
-								<option value="hip-guy-1">Hip Guy</option>
 								<option value="suit-guy-2">Suit Guy 2</option>
+								<option value="lady-1">Lady</option>
+								<option value="lady-2">Brunette Lady</option>
+								<option value="red-head">Red head</option>
+								<option value="shirt-guy-1">Shirt Guy</option>
+								<option value="hip-guy-1">Hip Guy</option>
+								<option value="singlet-guy-1">Singlet Guy</option>
 						</select>
 						<br><br>
 					<button id="add-button" class="user-button transition" style="display:none;">Submit</button>
@@ -34,7 +76,9 @@
 			</div>
 			<div class="modal-content user-success" style="display:none;">
 				<div>
-					<div class="green">user added</div>
+					<div class="flex pass" style="margin-left:25%;">
+						<div class="green"></div>
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -48,9 +92,13 @@
 								<option value="" disabled selected>Select Avatar</option>
 								<option value="smile-guy-1">Smile Guy</option>
 								<option value="suit-guy-1">Suit Guy 1</option>
-								<option value="lady-1">Lady</option>
-								<option value="hip-guy-1">Hip Guy</option>
 								<option value="suit-guy-2">Suit Guy 2</option>
+								<option value="lady-1">Lady</option>
+								<option value="lady-2">Brunette Lady</option>
+								<option value="red-head">Red head</option>
+								<option value="shirt-guy-1">Shirt Guy</option>
+								<option value="hip-guy-1">Hip Guy</option>
+								<option value="singlet-guy-1">Singlet Guy</option>
 						</select>
 						<br><br>
 					<button id="edit-button" class="user-button transition" style="display:none;">Submit</button>
@@ -124,13 +172,32 @@
 				</div>
 			</div>
 		</div>	
+		<div id="logout-modal" class="modal-container" style="display:none;">
+				<div class="modal-content user-mod">
+					<div class="flex">
+						<div>Log out?</div>
+						<div class="close transition">&times;</div>
+					</div>			
+					<div>
+						<br>
+						<button id="logout-button" style="display:none;" class="user-button transition">Yes</button>
+					</div>
+				</div>
+				<div class="modal-content user-success" style="display:none;">
+					<div>
+						<div class="green">log out successfull</div>
+					</div>
+				</div>
+			</div>
 		<div class="side-menu-wrapper" style="display:none;">
 				<div class="nav2 nav-side-fix">
 					<ul>
+						<li id="log-in">Log in</li>
 						<li id="add-user">Add user</li>
 						<li id="del-user">Delete user</li> 	
 						<li id="block-user">Block list</li>						
-						<li id="change-theme">Change Theme</li>		
+						<li id="change-theme">Change Theme</li>
+						<li id="log-out">Log out</li>	
 					</ul>
 				</div>			
 		</div>
@@ -139,26 +206,29 @@
 					<div class="nav-wrapper">
 						<div class="logo"><img src="img/logo-trans.png" height="55"/>
 							<div class="catalyst">
-								<div class="cat-inner">catalyst v0.2</div>
+								<div class="cat-inner">catalyst v0.3</div>
 							</div>
 						</div>					
 						<div class="nav">					
 							<span>Menu</span>
-							<span class="arrow-icon"></span>
+								<span class="arrow-icon">
+								</span>
 						</div>
 					</div>
 					<div class="nav2">
 						<ul>
+							<li id="log-in">Log in</li>
 							<li id="add-user">Add user</li>
 							<li id="del-user">Delete user</li> 	
 							<li id="block-user">Block list</li>						
-							<li id="change-theme">Change Theme</li>		
+							<li id="change-theme">Change Theme</li>
+							<li id="log-out">Log out</li>		
 						</ul>
 					</div>
 				</nav>
 		</header>	
 	</div>
-	<div class="page-container">	
+	<div class="page-container" style="display:none;">	
 		<div id="sort-asc" class="sort-list">
 			<div class="sort">Sort
 				<div class="arrow-sort"></div>
@@ -179,6 +249,7 @@
 				</div>
 		</footer>
 	</div>
-	<script src="app/js/app.min.js"></script>
+	<script src="app/app.min.js"></script>
+
 </body>
 </html>

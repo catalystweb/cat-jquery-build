@@ -20,6 +20,13 @@ body {
   background: black;
 }
 
+.login-container {
+  height:100%;
+  width:100%;
+  background:black;
+  transition: 0.3s ease-in-out;
+}
+
 .header-container {
   max-width:1024px !important;
   margin:0 auto;
@@ -35,7 +42,7 @@ body {
   flex-direction: column;
   height: calc(100vh - 65px);
   background: lightgrey;
-  transition: 0.3s ease-in-out;
+  transition:0.3s ease-in-out;
 }
 
 section {
@@ -63,11 +70,11 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 150px;
+  height: 141px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
-  transition: margin-left 0.3s ease-in-out;
+  transition: margin-left 0.4s ease-in-out;
   overflow: hidden;
   background: silver;
   border-bottom:1px solid black;
@@ -81,23 +88,24 @@ header {
 }
 
 .slideDown {
-  min-height: 185px;
+  min-height: 205px;
   transition: min-height 0.3s ease-in-out;
 }
 
 .slideIn {
-  display:flex !important;
   margin-left:0vw;
   width:100%;
   background:silver;
-  transition:margin-left 0.3s ease-in-out;
+  transition:margin-left 0.4s ease-in-out;
+  padding-left:1px;
+  margin-top:-1px;
 }
 
 .slideOut {
   margin-left:100vw;
   width:100%;
   background:silver;
-  transition:margin-left 0.3s ease-in-out;
+  transition:margin-left 0.4s ease-in-out;
 }
 
 footer {
@@ -148,7 +156,6 @@ nav {
 
 .nav-side-fix {
   padding-inline-start:0;
-  padding-top:20px;
 }
 
 .nav-wrapper {
@@ -169,6 +176,16 @@ nav li, .nav2 li {
 .flex {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 10px;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
   padding-bottom: 10px;
 }
 
@@ -228,8 +245,8 @@ button:hover {
   transition: color 0.2s ease-out, background 0.2s ease-in;
 }
 
-input[type="text"],
-input[type="text"]::placeholder,
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
 select {
   width: 100%;
   color: #404040;
@@ -296,10 +313,26 @@ input[type="radio"] {
   z-index: 1;
 }
 
+.modal-login {
+  max-width:300px;
+}
+
+.text-center {
+  text-align: center;
+  padding-bottom:10px;
+}
+
 .green {
   display:flex; 
   justify-content: center; 
   color:darkgreen; 
+  font-weight: bold;
+}
+
+.red {
+  display:flex; 
+  justify-content: center; 
+  color:darkred; 
   font-weight: bold;
 }
 
@@ -318,6 +351,14 @@ input[type="radio"] {
 }
 
 #change-theme {
+  cursor: pointer;
+}
+
+#log-in {
+  cursor: pointer;
+}
+
+#log-out {
   cursor: pointer;
 }
 
@@ -416,14 +457,22 @@ input[type="radio"] {
   margin-right: 20px;
 }
 
+.user-button-no-margin {
+  margin-right:0;
+}
+
 .smile-guy-1 {
   background: url(../../img/smile-guy.jpg) bottom center
     no-repeat;
   background-size: cover;
 }
-
 .suit-guy-1 {
   background: url(../../img/suit-1.jpg)
+    bottom center no-repeat;
+  background-size: cover;
+}
+.red-head {
+  background: url(../../img/red-head.jpg)
     bottom center no-repeat;
   background-size: cover;
 }
@@ -432,8 +481,23 @@ input[type="radio"] {
     bottom center no-repeat;
   background-size: cover;
 }
+.lady-2 {
+  background: url(../../img/lady-2.jpg)
+    bottom center no-repeat;
+  background-size: cover;
+}
 .hip-guy-1 {
   background: url(../../img/hippie-1.jpg) bottom center
+    no-repeat;
+  background-size: cover;
+}
+.shirt-guy-1 {
+  background: url(../../img/shirt-guy.jpg) bottom center
+    no-repeat;
+  background-size: cover;
+}
+.singlet-guy-1 {
+  background: url(../../img/wife-beater.jpg) bottom center
     no-repeat;
   background-size: cover;
 }
@@ -442,6 +506,7 @@ input[type="radio"] {
     no-repeat;
   background-size: cover;
 }
+
 
 /* arrow-icons */
 
@@ -454,6 +519,7 @@ input[type="radio"] {
   background: white;
   margin-left: 0.75em;
   cursor: pointer;
+  transition: 0.4s ease-in-out;
 }
 
 .arrow-icon:after {
@@ -477,7 +543,7 @@ input[type="radio"] {
 
 .arrow-spin-down {
   transform: rotate(180deg) !important;
-  transition: 400ms ease-in-out;
+  transition:  400ms ease-in-out;
 }
 
 .arrow-spin-down:after {

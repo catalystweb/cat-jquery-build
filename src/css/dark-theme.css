@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   height: calc(100vh - 65px);
   background: black;
-  transition: 0.3s ease-in-out;
+  transition:0.3s ease-in-out;
 }
 
 section {
@@ -57,14 +57,14 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 150px;
+  height: 141px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
   transition: margin-left 0.3s ease-in-out;
   overflow: hidden;
   background: black;
-  border-bottom:1px solid silver;
+  border-bottom:1px solid gray;
   color: silver;
   display: flex;
   position: absolute;
@@ -75,7 +75,7 @@ header {
 }
 
 .slideDown {
-  min-height: 185px;
+  min-height: 205px;
   transition: min-height 0.3s ease-in-out;
 }
 
@@ -85,6 +85,8 @@ header {
   width:100%;
   background:#00173d;
   transition:margin-left 0.3s ease-in-out;
+  padding-left:1px;
+  margin-top:-1px;
 }
 
 .slideOut {
@@ -143,7 +145,6 @@ nav {
 
 .nav-side-fix {
   padding-inline-start:0;
-  padding-top:20px;
 }
 
 .nav-wrapper {
@@ -223,8 +224,8 @@ button:hover {
   transition: color 0.2s ease-out, background 0.2s ease-in;
 }
 
-input[type="text"],
-input[type="text"]::placeholder,
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
 select {
   width: 100%;
   color: black;
@@ -316,6 +317,15 @@ input[type="radio"] {
 #change-theme {
   cursor: pointer;
 }
+
+#log-in {
+  cursor: pointer;
+}
+
+#log-out {
+  cursor: pointer;
+}
+
 
 /* search module */
 
@@ -417,9 +427,13 @@ input[type="radio"] {
     no-repeat;
   background-size: cover;
 }
-
 .suit-guy-1 {
   background: url(../../img/suit-1.jpg)
+    bottom center no-repeat;
+  background-size: cover;
+}
+.red-head {
+  background: url(../../img/red-head.jpg)
     bottom center no-repeat;
   background-size: cover;
 }
@@ -428,8 +442,23 @@ input[type="radio"] {
     bottom center no-repeat;
   background-size: cover;
 }
+.lady-2 {
+  background: url(../../img/lady-2.jpg)
+    bottom center no-repeat;
+  background-size: cover;
+}
 .hip-guy-1 {
   background: url(../../img/hippie-1.jpg) bottom center
+    no-repeat;
+  background-size: cover;
+}
+.shirt-guy-1 {
+  background: url(../../img/shirt-guy.jpg) bottom center
+    no-repeat;
+  background-size: cover;
+}
+.singlet-guy-1 {
+  background: url(../../img/wife-beater.jpg) bottom center
     no-repeat;
   background-size: cover;
 }

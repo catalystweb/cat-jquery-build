@@ -9,11 +9,11 @@ gulp.task('scripts', function() {
     return src('src/js/*.js')
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(dest('app/js'))
+        .pipe(dest('app/'))
 }); 
 
 gulp.task('watch', function(){
-    gulp.watch("src/js/*.js", gulp.series(concat));
+    gulp.watch("src/js/*.js", gulp.parallel('scripts'));
     gulp.watch("src/js/*.js").on('change', browserSync.reload);
     gulp.watch("src/css/*.css").on('change', browserSync.reload);
     gulp.watch("*.html").on('change', browserSync.reload);

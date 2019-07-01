@@ -52,6 +52,9 @@ $(window).on("load", function () {
                                   dataType: "json",             
                                   contentType: "application/json",
                                   success: function(result) {
+                                    var currentUser = "";
+                                    currentUser += "<li class='current-user'>current user: "+ data.name +" </li>";
+                                    $(".current-user").replaceWith(currentUser);   
                                     getData("true");
                                   }         
                                 });           
@@ -62,6 +65,7 @@ $(window).on("load", function () {
             });
         } 
     } else {
+      $(".side-menu-wrapper").css("height","141px");
       $("#login-modal").fadeIn("fast");
     }
 

@@ -81,6 +81,7 @@ $(window).on("load", function () {
         if (e.target.id == "log-out") {
             $(".modal-container").fadeOut("fast");
             $("#logout-modal").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");
         }
 

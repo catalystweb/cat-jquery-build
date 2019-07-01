@@ -37,7 +37,7 @@
       "email": "daniel@catalystweb.com.au",
       "password": "test",
       "avatar": "singlet-guy-1",
-      "status": "online",
+      "status": "offline",
       "block": "false"
     },
     {
@@ -56,7 +56,7 @@
       "password": "6967",
       "avatar": "suit-guy-2",
       "status": "offline",
-      "block": "true"
+      "block": "false"
     },
     {
       "id": "Y1Tt9GG",

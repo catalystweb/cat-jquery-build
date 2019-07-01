@@ -70,7 +70,7 @@ header {
 }
 
 .side-menu-wrapper {
-  height: 141px;
+  height: 161px;
   width:100%;
   max-width:1023px;
   margin-left: 100vw;
@@ -151,7 +151,7 @@ nav {
   display: flex;
   justify-content: center;
   text-align: center;
-  padding-right: 30px;
+  width: calc(100% + 5px);
 }
 
 .nav-side-fix {
@@ -167,6 +167,8 @@ nav {
 nav ul, .nav2 ul {
   margin-top: 0px;
   list-style-type: none;
+  padding-inline-start:0;
+  width:100%;
 }
 
 nav li, .nav2 li {
@@ -198,12 +200,25 @@ nav li, .nav2 li {
 }
 
 .sort-list {
+  display:flex;
+  width: calc(100% - 45px);
   font-size: 13px;
   padding: 10px 0px 0px 25px;
   background: lightgrey;
   color: black;
   cursor: pointer;
-  width: 60px;
+}
+
+.current-user {
+  display: inline-flex;
+  width: calc(100% - 110px);
+  justify-content: center;
+  cursor:initial;
+  font-size:13px;
+}
+
+li.current-user {
+  padding-top:10px;
 }
 
 .close {
@@ -301,7 +316,7 @@ input[type="radio"] {
 
 .modal-container {
   max-width:400px;
-  top: 25%;
+  top: 30%;
   left:25%;
   right:25%;
   margin:0 auto;

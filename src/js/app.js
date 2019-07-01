@@ -218,7 +218,6 @@ $(window).on("load", function () {
   //show user pass after record added
   function userShowPass(Pass) {
     if (Pass != null) {
-      console.log("password: " +Pass);
       $(".user-mod").css("display","none");
       var userPass = "";
       userPass += "<div class='flex pass' style='margin-left:25%;'>" +

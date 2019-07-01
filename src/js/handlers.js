@@ -25,6 +25,7 @@ $(window).on("load", function () {
                 $('link[href="src/css/light-theme.css"]').prop("disabled", true);
                 if ($('#swMenu').is(":checked")) {
                     $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
+                    $(".content-wrapper").css("padding-bottom","0");
                     $(".page-container").css("opacity", "0.3");
                 }
                 theme = Cookies.set('theme','dark');
@@ -34,12 +35,14 @@ $(window).on("load", function () {
                 $('link[href="src/css/light-theme.css"]').prop("disabled", false);
                 if ($('#swMenu').is(":checked")) {
                     $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
+                    $(".content-wrapper").css("padding-bottom","0");
                     $(".page-container").css("opacity", "0.3");
                 }
                 theme = Cookies.set('theme','light');
             }
             if ($('#swMenu').is(":checked")) {        
                 $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
+                $(".content-wrapper").css("padding-bottom","0");
                 $("header").removeClass("slideDown");
                 menu =  Cookies.set('menu','right');
             } else {

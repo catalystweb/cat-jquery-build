@@ -106,6 +106,7 @@ $(window).on("load", function () {
                     $("#add-avatar-ul").val("");   
                     $(".file-input").addClass("silver");
                     $(".file-input").css("cursor","not-allowed");
+                    $(".flex-inline").css("display","none");
                     $('#add-avatar-ul').prop("disabled", true);          
                 } else {
                     $(".file-input").removeClass("silver");
@@ -128,21 +129,6 @@ $(window).on("load", function () {
                     }
                 });
             });      
-        }
-
-        //hide show custom avatar button 
-        if (e.target.id == "add-avatar-ul") {
-            $(this).on("change", function () {  
-                if($("#add-avatar-ul").val()) { // returns true if the string is not empty
-                    $(".black-icon").fadeIn("fast");
-                    $("#add-avatar").addClass("silver");
-                    $('#add-avatar').prop("disabled", true);
-                } else { // no file was selected
-                    $(".black-icon").fadeOut("fast");
-                    $("#add-avatar").removeClass("silver");
-                    $('#add-avatar').prop("disabled", false);
-                }
-            });
         }
           
         //block modal display

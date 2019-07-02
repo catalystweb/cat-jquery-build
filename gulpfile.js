@@ -9,19 +9,25 @@ gulp.task('scripts', function() {
     return src('src/js/*.js')
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(dest('app/'))
+        .pipe(dest('app/js'))
 }); 
 
 gulp.task('themes', function() {
     return src('src/css/themes/*.css')
       .pipe(minify({compatibility: 'ie8'}))
-      .pipe(dest('app/'));
+      .pipe(dest('app/css'));
 });
 
 gulp.task('css', function() {
     return src('src/css/other/*.css')
       .pipe(concat('app.min.css'))
       .pipe(minify({compatibility: 'ie8'}))
+      .pipe(dest('app/css'));
+});
+
+gulp.task('html', function() {
+    return src('*.html')
+      .pipe(concat('app.html'))
       .pipe(dest('app/'));
 });
 
@@ -29,6 +35,7 @@ gulp.task('watch', function(){
     gulp.watch("src/js/*.js", gulp.parallel('scripts'));
     gulp.watch("src/css/themes/*.css", gulp.parallel('themes'));
     gulp.watch("src/css/other/*.css", gulp.parallel('css'));
+    gulp.watch("*.html", gulp.parallel('html'));
     gulp.watch("src/js/*.js").on('change', browserSync.reload);
     gulp.watch("src/css/other/*.css").on('change', browserSync.reload);
     gulp.watch("src/css/themes/*.css").on('change', browserSync.reload);
@@ -40,8 +47,9 @@ gulp.task('watch', function(){
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "./"
-        },
+            baseDir: "app",
+            index: "app.html"
+        },   
         callbacks: {
             ready: function(err, bs) {
                 console.log("----------------------------------");
@@ -53,4 +61,4 @@ gulp.task('browser-sync', function() {
         ui: false
     });
 });
-gulp.task('run', gulp.parallel('scripts', 'themes', 'css', 'watch', 'browser-sync'));
+gulp.task('run', gulp.parallel('scripts', 'themes', 'css', 'html', 'watch', 'browser-sync'));

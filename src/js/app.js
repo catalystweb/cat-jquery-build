@@ -65,6 +65,7 @@ $(window).on("load", function () {
             });
         } 
     } else {
+      $('#add-avatar-ul').prop("disabled", true);  
       $(".side-menu-wrapper").css("height","141px");
       $("#login-modal").fadeIn("fast");
     }
@@ -226,7 +227,55 @@ $(window).on("load", function () {
             });
         }
   }
-      
+
+  //upload avatar file via ajax 
+  var Upload = function (file) {
+    this.file = file;
+  };
+
+  Upload.prototype.getType = function() {
+    console.log("file type: " +this.file.type);
+  };
+  Upload.prototype.getSize = function() {
+    console.log("file size: " +this.file.size);
+  };
+  Upload.prototype.getName = function() {
+    console.log("file name: " +this.file.name);
+  };
+  Upload.prototype.doUpload = function () {
+      var fileData = new FormData();
+
+      if (cookies == "true") {
+        if (this.getType() != "image/jpg") {
+          $(".flex-inline").css("display","inline-flex");
+        } else {
+          // add assoc key values, this will be posts values
+          fileData.append("file", this.file, this.getName());
+          fileData.append("upload_file", true);
+
+          $.ajax({
+              type: "POST",
+              url: "http://localhost:1355/",
+              success: function (data) {
+                $(".black-icon").fadeIn("fast");
+                $("#add-avatar").addClass("silver");
+                $(".flex-inline").css("display","none");
+                $('#add-avatar').prop("disabled", true);
+              },
+              error: function (error) {
+                
+              },
+              async: true,
+              data: fileData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              timeout: 60000
+          });
+        }
+      }
+  };
+
   //display json data source for block list
   function getBlockData() {
     var localHost = "http://localhost:1352/users/";
@@ -615,6 +664,23 @@ $(window).on("load", function () {
     //add button callback
     if (e.target.id == "add-button") {
       userAddEdit(null,null);
+    }
+
+    //hide show custom avatar button 
+    if (e.target.id == "add-avatar-ul") {
+      $(this).on("change", function () {  
+          if($("#add-avatar-ul").val()) { // returns true if the string is not empty
+              $("#progress-wrp").css("display","inline-flex");
+              var file = $("#add-avatar-ul")[0].files[0];
+              var upload = new Upload(file);
+              upload.doUpload();
+          } else { // no file was selected
+              $("#progress-wrp").css("display","none");
+              $(".black-icon").fadeOut("fast");
+              $("#add-avatar").removeClass("silver");
+              $('#add-avatar').prop("disabled", false);
+          }
+      });
     }
 
     //login button callback

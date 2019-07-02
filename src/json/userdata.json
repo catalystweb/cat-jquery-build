@@ -105,6 +105,16 @@
       "status": "offline",
       "block": "false",
       "id": "r9b8wR_"
+    },
+    {
+      "name": "test",
+      "title": "test",
+      "email": "test@test.com",
+      "password": "41202",
+      "avatar": "red-head",
+      "status": "offline",
+      "block": "false",
+      "id": "GAeBm1c"
     }
   ]
 }

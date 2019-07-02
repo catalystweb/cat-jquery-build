@@ -39,6 +39,11 @@ nav {
   justify-content: flex-end;
   padding-bottom: 10px;
 }
+.flex-inline {
+  color:darkred;
+  display:inline-flex;
+  margin-left:20px; 
+}
 
 .display-inline {
   display:inline-block;
@@ -47,7 +52,6 @@ nav {
 .padding-left-10 {
   padding-left:10px;
 }
-
 
 .current-user {
   display: inline-flex;

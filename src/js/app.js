@@ -91,6 +91,7 @@ $(window).on("load", function () {
     }
     //global json data source
     var userData = "";
+    var avatarRender = ""
     $.ajax({
       beforeSend: function(){
         $('.spin-wrapper').fadeIn("slow");
@@ -109,7 +110,7 @@ $(window).on("load", function () {
                   '<div class="user-wrapper">' +
                   '<div class="user-container">' +
                   '<div class="user-img-container">' +
-                  '<div class="user-avatar ' + data.avatar + '" data-name="' + data.avatar + '"></div >' +
+                  '<div class="user-avatar show-avatar" data-name=' + data.avatar + '" style="background-image: url(img/'+ data.avatar +'.jpg);"></div >' +
                   '<div class="user-status ' + data.status + '"></div>' +
                   '</div >' +
                   '<div class="user-info"><div>' +
@@ -120,8 +121,8 @@ $(window).on("load", function () {
                   "</div>" +
                   "</div>" +
                   "</div>" +
-                  "</section>";
-                }       
+                  "</section>";              
+                }  
             });
                 //apply result to html element
                 $(".content-wrapper").html(userData);

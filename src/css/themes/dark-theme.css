@@ -1,8 +1,5 @@
 /* base css */
 
-html {
-  height: 100%;
-}
 
 body {
   height: 100%;
@@ -108,76 +105,6 @@ footer {
   bottom:0;
 }
 
-nav {
-  width: 100%;
-  padding: 5px 10px 0px 0px;
-}
-
-.logo {
-  display:flex;
-  align-items: center;
-  padding-left: 15px;
-  cursor: pointer;
-}
-
-.catalyst {
-  display:none;
-}
-
-.cat-inner {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
-  width:200px;
-}
-
-.nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.nav2 {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  width: calc(100% + 5px);
-}
-
-.nav-side-fix {
-  padding-inline-start:0;
-}
-
-.nav-wrapper {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-nav ul, .nav2 ul {
-  margin-top: 0px;
-  list-style-type: none;
-  padding-inline-start: 0;
-  width:100%;
-}
-
-nav li, .nav2 li {
-  padding: 3px 0px 3px 0px;
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 10px;
-}
-
-.display-inline {
-  display:inline-block;
-}
-
-.padding-left-10 {
-  padding-left:10px;
-}
-
 .sort-list {
   display:flex;
   width: calc(100% - 45px);
@@ -186,18 +113,6 @@ nav li, .nav2 li {
   background: black;
   color: white;
   cursor: pointer;
-}
-
-.current-user {
-  display: inline-flex;
-  width: calc(100% - 110px);
-  justify-content: center;
-  cursor:initial;
-  font-size:13px;
-}
-
-li.current-user {
-  padding-top:10px;
 }
 
 .close {
@@ -250,47 +165,6 @@ select {
   text-indent: 10px;
 }
 
-select {
-  text-indent: 3px;
-}
-
-input[type="radio"] {
-  -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-  -ms-appearance: checkbox;
-}
-
-#noData {
-  display: flex;
-  height: 100%;
-}
-
-.defaultFont {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 13.3px;
-}
-
-.offline {
-  background: lightgrey;
-}
-
-.online {
-  background: green;
-}
-
-.afk {
-  background: #ea4dd3;
-}
-
-.border {
-  border: 1px solid grey;
-}
-
-.margin {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 /* modal css */
 
 .modal-container {
@@ -306,64 +180,6 @@ input[type="radio"] {
   padding: 1.5em;
   position: fixed;
   z-index: 1;
-}
-
-.green {
-  display:flex; 
-  justify-content: center; 
-  color:darkgreen; 
-  font-weight: bold;
-}
-
-/* nav css */
-
-#add-user {
-  cursor: pointer;
-}
-
-#del-user {
-  cursor: pointer;
-}
-
-#block-user {
-  cursor: pointer;
-}
-
-#change-theme {
-  cursor: pointer;
-}
-
-#log-in {
-  cursor: pointer;
-}
-
-#log-out {
-  cursor: pointer;
-}
-
-
-/* search module */
-
-.search-wrapper {
-  width: 100%;
-  height: auto;
-}
-
-.search-container {
-  padding: 0px 15px 0px 15px;
-}
-
-.search-container > input[type="text"],
-.search-container > input[type="text"]::placeholder {
-  text-indent: 30px;
-}
-
-.search-icon-position {
-  float: left;
-  margin-left: 10px;
-  margin-top: -25px;
-  position: relative;
-  z-index: 2;
 }
 
 /* user-module */
@@ -435,52 +251,6 @@ input[type="radio"] {
   display: inline-flex;
   justify-content: space-evenly;
   margin-right: 20px;
-}
-
-.smile-guy-1 {
-  background: url(../../img/smile-guy.jpg) bottom center
-    no-repeat;
-  background-size: cover;
-}
-.suit-guy-1 {
-  background: url(../../img/suit-1.jpg)
-    bottom center no-repeat;
-  background-size: cover;
-}
-.red-head {
-  background: url(../../img/red-head.jpg)
-    bottom center no-repeat;
-  background-size: cover;
-}
-.lady-1 {
-  background: url(../../img/lady-1.jpg)
-    bottom center no-repeat;
-  background-size: cover;
-}
-.lady-2 {
-  background: url(../../img/lady-2.jpg)
-    bottom center no-repeat;
-  background-size: cover;
-}
-.hip-guy-1 {
-  background: url(../../img/hippie-1.jpg) bottom center
-    no-repeat;
-  background-size: cover;
-}
-.shirt-guy-1 {
-  background: url(../../img/shirt-guy.jpg) bottom center
-    no-repeat;
-  background-size: cover;
-}
-.singlet-guy-1 {
-  background: url(../../img/wife-beater.jpg) bottom center
-    no-repeat;
-  background-size: cover;
-}
-.suit-guy-2 {
-  background: url(../../img/suit-2.png) bottom center
-    no-repeat;
-  background-size: cover;
 }
 
 /* arrow-icons */

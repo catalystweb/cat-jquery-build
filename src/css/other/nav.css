@@ -1,0 +1,83 @@
+/* nav css */
+
+#add-user {
+  cursor: pointer;
+}
+
+#del-user {
+  cursor: pointer;
+}
+
+#block-user {
+  cursor: pointer;
+}
+
+#change-theme {
+  cursor: pointer;
+}
+
+#log-in {
+  cursor: pointer;
+}
+
+#log-out {
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: calc(100% + 5px);
+}
+
+.nav-side-fix {
+  padding-inline-start:0;
+}
+
+.nav-wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+nav ul, .nav2 ul {
+  margin-top: 0px;
+  list-style-type: none;
+  padding-inline-start:0;
+  width:100%;
+}
+
+nav li, .nav2 li {
+  padding: 3px 0px 3px 0px;
+}
+
+/* search module */
+
+.search-wrapper {
+  width: 100%;
+  height: auto;
+}
+
+.search-container {
+  padding: 0px 15px 0px 15px;
+}
+
+.search-container > input[type="text"],
+.search-container > input[type="text"]::placeholder {
+  text-indent: 30px;
+}
+
+.search-icon-position {
+  float: left;
+  margin-left: 10px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}

@@ -21,8 +21,8 @@ $(window).on("load", function () {
         
         if (e.target.id == "submit-theme") {
             if ($("#dark").is(":checked")) {
-                $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
-                $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+                $('link[href="app/dark-theme.css"]').prop("disabled", false);
+                $('link[href="app/light-theme.css"]').prop("disabled", true);
                 if ($('#swMenu').is(":checked")) {
                     $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
                     $(".content-wrapper").css("padding-bottom","0");
@@ -31,8 +31,8 @@ $(window).on("load", function () {
                 theme = Cookies.set('theme','dark');
             } 
             if ($("#light").is(":checked")) {
-                $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
-                $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+                $('link[href="app/dark.theme.css"]').prop("disabled", true);
+                $('link[href="app/light-theme.css"]').prop("disabled", false);
                 if ($('#swMenu').is(":checked")) {
                     $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
                     $(".content-wrapper").css("padding-bottom","0");

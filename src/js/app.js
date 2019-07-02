@@ -11,13 +11,13 @@ $(window).on("load", function () {
     if (cookies == 'true') {
       if (theme == "dark") {
         $("#dark").prop("checked",true);
-        $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
-        $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+        $('link[href="app/dark-theme.css"]').prop("disabled", false);
+        $('link[href="app/light-theme.css"]').prop("disabled", true);
       }  else {
         theme == "light"
         $("#light").prop("checked",true);
-        $('link[href="src/css/dark-theme.css"]').prop("disabled", true);
-        $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+        $('link[href="app/dark-theme.css"]').prop("disabled", true);
+        $('link[href="app/light-theme.css"]').prop("disabled", false);
       }
       if (menu == "right") {
         $("#swMenu").attr( 'checked', true )

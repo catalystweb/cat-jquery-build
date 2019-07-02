@@ -56,6 +56,10 @@
       height: 4em;
     }
 
+    .current-user {
+      width:auto;
+    }
+
     .hideshow {
       display:none;
     }

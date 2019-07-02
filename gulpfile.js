@@ -27,8 +27,11 @@ gulp.task('css', function() {
 
 gulp.task('watch', function(){
     gulp.watch("src/js/*.js", gulp.parallel('scripts'));
+    gulp.watch("src/css/themes/*.css", gulp.parallel('themes'));
+    gulp.watch("src/css/other/*.css", gulp.parallel('css'));
     gulp.watch("src/js/*.js").on('change', browserSync.reload);
-    gulp.watch("src/css/*.css").on('change', browserSync.reload);
+    gulp.watch("src/css/other/*.css").on('change', browserSync.reload);
+    gulp.watch("src/css/themes/*.css").on('change', browserSync.reload);
     gulp.watch("*.html").on('change', browserSync.reload);
 });
 

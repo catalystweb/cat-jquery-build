@@ -37,7 +37,7 @@
       "email": "daniel@catalystweb.com.au",
       "password": "test",
       "avatar": "singlet-guy-1",
-      "status": "online",
+      "status": "offline",
       "block": "false"
     },
     {
@@ -95,6 +95,16 @@
       "status": "offline",
       "block": "false",
       "id": "6I8MPeo"
+    },
+    {
+      "name": "James Burn",
+      "title": "BA",
+      "email": "james.bum@gmail.com",
+      "password": "43200",
+      "avatar": "suit-guy-1",
+      "status": "offline",
+      "block": "false",
+      "id": "r9b8wR_"
     }
   ]
 }

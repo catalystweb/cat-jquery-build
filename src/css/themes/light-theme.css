@@ -173,6 +173,25 @@ select {
   text-indent: 10px;
 }
 
+input[type="file"] {
+  display:none;
+}
+
+.file-input {
+  color: #404040;
+  background: #fff;
+  border-radius: 4px;
+  padding: 10px 0 10px 0;
+  display: block;
+  width: 85px;
+  cursor: pointer;
+}
+
+.file-input:hover {
+  color: white;
+  background: grey;
+}
+
 /* modal css */
 
 .modal-container {

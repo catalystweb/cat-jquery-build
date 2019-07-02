@@ -105,6 +105,17 @@ input[type="radio"] {
   font-weight: bold;
 }
 
+.silver {
+  color:silver;
+}
+
+.black-icon {
+  display:none;
+  justify-content: center;
+  color:#00173d;
+  font-weight:bold;
+}
+
 .red {
   display:flex; 
   justify-content: center; 
@@ -119,5 +130,9 @@ input[type="radio"] {
 .margin {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.margin-right-zero {
+  margin-right:0 !important;
 }
 

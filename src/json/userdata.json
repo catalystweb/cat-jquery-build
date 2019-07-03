@@ -107,14 +107,24 @@
       "id": "r9b8wR_"
     },
     {
-      "name": "test",
-      "title": "test",
-      "email": "test@test.com",
-      "password": "41202",
-      "avatar": "red-head",
+      "name": "Drews",
+      "title": "Love of my life",
+      "email": "jnewman@gmail.com",
+      "password": "54246",
+      "avatar": "422",
       "status": "offline",
       "block": "false",
-      "id": "GAeBm1c"
+      "id": "BC8qQq4"
+    },
+    {
+      "name": "Hulk",
+      "title": "Angry",
+      "email": "dan@dan.com",
+      "password": "81962",
+      "avatar": "me",
+      "status": "offline",
+      "block": "false",
+      "id": "bODdgjp"
     }
   ]
 }

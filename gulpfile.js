@@ -44,8 +44,6 @@ gulp.task('watch', function(){
     gulp.watch('*.html', gulp.series('html')).on('change', function () {browserSync.reload();});
 });
 
-
-
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {

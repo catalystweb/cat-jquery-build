@@ -90,7 +90,6 @@ $(window).on("load", function () {
     }
     //global json data source
     var userData = "";
-    var avatarRender = ""
     $.ajax({
       beforeSend: function(){
         $('.spin-wrapper').fadeIn("slow");
@@ -109,7 +108,7 @@ $(window).on("load", function () {
                   '<div class="user-wrapper">' +
                   '<div class="user-container">' +
                   '<div class="user-img-container">' +
-                  '<div class="user-avatar show-avatar" data-name=' + data.avatar + ' style="background-image: url(img/'+ data.avatar +'.jpg);"></div >' +
+                  '<div class="user-avatar show-avatar" data-name=' + data.avatar +' style="background-image: url(img/'+ data.avatar +'.jpg);"></div >' +
                   '<div class="user-status ' + data.status + '"></div>' +
                   '</div >' +
                   '<div class="user-info"><div>' +
@@ -233,24 +232,25 @@ $(window).on("load", function () {
     this.file = file;
   };
 
-  Upload.prototype.getType = function() {
-      return this.file.type;
-  };
   Upload.prototype.getName = function() {
-      return this.file.name;
+    return this.file.name;
   };
+
   Upload.prototype.doUpload = function () {
       var fileData = new FormData();
+      var fileType = this.file['type'];
       var getFileName = this.file.name;
-      
-      if (this.file.type != "image/jpeg") {
+      var validTypes = ['image/jpeg', 'image/png'];
+      if (!validTypes.includes(fileType)) {
         $(".flex-inline").css("display","inline-flex");
       } else {
-        // add assoc key values, this will be posts values
-        fileData.append("file", this.file, this.getName());
+        getFileName = this.file.name.replace(/\s+/g, '');
+        console.log("before extension: " +getFileName);
+        fileData.append("file", this.file, getFileName);
         fileData.append("upload_file", true);
-        getFileName = this.file.name.replace(/\.[^/.]+$/, "")
-
+        getFileName = this.file.name.replace(/\s+/g, '');
+        strippedExt = getFileName.replace(/\.[^/.]+$/, "");
+        console.log("after extension: " +strippedExt)
         $.ajax({
             type: "POST",
             url: "http://localhost:1355/",
@@ -258,16 +258,15 @@ $(window).on("load", function () {
             data: fileData,
             cache: false,
             contentType: false,
-            processData: false,
-            timeout: 60000,
-            success: function (data) {
+            processData: false,            
+            timeout: 10000,
+            success: function () {
               $(".black-icon").fadeIn("fast");
               $("#add-avatar").addClass("silver");
               $(".flex-inline").css("display","none");
-              $('#add-avatar').prop("disabled", true);
-                precursor(getFileName)
+                precursor(strippedExt)
             },
-            error: function (error) {              
+            error: function () {              
             },
         });
       }      
@@ -469,10 +468,10 @@ $(window).on("load", function () {
           });            
         }
       });
-    
+    }
     //add new record to json data 
-    } else {           
-      function getRandomInt(max) {
+    if (getName == null && getID == null) {          
+      function getRandomInt() {
         return Math.floor(Math.random() * Math.floor(99999));
       }      
         var dataName = $("#add-name").val();
@@ -665,17 +664,24 @@ $(window).on("load", function () {
   
   
   function precursor(getFileName) {
+    console.log("precursor: " +getFileName);
     $("#add-button").on("click", function () {
-        userAddEdit(null,null,getFileName,"true");          
+        userAddEdit(null,null,getFileName);        
+        return false;  
     });
   }
   
   //click event handler with callback dependancies
   $(document).on("click", function (e) {
 
+    if (e.target.id == "add-button") {
+      console.log("add-button-no-precursor");
+      userAddEdit(null,null,"");
+    }
+    
     //hide show custom avatar button 
     if (e.target.id == "add-avatar-ul") {
-      $(this).on("change", function () {  
+      $("#add-avatar-ul").on("change", function () {  
           if($("#add-avatar-ul").val() || $("#edit-avatar-ul").val()) { // returns true if the string is not empty
               var file = $("#add-avatar-ul")[0].files[0];
               var upload = new Upload(file);

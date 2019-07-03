@@ -31,16 +31,6 @@
       "block": "false"
     },
     {
-      "id": "kd-l-B4",
-      "name": "Daniel Kandilas",
-      "title": "Developer",
-      "email": "daniel@catalystweb.com.au",
-      "password": "test",
-      "avatar": "wife-beater",
-      "status": "offline",
-      "block": "false"
-    },
-    {
       "id": "Qy-L9zF",
       "name": "Julie Kandilas",
       "title": "Wife",
@@ -107,24 +97,14 @@
       "id": "r9b8wR_"
     },
     {
-      "name": "Drews",
-      "title": "Love of my life",
-      "email": "jnewman@gmail.com",
-      "password": "54246",
-      "avatar": "422",
-      "status": "offline",
-      "block": "false",
-      "id": "BC8qQq4"
-    },
-    {
-      "name": "Hulk",
-      "title": "Angry",
-      "email": "dan@dan.com",
-      "password": "81962",
+      "name": "Daniel Kandilas",
+      "title": "Developer",
+      "email": "daniel@catalystweb.com.au",
+      "password": "67388",
       "avatar": "me",
       "status": "offline",
       "block": "false",
-      "id": "bODdgjp"
+      "id": "P7wt1UJ"
     }
   ]
 }

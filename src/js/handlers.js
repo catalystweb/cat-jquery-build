@@ -102,16 +102,18 @@ $(window).on("load", function () {
                 $("#add-button").css("display","none");
             }
             $(this).on("change", function() {
-                if ($("#add-avatar").val()) {
-                    $("#add-avatar-ul").val("");   
-                    $(".file-input").addClass("silver");
-                    $(".file-input").css("cursor","not-allowed");
-                    $(".flex-inline").css("display","none");
-                    $('#add-avatar-ul').prop("disabled", true);          
-                } else {
-                    $(".file-input").removeClass("silver");
-                    $(".file-input").css("cursor","pointer");
-                    $('#add-avatar-ul').prop("disabled", false);
+                if(!$(".black-icon").is(":visible")) {
+                    if ($("#add-avatar").val()) {
+                        $("#add-avatar-ul").val("");   
+                        $(".file-input").addClass("silver");
+                        $(".file-input").css("cursor","not-allowed");
+                        $(".flex-inline").css("display","none");
+                        $('#add-avatar-ul').prop("disabled", true);          
+                    } else {
+                        $(".file-input").removeClass("silver");
+                        $(".file-input").css("cursor","pointer");
+                        $('#add-avatar-ul').prop("disabled", false);
+                    }
                 }
             });
             //regex function to validate email            

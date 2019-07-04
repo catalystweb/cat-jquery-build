@@ -1,7 +1,8 @@
 var { src, dest } = require('gulp');
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var uglify = require("gulp-uglify");
+var uglify = require("gulp-uglify")
+var babel = require('gulp-babel');
 var sass = require('gulp-sass');
 var minify = require("gulp-clean-css");
 var browserSync = require('browser-sync').create();
@@ -10,6 +11,7 @@ gulp.task('js', function() {
     return src('src/js/*.js')
         .pipe(concat('app.min.js'))
         .pipe(uglify())
+        .pipe(babel({ presets: ['@babel/env']}))
         .pipe(dest('app/js'))
 }); 
 

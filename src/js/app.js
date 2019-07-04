@@ -84,6 +84,8 @@ $(window).on("load", function () {
     //clear existing field values
     $("input").val('');
     $("select").val('');
+    $("#edit-avatar-ul").val('');
+    $("#add-avatar-ul").val('');
     $("#checkbox-state").prop("checked",false);
     if (!$('#swMenu').is(":checked")) { 
         $('input[type=checkbox]').prop('checked',false);
@@ -236,7 +238,7 @@ $(window).on("load", function () {
     return this.file.name;
   };
 
-  Upload.prototype.doUpload = function () {
+  Upload.prototype.doUpload = function (dataName) {
       var fileData = new FormData();
       var fileType = this.file['type'];
       var getFileName = this.file.name;
@@ -249,7 +251,7 @@ $(window).on("load", function () {
         fileData.append("file", this.file, getFileName);
         fileData.append("upload_file", true);
         getFileName = this.file.name.replace(/\s+/g, '');
-        strippedExt = getFileName.replace(/\.[^/.]+$/, "");
+        var strippedExt = getFileName.replace(/\.[^/.]+$/, "");
         console.log("after extension: " +strippedExt)
         $.ajax({
             type: "POST",
@@ -264,7 +266,11 @@ $(window).on("load", function () {
               $(".black-icon").fadeIn("fast");
               $("#add-avatar").addClass("silver");
               $(".flex-inline").css("display","none");
+              if (dataName != null) {
+                precursor(strippedExt,dataName)
+              } else {
                 precursor(strippedExt)
+              }
             },
             error: function () {              
             },
@@ -663,11 +669,17 @@ $(window).on("load", function () {
   });      
   
   
-  function precursor(getFileName) {
+  function precursor(getFileName,getName) {
+    console.log("precursor id: " +getName);
     console.log("precursor: " +getFileName);
-    $("#add-button").on("click", function () {
+    $("#add-button, #edit-button").on("click", function (e) {
+      if (getName != null) {
+        userAddEdit(getName,null,getFileName);        
+        return false;
+      } else {
         userAddEdit(null,null,getFileName);        
-        return false;  
+        return false;
+      }  
     });
   }
   
@@ -681,11 +693,11 @@ $(window).on("load", function () {
     
     //hide show custom avatar button 
     if (e.target.id == "add-avatar-ul") {
-      $("#add-avatar-ul").on("change", function () {  
-          if($("#add-avatar-ul").val() || $("#edit-avatar-ul").val()) { // returns true if the string is not empty
-              var file = $("#add-avatar-ul")[0].files[0];
+      $("#"+e.target.id+"").on("change", function () {  
+          if($("#"+e.target.id+"").val()) { // returns true if the string is not empty
+              var file = $("#"+e.target.id+"")[0].files[0];
               var upload = new Upload(file);
-              upload.doUpload();
+              upload.doUpload(e.target.id);
           } else { // no file was selected
               $(".black-icon").fadeOut("fast");
               $("#add-avatar").removeClass("silver");
@@ -712,6 +724,8 @@ $(window).on("load", function () {
 
     //close statement if user clicks close icon
     if (e.target.classList[0] == "close") {
+        $("input").val('');
+        $("select").val('');
         $(".modal-container").fadeOut("fast");  
         if (! $('input[type="radio').is(':radio')) {
             $("input").val('');
@@ -765,12 +779,27 @@ $(window).on("load", function () {
       $("#edit-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity","0.3");
+      $("#edit-avatar-ul").on("change", function () {  
+        if($("#edit-avatar-ul").val()) { // returns true if the string is not empty
+            var file = $("#edit-avatar-ul")[0].files[0];
+            var upload = new Upload(file);
+            upload.doUpload(dataName);
+            $("#edit-button").fadeIn("fast");
+        } else { // no file was selected
+            $(".black-icon").fadeOut("fast");
+            $("#edit-button").fadeOut("fast");
+            $('#edit-avatar').prop("disabled", false);
+        }
+      });
       $("#edit-avatar").on("change", function () {  
-        if ($("#edit-avatar option").filter(":selected").text() != "Select Avatar") {
+        if ($("#edit-avatar option").filter(":selected").text() != "Use example Avatar") {
+          $(".black-icon").fadeOut("fast");
           $("#edit-button").fadeIn("fast");
           $("#edit-button").on("click", function () {
             userAddEdit(dataName,dataID);
           });
+        } else {
+          $("#edit-button").fadeOut("fast");
         }
       });   
     }          

@@ -97,22 +97,22 @@ $(window).on("load", function () {
         }
 
         //add modal display
-        if (e.target.id == "add-user") {
+        if (e.target.id == "add-user" || e.target.id == "edit-user") {
             if ($("#add-button").is(":visible")) {
                 $("#add-button").css("display","none");
             }
             $(this).on("change", function() {
                 if(!$(".black-icon").is(":visible")) {
-                    if ($("#add-avatar").val()) {
-                        $("#add-avatar-ul").val("");   
+                    if ($("#add-avatar").val() || $("#edit-avatar").val()) {
+                        $("#add-avatar-ul, #edit-avatar-ul").val("");   
                         $(".file-input").addClass("silver");
                         $(".file-input").css("cursor","not-allowed");
                         $(".flex-inline").css("display","none");
-                        $('#add-avatar-ul').prop("disabled", true);          
+                        $("#add-avatar-ul, #edit-avatar-ul").prop("disabled", true);          
                     } else {
                         $(".file-input").removeClass("silver");
                         $(".file-input").css("cursor","pointer");
-                        $('#add-avatar-ul').prop("disabled", false);
+                        $("#add-avatar-ul, #edit-avatar-ul").prop("disabled", false);
                     }
                 }
             });

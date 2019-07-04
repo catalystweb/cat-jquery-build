@@ -17,10 +17,13 @@
     "ext": "css,js,html"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@types/json-server": "0.14.0",
     "browser-sync": "^2.26.7",
     "concurrently": "^4.1.0",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.0.2",

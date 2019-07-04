@@ -97,14 +97,14 @@
       "id": "r9b8wR_"
     },
     {
+      "id": "P7wt1UJ",
       "name": "Daniel Kandilas",
       "title": "Developer",
       "email": "daniel@catalystweb.com.au",
-      "password": "67388",
+      "password": "test",
       "avatar": "me",
       "status": "offline",
-      "block": "false",
-      "id": "P7wt1UJ"
+      "block": "false"
     }
   ]
 }

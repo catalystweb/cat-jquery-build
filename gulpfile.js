@@ -1,32 +1,30 @@
 var { src, dest } = require('gulp');
 var gulp = require('gulp');
+var include = require('gulp-include');
 var concat = require('gulp-concat');
 var uglify = require("gulp-uglify")
-var babel = require('gulp-babel');
+//var babel = require('gulp-babel'); not needed for now
 var sass = require('gulp-sass');
 var minify = require("gulp-clean-css");
 var browserSync = require('browser-sync').create();
 
 gulp.task('js', function() {
-    return src('src/js/*.js')
+    return src('src/js/*.js')        
+        //.pipe(babel({ presets: ['@babel/env']}))
+        .pipe(include())
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(babel({ presets: ['@babel/env']}))
         .pipe(dest('app/js'))
 }); 
 
 gulp.task('themes', function() {
-    return src([
-            'src/css/themes/*.css',
-        ])
+    return src('src/css/themes/*.css')
       .pipe(minify())
       .pipe(dest('app/css'));
 });
 
 gulp.task('scss', function() {
-    return src([
-            'src/css/other/*.scss',
-        ])
+    return src('src/css/other/*.scss')
       .pipe(sass().on('error', sass.logError))
       .pipe(concat('app.min.css'))
       .pipe(minify())

@@ -1,3 +1,5 @@
+//=require jquery.js
+
 $(window).on("load", function () {
   $("#searchField").val("");
   $("input").val('');

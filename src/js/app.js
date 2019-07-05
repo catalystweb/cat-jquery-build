@@ -229,56 +229,7 @@ $(window).on("load", function () {
               }               
             });
         }
-  }
-
-  //upload avatar file via ajax 
-  var Upload = function (file) {
-    this.file = file;
-  };
-
-  Upload.prototype.getName = function() {
-    return this.file.name;
-  };
-
-  Upload.prototype.doUpload = function (dataName) {
-      var fileData = new FormData();
-      var fileType = this.file['type'];
-      var getFileName = this.file.name;
-      var validTypes = ['image/jpeg', 'image/png'];
-      if (!validTypes.includes(fileType)) {
-        $(".flex-inline").css("display","inline-flex");
-      } else {
-        getFileName = this.file.name.replace(/\s+/g, '');
-        console.log("before extension: " +getFileName);
-        fileData.append("file", this.file, getFileName);
-        fileData.append("upload_file", true);
-        getFileName = this.file.name.replace(/\s+/g, '');
-        var strippedExt = getFileName.replace(/\.[^/.]+$/, "");
-        console.log("after extension: " +strippedExt)
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:1355/",
-            async: true,
-            data: fileData,
-            cache: false,
-            contentType: false,
-            processData: false,            
-            timeout: 10000,
-            success: function () {
-              $(".black-icon").fadeIn("fast");
-              $("#add-avatar").addClass("silver");
-              $(".flex-inline").css("display","none");
-              if (dataName != null) {
-                precursor(strippedExt,dataName)
-              } else {
-                precursor(strippedExt)
-              }
-            },
-            error: function () {              
-            },
-        });
-      }      
-  };
+  } 
 
   //display json data source for block list
   function getBlockData() {
@@ -435,88 +386,7 @@ $(window).on("load", function () {
         });   
       }
   }
-
-  //add or edit data from submit button to json source
-  function userAddEdit(getName,getID,getCustom) {
-    var localHost = "http://localhost:1352/users/";     
-    //update json data with new avatar value 
-    if (getName != null) {
-      var editAvatar = $("#edit-avatar option:selected").val(); 
-      $.ajax({
-        url: localHost,
-        cache: false,
-        dataType: "json",
-        success: function (result) {
-          $.each(result, function (index, data) { 
-            if (getID == data.id) {
-                var payload = { 
-                  id: data.id,
-                  name: data.name,
-                  title: data.title,
-                  email: data.email,
-                  password: data.password,
-                  avatar: editAvatar,
-                  status: data.status,
-                  block: data.block 
-                };
-              $.ajax({
-                url: localHost +getID,
-                type: "PUT",
-                data: JSON.stringify(payload), 
-                dataType: "json",             
-                contentType: "application/json",
-                success: function(result) {
-                  $("#add-modal").fadeIn("fast");
-                  $(".page-container").css("opacity","0.3");
-                  userAddDel()
-                }         
-              });                    
-              return  
-            } 
-          });            
-        }
-      });
-    }
-    //add new record to json data 
-    if (getName == null && getID == null) {          
-      function getRandomInt() {
-        return Math.floor(Math.random() * Math.floor(99999));
-      }      
-        var dataName = $("#add-name").val();
-        var dataTitle = $("#add-title").val();
-        var dataEmail = $("#add-email").val();
-        if (getCustom == "") {
-          var dataAvatar = $("#add-avatar option:selected").val();    
-        } else {
-          var dataAvatar = getCustom
-        } 
-        var dataPass = getRandomInt(9999);      
-        var payload = {
-            name: dataName,
-            title: dataTitle,
-            email: dataEmail,
-            password: ""+dataPass+"",
-            avatar: dataAvatar,
-            status: "offline",
-            block: "false"
-        };
-        $.ajax({
-            url: localHost,
-            type: "POST",
-            data: JSON.stringify(payload),
-            dataType: "json",
-            contentType: "application/json",
-            success: function() {
-              $("#add-avatar-ul").val("");
-              $("#edit-avatar-ul").val("");
-              $(".black-icon").fadeOut("fast");
-              userShowPass(dataPass);
-            }
-        });  
-        return false;   
-    }    
-  }
-  
+    
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
     var localHost = "http://localhost:1352/users/";
@@ -669,29 +539,11 @@ $(window).on("load", function () {
           }
         });
   });      
-  
-  
-  function precursor(getFileName,getName) {
-    console.log("precursor id: " +getName);
-    console.log("precursor: " +getFileName);
-    $("#add-button, #edit-button").on("click", function (e) {
-      if (getName != null) {
-        userAddEdit(getName,null,getFileName);        
-        return false;
-      } else {
-        userAddEdit(null,null,getFileName);        
-        return false;
-      }  
-    });
-  }
+     
   
   //click event handler with callback dependancies
   $(document).on("click", function (e) {
 
-    if (e.target.id == "add-button") {
-      console.log("add-button-no-precursor");
-      userAddEdit(null,null,"");
-    }
     
     //hide show custom avatar button 
     if (e.target.id == "add-avatar-ul") {
@@ -772,39 +624,7 @@ $(window).on("load", function () {
             }
           }
         }
-    });    
-
-    //avatar edit display
-    if ($(e.target).hasClass("user-avatar")) {
-      var dataName = $(e.target).parent().next("div").find(".user-name").data("name");
-      var dataID = $(e.target).parent().parent().parent().parent("section").attr("id");
-      $("#edit-modal").fadeIn("fast");
-      $(".user-mod").fadeIn("fast");
-      $(".page-container").css("opacity","0.3");
-      $("#edit-avatar-ul").on("change", function () {  
-        if($("#edit-avatar-ul").val()) { // returns true if the string is not empty
-            var file = $("#edit-avatar-ul")[0].files[0];
-            var upload = new Upload(file);
-            upload.doUpload(dataName);
-            $("#edit-button").fadeIn("fast");
-        } else { // no file was selected
-            $(".black-icon").fadeOut("fast");
-            $("#edit-button").fadeOut("fast");
-            $('#edit-avatar').prop("disabled", false);
-        }
-      });
-      $("#edit-avatar").on("change", function () {  
-        if ($("#edit-avatar option").filter(":selected").text() != "Use example Avatar") {
-          $(".black-icon").fadeOut("fast");
-          $("#edit-button").fadeIn("fast");
-          $("#edit-button").on("click", function () {
-            userAddEdit(dataName,dataID);
-          });
-        } else {
-          $("#edit-button").fadeOut("fast");
-        }
-      });   
-    }          
+    });            
   });
 });
 

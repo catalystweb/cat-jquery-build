@@ -9,7 +9,14 @@ var minify = require("gulp-clean-css");
 var browserSync = require('browser-sync').create();
 
 gulp.task('js', function() {
-    return src('src/js/*.js')        
+    return src([
+            'src/js/jquery.js',
+            'src/js/cookies.js',
+            'src/js/uploadfile.js',
+            'src/js/useraddedit.js',
+            'src/js/handlers.js',
+            'src/js/app.js'        
+        ])        
         //.pipe(babel({ presets: ['@babel/env']}))
         .pipe(include())
         .pipe(concat('app.min.js'))

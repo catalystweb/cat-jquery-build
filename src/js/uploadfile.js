@@ -33,7 +33,6 @@
             timeout: 10000,
             success: function () {
               $(".black-icon").fadeIn("fast");
-              $("#add-avatar").addClass("silver");
               $(".flex-inline").css("display","none");
               if (dataName != null) {
                 precursor(strippedExt,dataName)

@@ -103,6 +103,22 @@ $(document).on("click", function (e) {
       userAddEdit(null,null,"");
     }
 
+    //hide show custom avatar button 
+    if (e.target.id == "add-avatar-ul") {
+        $("#"+e.target.id+"").on("change", function () {  
+            if($("#"+e.target.id+"").val()) { // returns true if the string is not empty
+                var file = $("#"+e.target.id+"")[0].files[0];
+                var upload = new Upload(file);
+                upload.doUpload(e.target.id);
+            } else { // no file was selected
+                $("#"+e.target.id+"").val('');
+                $(".black-icon").fadeOut("fast");
+                $("#add-avatar").removeClass("silver");
+                $('#add-avatar').prop("disabled", false);
+            }
+        });
+    }
+
     //avatar edit display
     if ($(e.target).hasClass("user-avatar")) {
       var dataName = $(e.target).parent().next("div").find(".user-name").data("name");

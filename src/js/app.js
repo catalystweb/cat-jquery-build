@@ -543,23 +543,7 @@ $(window).on("load", function () {
   
   //click event handler with callback dependancies
   $(document).on("click", function (e) {
-
     
-    //hide show custom avatar button 
-    if (e.target.id == "add-avatar-ul") {
-      $("#"+e.target.id+"").on("change", function () {  
-          if($("#"+e.target.id+"").val()) { // returns true if the string is not empty
-              var file = $("#"+e.target.id+"")[0].files[0];
-              var upload = new Upload(file);
-              upload.doUpload(e.target.id);
-          } else { // no file was selected
-              $(".black-icon").fadeOut("fast");
-              $("#add-avatar").removeClass("silver");
-              $('#add-avatar').prop("disabled", false);
-          }
-      });
-    }
-
     //login button callback
     if (e.target.id == "login-button") {
       var dataEmail = $("#login-email").val();

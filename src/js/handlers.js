@@ -108,6 +108,7 @@ $(window).on("load", function () {
                         $(".file-input").addClass("silver");
                         $(".file-input").css("cursor","not-allowed");
                         $(".flex-inline").css("display","none");
+                        $("#add-avatar-ul").val('');
                         $("#add-avatar-ul, #edit-avatar-ul").prop("disabled", true);          
                     } else {
                         $(".file-input").removeClass("silver");

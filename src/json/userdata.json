@@ -7,6 +7,7 @@
       "email": "lydia@catalystweb.com.au",
       "password": "80692",
       "avatar": "red-head",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -17,6 +18,7 @@
       "email": "newy@gmail.com",
       "password": "90757",
       "avatar": "shirt-guy",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -27,6 +29,7 @@
       "email": "wangy@gmail.com",
       "password": "74941",
       "avatar": "suit-guy-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -35,6 +38,7 @@
       "name": "Julie Kandilas",
       "title": "Wife",
       "avatar": "lady-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -45,6 +49,7 @@
       "email": "tuck.nuts@gmail.com",
       "password": "6967",
       "avatar": "suit-guy-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -53,6 +58,7 @@
       "name": "Andy Grays",
       "title": "Developer",
       "avatar": "hip-guy",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -63,6 +69,7 @@
       "email": "Sallyf@gmail.com",
       "password": "blah",
       "avatar": "lady-1",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -73,6 +80,7 @@
       "email": "tom.t@gmail.com",
       "password": "77906",
       "avatar": "suit-guy-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -82,6 +90,7 @@
       "email": "r.luca@gmail.com",
       "password": "52120",
       "avatar": "lady-1",
+      "extension": "jpg",
       "status": "offline",
       "block": "false",
       "id": "6I8MPeo"
@@ -92,6 +101,7 @@
       "email": "james.bum@gmail.com",
       "password": "43200",
       "avatar": "suit-guy-1",
+      "extension": "jpg",
       "status": "offline",
       "block": "false",
       "id": "r9b8wR_"
@@ -103,7 +113,8 @@
       "email": "daniel@catalystweb.com.au",
       "password": "test",
       "avatar": "me",
-      "status": "online",
+      "extension": "jpg",
+      "status": "offline",
       "block": "false"
     }
   ]

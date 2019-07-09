@@ -11,9 +11,12 @@ var browserSync = require('browser-sync').create();
 gulp.task('js', function() {
     return src([
             'src/js/jquery.js',
-            'src/js/cookies.js',
+            'src/js/cookies-plugin.js',
+            'src/js/cookies.js',            
+            'src/js/getData.js',
+            'src/js/login.js',
             'src/js/uploadfile.js',
-            'src/js/useraddedit.js',
+            'src/js/useraddedit.js',            
             'src/js/handlers.js',
             'src/js/app.js'        
         ])        
@@ -60,7 +63,7 @@ gulp.task('browser-sync', function() {
         callbacks: {
             ready: function(err, bs) {
                 console.log("----------------------------------");
-                console.log("[\x1b[31m v0.2 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
+                console.log("[\x1b[31m v0.4 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
                 console.log("----------------------------------");
             }
         },

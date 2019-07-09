@@ -5,232 +5,6 @@ $(window).on("load", function () {
   $("input").val('');
   $("select").val('');  
 
-  var cookies = Cookies.get('user');
-  var theme = Cookies.get('theme');
-  var menu = Cookies.get('menu');
-  var validate = Cookies.get('validate');
-
-    if (cookies == 'true') {
-      if (theme == "dark") {
-        $("#dark").prop("checked",true);
-        $('link[href="app/dark-theme.css"]').prop("disabled", false);
-        $('link[href="app/light-theme.css"]').prop("disabled", true);
-      }  else {
-        theme == "light"
-        $("#light").prop("checked",true);
-        $('link[href="app/dark-theme.css"]').prop("disabled", true);
-        $('link[href="app/light-theme.css"]').prop("disabled", false);
-      }
-      if (menu == "right") {
-        $("#swMenu").attr( 'checked', true )
-        $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
-        $("header").removeClass("slideDown");
-      }
-      if (validate != null) {
-        var localHost = "http://localhost:1352/users/";
-            $.ajax({
-                url: localHost,
-                cache: false,
-                data: {},
-                dataType: "jsonp",
-                success: function (result) {  
-                    $.each(result, function (index, data) {
-                        if (cookies == 'true') {
-                            if (validate == data.password) {
-                                  var payload = { 
-                                    id: data.id,
-                                    name: data.name,
-                                    title: data.title,
-                                    email: data.email,
-                                    password: data.password,
-                                    avatar: data.avatar,
-                                    status: "online",
-                                    block: data.block 
-                                  };
-                                $.ajax({
-                                  url: localHost +data.id,
-                                  type: "PUT",
-                                  data: JSON.stringify(payload), 
-                                  dataType: "json",             
-                                  contentType: "application/json",
-                                  success: function(result) {
-                                    var currentUser = "";
-                                    currentUser += "<li class='current-user'>current user: "+ data.name +" </li>";
-                                    $(".current-user").replaceWith(currentUser);   
-                                    getData("true");
-                                  }         
-                                });           
-                            }
-                        }
-                    });                  
-                }
-            });
-        } 
-    } else { 
-      $(".side-menu-wrapper").css("height","141px");
-      $("#login-modal").fadeIn("fast");
-    }
-
-  function getData(cookieVar) {
-    var localHost = "http://localhost:1352/users/";
-    //hide any existing modal 
-    if ($(".modal-container").is(":visible")) {
-        $("#del-modal").fadeOut("fast");
-        $("#add-modal").fadeOut("fast");
-        $("#block-modal").fadeOut("fast");
-        $("#edit-modal").fadeOut("fast");
-        $(".user-success").fadeOut("fast");
-        $(".page-container").css("opacity","1");
-    };
-
-    //clear existing field values
-    $("input").val('');
-    $("select").val('');
-    $("#edit-avatar-ul").val('');
-    $("#add-avatar-ul").val('');
-    $("#checkbox-state").prop("checked",false);
-    if (!$('#swMenu').is(":checked")) { 
-        $('input[type=checkbox]').prop('checked',false);
-    }
-    //global json data source
-    var userData = "";
-    $.ajax({
-      beforeSend: function(){
-        $('.spin-wrapper').fadeIn("slow");
-      },
-        url: localHost,
-        cache: false,
-        data: {},
-        dataType: "jsonp",
-        success: function (result) {  
-            $.each(result, function (index, data) {                 
-                if (data.block !== "true") { 
-                  userData +=
-                  "<section id=" +
-                  data.id +
-                  " class='sort-class'>" +
-                  '<div class="user-wrapper">' +
-                  '<div class="user-container">' +
-                  '<div class="user-img-container">' +
-                  '<div class="user-avatar show-avatar" data-name=' + data.avatar +' style="background-image: url(img/'+ data.avatar +'.jpg);"></div >' +
-                  '<div class="user-status ' + data.status + '"></div>' +
-                  '</div >' +
-                  '<div class="user-info"><div>' +
-                  '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="hideshow display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
-                  '<input class="user-title" value="' + data.title + '"></input>' +
-                  '</div>' +
-                  '<button class="user-button transition">Block</button>' +
-                  "</div>" +
-                  "</div>" +
-                  "</div>" +
-                  "</section>";              
-                }  
-            });
-                //apply result to html element
-                $(".content-wrapper").html(userData);
-                //sort desc by default html element and append
-                $(".sort-class").sort(function (a, b) {
-                return String.prototype.localeCompare.call(
-                    $(a).find("input.user-name").data("name").toLowerCase(),
-                    $(b).find("input.user-name").data("name").toLowerCase()
-                );
-                }).appendTo(".content-wrapper");
-                $('.login-container, .spin-wrapper').fadeOut("slow");
-                setTimeout(function () {
-                  if (cookieVar == "true") {
-                    $("li#log-in").css("display","none");
-                  } else {
-                    $("li#log-out").css("display","none");
-                  }
-                  $(".header-container").fadeIn("fast");
-                  $(".page-container").fadeIn("slow");
-                  $(".content-wrapper").fadeIn("slow");
-                  $("footer").fadeIn("slow");
-                },900);
-        },
-        error: function () {
-            userData = "";
-            userData +=
-            '<div class="user-nodata" style="height:100%;">' +
-            "<strong> error loading external data </strong>" +
-            "</div>";
-            $(".content-wrapper").html(userData);            
-            $(".content-wrapper").fadeIn("slow");
-            $("footer").fadeIn("slow");
-        }        
-    });
-  }
-
-  function login(getEmail,getPass,getLogout) {
-    //jquery click listener for login modal
-      var localHost = "http://localhost:1352/users/"; 
-        if (getLogout != true) {
-          $.ajax({
-              url: localHost,
-              cache: false,
-              dataType: "json",
-              success: function (result) {
-                $.each(result, function (index, data) {                     
-                    if (getEmail == data.email && getPass == data.password) {
-                      Cookies.set('user','true');
-                      Cookies.set('validate',''+getPass+'');
-                      $("#login-modal").fadeOut("fast");
-                      setTimeout(function() {
-                        location.reload();
-                      },200);
-                    }
-                    if (cookies != 'true') {
-                      $("#login-modal .user-mod").fadeOut("fast");   
-                        setTimeout(function() {
-                          $("#login-modal .user-fail").fadeIn("fast");
-                        },200);
-                        setTimeout(function() {
-                          location.reload()
-                        },2000);
-                    }
-                });              
-              }   
-          });  
-        } else {    
-          $.ajax({
-            url: localHost,
-            cache: false,
-            dataType: "json",
-            success: function (result) {   
-              $.each(result, function (index, data) {
-                    if (getPass == data.password) {
-                      console.log("password: " +getPass);
-                          var payload = { 
-                            id: data.id,
-                            name: data.name,
-                            title: data.title,
-                            email: data.email,
-                            password: data.password,
-                            avatar: data.avatar,
-                            status: "offline",
-                            block: data.block 
-                          };
-                        $.ajax({
-                          url: localHost +data.id,
-                          type: "PUT",
-                          data: JSON.stringify(payload), 
-                          dataType: "json",             
-                          contentType: "application/json",
-                          success: function(result) {
-                            Cookies.remove('user');
-                            Cookies.remove('theme');
-                            Cookies.remove('menu');
-                            Cookies.remove('validate');  
-                            location.reload();
-                          }         
-                        });           
-                    }                                                                          
-                });
-              }               
-            });
-        }
-  } 
-
   //display json data source for block list
   function getBlockData() {
     var localHost = "http://localhost:1352/users/";
@@ -288,20 +62,6 @@ $(window).on("load", function () {
         getBlockData();
       },2000);
   }
-
-  //show user pass after record added
-  function userShowPass(Pass) {
-    if (Pass != null) {
-      $(".user-mod").css("display","none");
-      var userPass = "";
-      userPass += "<div class='flex pass' style='margin-left:25%;'>" +
-                  "<div class='green'>password =  "+Pass+"</div><div class='close transition'>&times;</div>" +
-                  "</div>";
-      $(".pass").replaceWith(userPass);       
-      $(".user-success").fadeIn("fast");
-    }
-  }
-
 
   //update json data when display values changed  
   function userDirectAdd(getClass,getText,getID) {
@@ -435,6 +195,7 @@ $(window).on("load", function () {
                   email: data.email,
                   password: data.password,
                   avatar: data.avatar,
+                  extension: data.extension,
                   status: data.status,
                   block: "false" 
                 };
@@ -472,6 +233,7 @@ $(window).on("load", function () {
                       email: data.email,
                       password: data.password,
                       avatar: data.avatar,
+                      extension: data.extension,
                       status: data.status,
                       block: "true" 
                     };
@@ -564,8 +326,9 @@ $(window).on("load", function () {
     if (e.target.classList[0] == "close") {
         $("input").val('');
         $("select").val('');
-        $(".modal-container").fadeOut("fast");  
-        if (! $('input[type="radio').is(':radio')) {
+        $(".modal-container").fadeOut("fast"); 
+        $(".black-icon").css("display","none"); 
+        if (!$('input[type="radio').is(':radio')) {
             $("input").val('');
         }
         if ($(".pass").is(":visible")) {

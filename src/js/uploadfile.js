@@ -7,7 +7,7 @@
     return this.file.name;
   };
 
-  Upload.prototype.doUpload = function (dataName) {
+  Upload.prototype.doUpload = function(dataName) {
       var fileData = new FormData();
       var fileType = this.file['type'];
       var getFileName = this.file.name;
@@ -16,12 +16,14 @@
         $(".flex-inline").css("display","inline-flex");
       } else {
         getFileName = this.file.name.replace(/\s+/g, '');
-        console.log("before extension: " +getFileName);
+        console.log("before strip extension: " +getFileName);
         fileData.append("file", this.file, getFileName);
         fileData.append("upload_file", true);
         getFileName = this.file.name.replace(/\s+/g, '');
-        var strippedExt = getFileName.replace(/\.[^/.]+$/, "");
-        console.log("after extension: " +strippedExt)
+        getFileExt = getFileName.match(/[0-9a-z]+$/i);
+        var getFileNameStripped = getFileName.replace(/\.[^/.]+$/, "");
+        console.log("get extension: " +getFileExt);
+        console.log("strip extension: " +getFileNameStripped);
         $.ajax({
             type: "POST",
             url: "http://localhost:1355/",
@@ -34,10 +36,10 @@
             success: function () {
               $(".black-icon").fadeIn("fast");
               $(".flex-inline").css("display","none");
-              if (dataName != null) {
-                precursor(strippedExt,dataName)
+              if (!dataName) {
+                precursor(getFileNameStripped,dataName,getFileExt)
               } else {
-                precursor(strippedExt)
+                precursor(getFileNameStripped,null,getFileExt)
               }
             },
             error: function () {              

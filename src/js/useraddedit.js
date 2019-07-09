@@ -1,5 +1,5 @@
  //add or edit data from submit button to json source
-  function userAddEdit(getName,getID,getCustom) {
+  function userAddEdit(getName,getID,getCustom,getCustomExt) {
     var localHost = "http://localhost:1352/users/";     
     //update json data with new avatar value 
     console.log(getName);
@@ -19,6 +19,7 @@
                   email: data.email,
                   password: data.password,
                   avatar: editAvatar,
+                  extension: data.extension,
                   status: data.status,
                   block: data.block 
                 };
@@ -52,6 +53,7 @@
           var dataAvatar = $("#add-avatar option:selected").val();    
         } else {
           var dataAvatar = getCustom
+          var dataExtension = getCustomExt
         } 
         var dataPass = getRandomInt(9999);      
         var payload = {
@@ -60,6 +62,7 @@
             email: dataEmail,
             password: ""+dataPass+"",
             avatar: dataAvatar,
+            extension: dataExtension,
             status: "offline",
             block: "false"
         };
@@ -81,19 +84,34 @@
   }
 
 
-  function precursor(getFileName,getName) {
-    console.log("precursor id: " +getName);
-    console.log("precursor: " +getFileName);
-    $("#add-button, #edit-button").on("click", function (e) {
-      if (getName != null) {
-        userAddEdit(getName,null,getFileName);        
-        return false;
-      } else {
-        userAddEdit(null,null,getFileName);        
-        return false;
-      }  
-    });
+function precursor(getFileName,getName,getFileExt) {
+  $("#add-button, #edit-button").on("click", function (e) {
+    if (!getName) {
+      console.log("id: " +getName);
+      console.log("filename: " +getFileName);
+      userAddEdit(getName,null,getFileName,getFileExt);        
+      return false;
+    } else {
+      console.log("id: " +getName);
+      console.log("filename: " +getFileName);
+      userAddEdit(null,null,getFileName,getFileExt);        
+      return false;
+    }  
+  });
+}
+
+//show user pass after record added
+function userShowPass(Pass) {
+  if (Pass != null) {
+    $(".user-mod").css("display","none");
+    var userPass = "";
+    userPass += "<div class='flex pass' style='margin-left:25%;'>" +
+                "<div class='green'>password =  "+Pass+"</div><div class='close transition'>&times;</div>" +
+                "</div>";
+    $(".pass").replaceWith(userPass);       
+    $(".user-success").fadeIn("fast");
   }
+}
 
 //click event handler with callback dependancies
 $(document).on("click", function (e) {
@@ -109,7 +127,7 @@ $(document).on("click", function (e) {
             if($("#"+e.target.id+"").val()) { // returns true if the string is not empty
                 var file = $("#"+e.target.id+"")[0].files[0];
                 var upload = new Upload(file);
-                upload.doUpload(e.target.id);
+                upload.doUpload();
             } else { // no file was selected
                 $("#"+e.target.id+"").val('');
                 $(".black-icon").fadeOut("fast");

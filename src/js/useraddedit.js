@@ -1,59 +1,20 @@
- //add or edit data from submit button to json source
-  function userAddEdit(getName,getID,getCustom,getCustomExt) {
+ //add data from submit button to json source
+  function userAdd(getCustom,getCustomExt) {
     var localHost = "http://localhost:1352/users/";     
-    //update json data with new avatar value 
-    console.log(getName);
-    if (getName != null) {
-      var editAvatar = $("#edit-avatar option:selected").val(); 
-      $.ajax({
-        url: localHost,
-        cache: false,
-        dataType: "json",
-        success: function (result) {
-          $.each(result, function (index, data) { 
-            if (getID == data.id) {
-                var payload = { 
-                  id: data.id,
-                  name: data.name,
-                  title: data.title,
-                  email: data.email,
-                  password: data.password,
-                  avatar: editAvatar,
-                  extension: data.extension,
-                  status: data.status,
-                  block: data.block 
-                };
-              $.ajax({
-                url: localHost +getID,
-                type: "PUT",
-                data: JSON.stringify(payload), 
-                dataType: "json",             
-                contentType: "application/json",
-                success: function(result) {
-                  $("#add-modal").fadeIn("fast");
-                  $(".page-container").css("opacity","0.3");
-                  userAddDel()
-                }         
-              });                    
-              return  
-            } 
-          });            
-        }
-      });
-    }
-    //add new record to json data 
-    if (getName == null && getID == null) {          
+    //add new record to json data         
       function getRandomInt() {
         return Math.floor(Math.random() * Math.floor(99999));
       }      
         var dataName = $("#add-name").val();
         var dataTitle = $("#add-title").val();
         var dataEmail = $("#add-email").val();
-        if (getCustom == "") {
-          var dataAvatar = $("#add-avatar option:selected").val();    
+        console.log("new value");
+        if (!getCustom) {
+          var dataAvatar = $("#add-avatar option:selected").val();   
+          var dataExtension = "jpg" 
         } else {
-          var dataAvatar = getCustom
-          var dataExtension = getCustomExt
+          dataAvatar = getCustom
+          dataExtension = getCustomExt
         } 
         var dataPass = getRandomInt(9999);      
         var payload = {
@@ -78,25 +39,60 @@
               $(".black-icon").fadeOut("fast");
               userShowPass(dataPass);
             }
-        });  
-        return false;   
-    }    
-  }
+        }); 
+    return false;    
+}
 
+function userEdit(getID) {
+  var localHost = "http://localhost:1352/users/"; 
+  //update json data with new avatar value 
+    var editAvatar = $("#edit-avatar option:selected").val(); 
+    $.ajax({
+      url: localHost,
+      cache: false,
+      dataType: "json",
+      success: function (result) {
+        $.each(result, function (index, data) { 
+          if (getID == data.id) {
+              var payload = { 
+                id: data.id,
+                name: data.name,
+                title: data.title,
+                email: data.email,
+                password: data.password,
+                avatar: editAvatar,
+                extension: ""+data.extension+"",
+                status: data.status,
+                block: data.block 
+              };
+            $.ajax({
+              url: localHost +getID,
+              type: "PUT",
+              data: JSON.stringify(payload), 
+              dataType: "json",             
+              contentType: "application/json",
+              success: function(result) {
+                $("#add-modal").fadeIn("fast");
+                $(".page-container").css("opacity","0.3");
+                userAddDel()
+              }         
+            });                    
+            return false; 
+          } 
+        });            
+      }
+    });  
+}
 
-function precursor(getFileName,getName,getFileExt) {
+function precursor(getFileName,getFileExt) {
+  //precursor to fire function with parameters from file upload once submit button clicked 
   $("#add-button, #edit-button").on("click", function (e) {
-    if (!getName) {
-      console.log("id: " +getName);
       console.log("filename: " +getFileName);
-      userAddEdit(getName,null,getFileName,getFileExt);        
-      return false;
-    } else {
-      console.log("id: " +getName);
-      console.log("filename: " +getFileName);
-      userAddEdit(null,null,getFileName,getFileExt);        
-      return false;
-    }  
+      if ($("#add-avatar option").filter(":selected").text() != "Use example Avatar") {
+        userAdd();
+      } else {
+        userAdd(getFileName,getFileExt);
+      }        
   });
 }
 
@@ -115,11 +111,6 @@ function userShowPass(Pass) {
 
 //click event handler with callback dependancies
 $(document).on("click", function (e) {
-
-    if (e.target.id == "add-button") {
-      console.log("add-button-no-precursor");
-      userAddEdit(null,null,"");
-    }
 
     //hide show custom avatar button 
     if (e.target.id == "add-avatar-ul") {
@@ -161,7 +152,7 @@ $(document).on("click", function (e) {
           $(".black-icon").fadeOut("fast");
           $("#edit-button").fadeIn("fast");
           $("#edit-button").on("click", function () {
-            userAddEdit(dataName,dataID);
+            //userAdd(dataName,dataID);
           });
         } else {
           $("#edit-button").fadeOut("fast");

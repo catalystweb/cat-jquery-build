@@ -116,6 +116,17 @@
       "extension": "jpg",
       "status": "offline",
       "block": "false"
+    },
+    {
+      "name": "Melissa Newman",
+      "title": "Sister in law",
+      "email": "sis@sis.com",
+      "password": "83113",
+      "avatar": "lady-2",
+      "extension": "jpg",
+      "status": "offline",
+      "block": "false",
+      "id": "iy5Hswx"
     }
   ]
 }

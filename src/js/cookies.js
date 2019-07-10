@@ -37,6 +37,7 @@
                                     email: data.email,
                                     password: data.password,
                                     avatar: data.avatar,
+                                    extension: data.extension,
                                     status: "online",
                                     block: data.block 
                                   };

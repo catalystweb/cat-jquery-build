@@ -23,6 +23,12 @@ $(window).on("load", function () {
           }
           $("#block-list").html(userBlock);
         });
+        var select = $('#block-list');
+        select.html(select.find('option:gt(0)').sort(function(x, y) {
+          // to change to descending order switch "<" for ">"
+          return $(x).text() > $(y).text() ? 1 : -1;
+        }));
+        select.prepend("<option value='' selected='true'>Select blocked user from list</option>");
       }
     });
   }
@@ -42,7 +48,7 @@ $(window).on("load", function () {
       success: function (result) {
         $.each(result, function (index, data) {
           userDel +=
-            "<option id='" + data.id + "' value='" + data.name + "' data-name='" + data.name + "'>" + data.name + '</option>';
+            "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + '</option>';
           $("#del-list").html(userDel);
         });
 
@@ -90,8 +96,9 @@ $(window).on("load", function () {
                       name: getText,
                       title: data.title,
                       email: data.email,
-                      email: data.password,
+                      password: data.password,
                       avatar: data.avatar,
+                      extension: data.extension,
                       status: data.status,
                       block: data.block 
                     };
@@ -131,6 +138,7 @@ $(window).on("load", function () {
                       email: data.email,
                       password: data.password,
                       avatar: data.avatar,
+                      extension: data.extension,
                       status: data.status,
                       block: data.block 
                     };
@@ -231,9 +239,17 @@ $(window).on("load", function () {
           cache: false,
           dataType: "json",
           success: function (result) {
-            $.each(result, function (index, data) {            
-              if (secID == data.id) {                
-                if (validate != data.password) {              
+            $.each(result, function (index, data) {           
+              if (secID == data.id) {      
+                if (cookies == "true" && validate == data.password) {
+                    $(".user-mod").css("display","none");
+                    $("#block-modal, .user-fail").fadeIn("fast");
+                    $(".page-container").css("opacity","0.3");
+                    setTimeout(function () {
+                      $("#block-modal, .user-fail").fadeOut("fast");
+                      $(".page-container").css("opacity","1");
+                    },2000);
+                } else {                               
                     var payload = { 
                       id: data.id,
                       name: data.name,
@@ -256,19 +272,11 @@ $(window).on("load", function () {
                       getBlockData()
                     }         
                   });
-                  return;
-                } else {
-                  $(".user-mod").css("display","none");
-                  $("#block-modal, .user-fail").fadeIn("fast");
-                  $(".page-container").css("opacity","0.3");
-                  setTimeout(function () {
-                    $("#block-modal, .user-fail").fadeOut("fast");
-                    $(".page-container").css("opacity","1");
-                  },2000);
-                }
-              }
-            });  
-          }   
+                  return false;
+                } 
+              }            
+            }); 
+          }              
         });
       } 
   });    

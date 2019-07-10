@@ -38,6 +38,7 @@
       "name": "Julie Kandilas",
       "title": "Wife",
       "avatar": "lady-2",
+      "password": "juju",
       "extension": "jpg",
       "status": "offline",
       "block": "false"
@@ -57,6 +58,8 @@
       "id": "Y1Tt9GG",
       "name": "Andy Grays",
       "title": "Developer",
+      "email": "andy@gmail.com",
+      "password": "blah",
       "avatar": "hip-guy",
       "extension": "jpg",
       "status": "offline",
@@ -85,6 +88,7 @@
       "block": "false"
     },
     {
+      "id": "6I8MPeo",
       "name": "Rachel Luca",
       "title": "Sister in law",
       "email": "r.luca@gmail.com",
@@ -92,10 +96,10 @@
       "avatar": "lady-1",
       "extension": "jpg",
       "status": "offline",
-      "block": "false",
-      "id": "6I8MPeo"
+      "block": "false"
     },
     {
+      "id": "r9b8wR_",
       "name": "James Burn",
       "title": "BA",
       "email": "james.bum@gmail.com",
@@ -103,8 +107,7 @@
       "avatar": "suit-guy-1",
       "extension": "jpg",
       "status": "offline",
-      "block": "false",
-      "id": "r9b8wR_"
+      "block": "false"
     },
     {
       "id": "P7wt1UJ",
@@ -114,10 +117,11 @@
       "password": "test",
       "avatar": "me",
       "extension": "jpg",
-      "status": "offline",
+      "status": "online",
       "block": "false"
     },
     {
+      "id": "iy5Hswx",
       "name": "Melissa Newman",
       "title": "Sister in law",
       "email": "sis@sis.com",
@@ -125,8 +129,7 @@
       "avatar": "lady-2",
       "extension": "jpg",
       "status": "offline",
-      "block": "false",
-      "id": "iy5Hswx"
+      "block": "false"
     }
   ]
 }

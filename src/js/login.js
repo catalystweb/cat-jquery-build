@@ -5,8 +5,9 @@
         if (getLogout != true) {
           $.ajax({
               url: localHost,
+              type: "GET",
               cache: false,
-              dataType: "json",
+              dataType: "jsonp",
               success: function (result) {
                 $.each(result, function (index, data) {                     
                     if (getEmail == data.email && getPass == data.password) {
@@ -45,6 +46,7 @@
                             email: data.email,
                             password: data.password,
                             avatar: data.avatar,
+                            extension: data.extension,
                             status: "offline",
                             block: data.block 
                           };

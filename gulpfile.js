@@ -50,7 +50,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('watch', function(){
-    gulp.watch('src/js/*.js', gulp.series('js')).on('change', function () {browserSync.reload();});
+    gulp.watch(['src/js/*.js', 'src/js/user/*.js', 'src/js/login/*.js'], gulp.series('js')).on('change', function () {browserSync.reload();});
     gulp.watch('src/css/themes/*.css', gulp.series('themes')).on('change', function () {browserSync.reload();});
     gulp.watch('src/css/other/*.scss', gulp.series('scss')).on('change', function () {browserSync.reload();});
     gulp.watch('*.html', gulp.series('html')).on('change', function () {browserSync.reload();});

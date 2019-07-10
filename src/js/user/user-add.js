@@ -43,7 +43,7 @@
     return false;    
 }
 
-function userEdit(getID) {
+function userEdit(getName,getID) {
   var localHost = "http://localhost:1352/users/"; 
   //update json data with new avatar value 
     var editAvatar = $("#edit-avatar option:selected").val(); 
@@ -86,12 +86,18 @@ function userEdit(getID) {
 
 function precursor(getFileName,getFileExt) {
   //precursor to fire function with parameters from file upload once submit button clicked 
-  $("#add-button, #edit-button").on("click", function (e) {
+  $("#add-button").on("click", function (e) {
       console.log("filename: " +getFileName);
       if ($("#add-avatar option").filter(":selected").text() == "Use example Avatar") {
         userAdd(getFileName,getFileExt);
       }        
   });
+  // $("#edit-button").on("click", function (e) {
+  //     console.log("filename: " +getFileName);
+  //     if ($("#edit-avatar option").filter(":selected").text() == "Use example Avatar") {
+  //       userEdit(getFileName,getFileExt);
+  //     }        
+  // });
 }
 
 //show user pass after record added
@@ -158,7 +164,7 @@ $(document).on("click", function (e) {
           $(".black-icon").fadeOut("fast");
           $("#edit-button").fadeIn("fast");
           $("#edit-button").on("click", function () {
-            //userAdd(dataName,dataID);
+            userEdit(dataName,dataID);
           });
         } else {
           $("#edit-button").fadeOut("fast");

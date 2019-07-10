@@ -18,9 +18,7 @@ $(window).on("load", function () {
  
     //jquery global click event handler
     $(document).on("click", function(e) {
-
-        var path = "css/";
-        
+        var path = "css/";        
         if (e.target.id == "submit-theme") {
             if ($("#dark").is(":checked")) {
                 $('link[href="'+path+'dark-theme.css"]').prop("disabled", false);
@@ -54,8 +52,9 @@ $(window).on("load", function () {
             }
             $("#change-theme").fadeOut("fast");
             $(".page-container").css("opacity", "1");
-        } 
+        }         
         
+        //modal display window
         if (e.target.id == "add-user") {
             $(".modal-container").fadeOut("fast");
             $("#add-modal").fadeIn("fast");
@@ -64,7 +63,6 @@ $(window).on("load", function () {
     
         }
         if (e.target.id == "del-user") {
-            //clear existing field values
             $("select").val('');
             $("#checkbox-state").prop("checked",false);
             if (!$('#swMenu').is(":checked")) { 
@@ -76,7 +74,6 @@ $(window).on("load", function () {
             $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "block-user") {
-            //clear existing field values
             $("select").val('');
             $("#checkbox-state").prop("checked",false);
             if (!$('#swMenu').is(":checked")) { 
@@ -186,6 +183,7 @@ $(window).on("load", function () {
             }
         }
 
+        //menu arrow direction spin 
         if (e.target.classList[0] == "arrow-icon") {
             if ($(".side-menu-wrapper").is(":visible")) {
                 $("#del-modal").fadeOut("fast");
@@ -228,6 +226,7 @@ $(window).on("load", function () {
             }
         }
         
+        //flip data list sort arrow 
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             if ($(".arrow-sort").hasClass("arrow-spin-down")) {
                 $(".arrow-sort").removeClass("arrow-spin-down");

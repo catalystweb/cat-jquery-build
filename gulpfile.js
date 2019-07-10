@@ -18,7 +18,8 @@ gulp.task('js', function() {
             'src/js/user/upload.js',
             'src/js/user/user-add.js', 
             'src/js/user/user-direct-edit.js',
-            'src/js/user/user-add-del-success.js',                        
+            'src/js/user/user-add-del-success.js',     
+            'src/js/user/user-block-delete.js',                   
             'src/js/handlers.js',            
             'src/js/app.js'       
         ])        

@@ -12,13 +12,13 @@ gulp.task('js', function() {
     return src([
             'src/js/jquery.js',
             'src/js/cookies-plugin.js',
-            'src/js/cookies.js',            
+            'src/js/login/cookies.js',            
             'src/js/getData.js',
-            'src/js/login.js',
-            'src/js/uploadfile.js',
-            'src/js/useradd.js', 
-            'src/js/userdirectedit.js',
-            'src/js/user-add-del-success.js',           
+            'src/js/login/login.js',
+            'src/js/user/upload.js',
+            'src/js/user/user-add.js', 
+            'src/js/user/user-direct-edit.js',
+            'src/js/user/user-add-del-success.js',           
             'src/js/handlers.js',
             'src/js/app.js'        
         ])        

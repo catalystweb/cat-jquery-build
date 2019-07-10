@@ -9,7 +9,7 @@
         var dataTitle = $("#add-title").val();
         var dataEmail = $("#add-email").val();
         console.log("new value");
-        if (!getCustom) {
+        if (getCustom == null) {
           var dataAvatar = $("#add-avatar option:selected").val();   
           var dataExtension = "jpg" 
         } else {
@@ -74,7 +74,7 @@ function userEdit(getID) {
               success: function(result) {
                 $("#add-modal").fadeIn("fast");
                 $(".page-container").css("opacity","0.3");
-                userAddDel()
+                userAddDel(null)
               }         
             });                    
             return false; 
@@ -88,9 +88,7 @@ function precursor(getFileName,getFileExt) {
   //precursor to fire function with parameters from file upload once submit button clicked 
   $("#add-button, #edit-button").on("click", function (e) {
       console.log("filename: " +getFileName);
-      if ($("#add-avatar option").filter(":selected").text() != "Use example Avatar") {
-        userAdd();
-      } else {
+      if ($("#add-avatar option").filter(":selected").text() == "Use example Avatar") {
         userAdd(getFileName,getFileExt);
       }        
   });
@@ -111,6 +109,14 @@ function userShowPass(Pass) {
 
 //click event handler with callback dependancies
 $(document).on("click", function (e) {
+
+    //add user submit button 
+    if (e.target.id == "add-button") {
+      if ($("#add-avatar option").filter(":selected").text() != "Use example Avatar") {
+        $("#add-avatar-ul").val('');
+        userAdd();
+      }    
+    }
 
     //hide show custom avatar button 
     if (e.target.id == "add-avatar-ul") {

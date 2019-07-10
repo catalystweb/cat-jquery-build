@@ -32,7 +32,7 @@ $(window).on("load", function () {
   function getDelData() {
     var localHost = "http://localhost:1352/users/";
     var userDel =
-      "<option value='' selected='false'>Select user from list</option>";
+      "<option value='' selected='true'>Select user from list</option>";
 
     $.ajax({
       url: localHost,
@@ -42,9 +42,17 @@ $(window).on("load", function () {
       success: function (result) {
         $.each(result, function (index, data) {
           userDel +=
-            "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + "</option>";
+            "<option id='" + data.id + "' value='" + data.name + "' data-name='" + data.name + "'>" + data.name + '</option>';
           $("#del-list").html(userDel);
         });
+
+        var select = $('#del-list');
+        select.html(select.find('option:gt(0)').sort(function(x, y) {
+          // to change to descending order switch "<" for ">"
+          return $(x).text() > $(y).text() ? 1 : -1;
+        }));
+        select.prepend("<option value='' selected='true'>Select user from list</option>");
+
       }
     });
   }

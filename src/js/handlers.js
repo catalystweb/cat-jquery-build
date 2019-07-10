@@ -18,11 +18,13 @@ $(window).on("load", function () {
  
     //jquery global click event handler
     $(document).on("click", function(e) {
+
+        var path = "css/";
         
         if (e.target.id == "submit-theme") {
             if ($("#dark").is(":checked")) {
-                $('link[href="src/css/dark-theme.css"]').prop("disabled", false);
-                $('link[href="src/css/light-theme.css"]').prop("disabled", true);
+                $('link[href="'+path+'dark-theme.css"]').prop("disabled", false);
+                $('link[href="'+path+'light-theme.css"]').prop("disabled", true);
                 if ($('#swMenu').is(":checked")) {
                     $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
                     $(".content-wrapper").css("padding-bottom","0");
@@ -31,8 +33,8 @@ $(window).on("load", function () {
                 theme = Cookies.set('theme','dark');
             } 
             if ($("#light").is(":checked")) {
-                $('link[href="src/css/dark.theme.css"]').prop("disabled", true);
-                $('link[href="src/css/light-theme.css"]').prop("disabled", false);
+                $('link[href="'+path+'dark.theme.css"]').prop("disabled", true);
+                $('link[href="'+path+'light-theme.css"]').prop("disabled", false);
                 if ($('#swMenu').is(":checked")) {
                     $(".arrow-icon").removeClass("arrow-spin-left").addClass("arrow-spin-left");
                     $(".content-wrapper").css("padding-bottom","0");
@@ -62,12 +64,24 @@ $(window).on("load", function () {
     
         }
         if (e.target.id == "del-user") {
+            //clear existing field values
+            $("select").val('');
+            $("#checkbox-state").prop("checked",false);
+            if (!$('#swMenu').is(":checked")) { 
+                $('input[type=checkbox]').prop('checked',false);
+            }
             $(".modal-container").fadeOut("fast");
             $("#del-modal").fadeIn("fast");
             $(".user-mod").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "block-user") {
+            //clear existing field values
+            $("select").val('');
+            $("#checkbox-state").prop("checked",false);
+            if (!$('#swMenu').is(":checked")) { 
+                $('input[type=checkbox]').prop('checked',false);
+            }
             $(".modal-container").fadeOut("fast");
             $("#block-modal").fadeIn("fast");
             $(".user-mod").fadeIn("fast");
@@ -81,6 +95,7 @@ $(window).on("load", function () {
         if (e.target.id == "log-out") {
             $(".modal-container").fadeOut("fast");
             $("#logout-modal").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");
         }
 
@@ -96,10 +111,26 @@ $(window).on("load", function () {
         }
 
         //add modal display
-        if (e.target.id == "add-user") {
+        if (e.target.id == "add-user" || e.target.id == "edit-user") {
             if ($("#add-button").is(":visible")) {
                 $("#add-button").css("display","none");
             }
+            $(this).on("change", function() {
+                if(!$(".black-icon").is(":visible")) {
+                    if ($("#add-avatar").val() || $("#edit-avatar").val()) {
+                        $("#add-avatar-ul, #edit-avatar-ul").val("");   
+                        $(".file-input").addClass("silver");
+                        $(".file-input").css("cursor","not-allowed");
+                        $(".flex-inline").css("display","none");
+                        $("#add-avatar-ul").val('');
+                        $("#add-avatar-ul, #edit-avatar-ul").prop("disabled", true);          
+                    } else {
+                        $(".file-input").removeClass("silver");
+                        $(".file-input").css("cursor","pointer");
+                        $("#add-avatar-ul, #edit-avatar-ul").prop("disabled", false);
+                    }
+                }
+            });
             //regex function to validate email            
             $(this).on("input", function () {  
                 $("#add-modal input[type='email'], #add-modal input[type='password']").bind("keyup change", function () {

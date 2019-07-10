@@ -7,6 +7,7 @@
       "email": "lydia@catalystweb.com.au",
       "password": "80692",
       "avatar": "red-head",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -16,7 +17,8 @@
       "title": "Brother in law",
       "email": "newy@gmail.com",
       "password": "90757",
-      "avatar": "shirt-guy-1",
+      "avatar": "suit-guy-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -25,26 +27,19 @@
       "name": "Neil Wang",
       "title": "Developer",
       "email": "wangy@gmail.com",
-      "password": "74941",
+      "password": "16276",
       "avatar": "suit-guy-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
-    },
-    {
-      "name": "Daniel Kandilas",
-      "title": "Developer",
-      "email": "daniel@catalystweb.com.au",
-      "password": "test",
-      "avatar": "singlet-guy-1",
-      "status": "offline",
-      "block": "false",
-      "id": "kd-l-B4"
     },
     {
       "id": "Qy-L9zF",
       "name": "Julie Kandilas",
       "title": "Wife",
+      "password": "juju",
       "avatar": "lady-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -54,7 +49,8 @@
       "title": "Developer",
       "email": "tuck.nuts@gmail.com",
       "password": "6967",
-      "avatar": "suit-guy-2",
+      "avatar": "shirt-guy",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -62,8 +58,10 @@
       "id": "Y1Tt9GG",
       "name": "Andy Grays",
       "title": "Developer",
-      "email": "10188",
-      "avatar": "hip-guy-1",
+      "email": "andy@gmail.com",
+      "password": "blah",
+      "avatar": "hip-guy",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -74,6 +72,7 @@
       "email": "Sallyf@gmail.com",
       "password": "blah",
       "avatar": "lady-1",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
@@ -84,28 +83,53 @@
       "email": "tom.t@gmail.com",
       "password": "77906",
       "avatar": "suit-guy-2",
+      "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
     {
+      "id": "6I8MPeo",
       "name": "Rachel Luca",
       "title": "Sister in law",
       "email": "r.luca@gmail.com",
       "password": "52120",
       "avatar": "lady-1",
+      "extension": "jpg",
       "status": "offline",
-      "block": "false",
-      "id": "6I8MPeo"
+      "block": "false"
     },
     {
-      "name": "test",
-      "title": "test2",
-      "email": "test@test.com",
-      "password": 5645,
-      "avatar": "",
+      "id": "r9b8wR_",
+      "name": "James Burn",
+      "title": "BA",
+      "email": "james.bum@gmail.com",
+      "password": "43200",
+      "avatar": "suit-guy-1",
+      "extension": "jpg",
       "status": "offline",
-      "block": "false",
-      "id": "rjuXA_8"
+      "block": "false"
+    },
+    {
+      "id": "P7wt1UJ",
+      "name": "Daniel Kandilas",
+      "title": "Developer",
+      "email": "daniel@catalystweb.com.au",
+      "password": "test",
+      "avatar": "me",
+      "extension": "jpg",
+      "status": "offline",
+      "block": "false"
+    },
+    {
+      "id": "iy5Hswx",
+      "name": "Melissa Newman",
+      "title": "Sister in law",
+      "email": "sis@sis.com",
+      "password": "83113",
+      "avatar": "lady-2",
+      "extension": "jpg",
+      "status": "offline",
+      "block": "false"
     }
   ]
 }

@@ -91,7 +91,7 @@ function getData(cookieVar) {
   //display json data source for block list
   function getBlockData() {
     var localHost = "http://localhost:1352/users/";
-    var userBlock = "<option value=''>Select blocked user from list</option>";
+    var userBlock = "<option value=''>Select blocked user from list</option>";   
 
     $.ajax({
       url: localHost,

@@ -1,9 +1,6 @@
 //=require jquery.js
 
 $(window).on("load", function () {
-  $("#searchField").val("");
-  $("input").val('');
-  $("select").val('');  
     
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
@@ -19,18 +16,29 @@ $(window).on("load", function () {
         success: function (result) {
           $.each(result, function (index, data) {              
             if (userID == data.id) {
-                var payload = delete data.id;             
-              $.ajax({
-                url: localHost+userID,
-                type: "DELETE",
-                dataType: "json", 
-                data: payload,               
-                contentType: "application/json",
-                success: function() {
-                  userAddDel() 
-                }         
-              });
-              return;
+              if (cookies == "true" && validate == data.password) {
+                $(".user-mod").css("display","none");
+                $("#block-modal, .user-fail").fadeIn("fast");
+                $(".page-container").css("opacity","0.3");
+                setTimeout(function () {
+                  $("#block-modal, .user-fail").fadeOut("fast");
+                  $("#del-modal").fadeOut("fast");
+                  $(".page-container").css("opacity","1");
+                },2000);
+              } else {      
+                  var payload = delete data.id;             
+                $.ajax({
+                  url: localHost+userID,
+                  type: "DELETE",
+                  dataType: "json", 
+                  data: payload,               
+                  contentType: "application/json",
+                  success: function() {
+                    userAddDel() 
+                  }         
+                });
+                return false;
+              }
             }
           });  
         }   
@@ -45,30 +53,30 @@ $(window).on("load", function () {
         dataType: "json",
         success: function (result) {
           $.each(result, function (index, data) {              
-            if (userID == data.id) {                
-                var payload = { 
-                  id: data.id,
-                  name: data.name,
-                  title: data.title,
-                  email: data.email,
-                  password: data.password,
-                  avatar: data.avatar,
-                  extension: data.extension,
-                  status: data.status,
-                  block: "false" 
-                };
-              $.ajax({
-                url: localHost+userID,
-                type: "PUT",
-                data: JSON.stringify(payload), 
-                dataType: "json",             
-                contentType: "application/json",
-                success: function() {
-                  userAddDel(); 
-                }         
-              });
-              return;
-            }
+            if (userID == data.id) {                  
+                  var payload = { 
+                    id: data.id,
+                    name: data.name,
+                    title: data.title,
+                    email: data.email,
+                    password: data.password,
+                    avatar: data.avatar,
+                    extension: data.extension,
+                    status: data.status,
+                    block: "false" 
+                  };
+                $.ajax({
+                  url: localHost+userID,
+                  type: "PUT",
+                  data: JSON.stringify(payload), 
+                  dataType: "json",             
+                  contentType: "application/json",
+                  success: function() {
+                    userAddDel(); 
+                  }         
+                });
+                return;
+              }            
           });  
         }   
       });

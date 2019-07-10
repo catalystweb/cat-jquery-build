@@ -64,12 +64,24 @@ $(window).on("load", function () {
     
         }
         if (e.target.id == "del-user") {
+            //clear existing field values
+            $("select").val('');
+            $("#checkbox-state").prop("checked",false);
+            if (!$('#swMenu').is(":checked")) { 
+                $('input[type=checkbox]').prop('checked',false);
+            }
             $(".modal-container").fadeOut("fast");
             $("#del-modal").fadeIn("fast");
             $(".user-mod").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "block-user") {
+            //clear existing field values
+            $("select").val('');
+            $("#checkbox-state").prop("checked",false);
+            if (!$('#swMenu').is(":checked")) { 
+                $('input[type=checkbox]').prop('checked',false);
+            }
             $(".modal-container").fadeOut("fast");
             $("#block-modal").fadeIn("fast");
             $(".user-mod").fadeIn("fast");

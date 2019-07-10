@@ -7,7 +7,7 @@
     return this.file.name;
   };
 
-  Upload.prototype.doUpload = function(dataName) {
+  Upload.prototype.doUpload = function(dataID) {
       var fileData = new FormData();
       var fileType = this.file['type'];
       var getFileName = this.file.name;
@@ -34,10 +34,10 @@
             success: function () {
               $(".black-icon").fadeIn("fast");
               $(".flex-inline").css("display","none");
-              if (!dataName) {
+              if (!dataID) {
                 precursor(getFileNameStripped,getFileExt);
               } else {
-                precursor(getFileNameStripped,getFileExt,dataName);
+                precursor(getFileNameStripped,getFileExt,dataID);
               }
             },
             error: function () {              

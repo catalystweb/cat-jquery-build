@@ -93,13 +93,11 @@ function userEdit(getCustom,getCustomExt,getID) {
 function precursor(getFileName,getFileExt,getID) {
   //precursor to fire function with parameters from file upload once submit button clicked 
   $("#add-button").on("click", function (e) {
-      console.log("filename: " +getFileName);
       if ($("#add-avatar option").filter(":selected").text() == "Use example Avatar") {
         userAdd(getFileName,getFileExt);
       }        
   });
   $("#edit-button").on("click", function (e) {
-      console.log("filename: " +getFileName);
       if ($("#edit-avatar option").filter(":selected").text() == "Use example Avatar") {
         userEdit(getFileName,getFileExt,getID);
       }        
@@ -148,7 +146,7 @@ $(document).on("click", function (e) {
 
     //avatar direct edit display
     if ($(e.target).hasClass("user-avatar")) {
-      var dataName = $(e.target).parent().next("div").find(".user-name").data("name");
+      //var dataName = $(e.target).parent().next("div").find(".user-name").data("name");
       var dataID = $(e.target).parent().parent().parent().parent("section").attr("id");
       $("#edit-modal").fadeIn("fast");
       $(".user-mod").fadeIn("fast");
@@ -157,7 +155,8 @@ $(document).on("click", function (e) {
         if($("#edit-avatar-ul").val()) { // returns true if the string is not empty
             var file = $("#edit-avatar-ul")[0].files[0];
             var upload = new Upload(file);
-            upload.doUpload(dataName);
+            console.log("upload: " +dataID);
+            upload.doUpload(dataID);
             $("#edit-button").fadeIn("fast");
         } else { // no file was selected
             $(".black-icon").fadeOut("fast");

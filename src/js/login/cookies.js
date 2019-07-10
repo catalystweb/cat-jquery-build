@@ -2,17 +2,18 @@
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
   var validate = Cookies.get('validate');
+  var path = "css/";
 
     if (cookies == 'true') {
       if (theme == "dark") {
         $("#dark").prop("checked",true);
-        $('link[href="app/dark-theme.css"]').prop("disabled", false);
-        $('link[href="app/light-theme.css"]').prop("disabled", true);
+        $('link[href="'+path+'dark-theme.css"]').prop("disabled", false);
+        $('link[href="'+path+'light-theme.css"]').prop("disabled", true);
       }  else {
         theme == "light"
         $("#light").prop("checked",true);
-        $('link[href="app/dark-theme.css"]').prop("disabled", true);
-        $('link[href="app/light-theme.css"]').prop("disabled", false);
+        $('link[href="'+path+'dark-theme.css"]').prop("disabled", true);
+        $('link[href="'+path+'light-theme.css"]').prop("disabled", false);
       }
       if (menu == "right") {
         $("#swMenu").attr( 'checked', true )

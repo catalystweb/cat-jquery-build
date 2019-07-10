@@ -149,13 +149,14 @@ $(document).on("click", function (e) {
       //var dataName = $(e.target).parent().next("div").find(".user-name").data("name");
       var dataID = $(e.target).parent().parent().parent().parent("section").attr("id");
       $("#edit-modal").fadeIn("fast");
+      $("#edit-avatar-ul").val('');
+      $(".black-icon").css("display","none");
       $(".user-mod").fadeIn("fast");
       $(".page-container").css("opacity","0.3");
       $("#edit-avatar-ul").on("change", function () {  
         if($("#edit-avatar-ul").val()) { // returns true if the string is not empty
             var file = $("#edit-avatar-ul")[0].files[0];
             var upload = new Upload(file);
-            console.log("upload: " +dataID);
             upload.doUpload(dataID);
             $("#edit-button").fadeIn("fast");
         } else { // no file was selected

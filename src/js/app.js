@@ -64,104 +64,6 @@ $(window).on("load", function () {
   }
   getDelData();
 
-  //show user add or delete successfully modal 
-  function userAddDel() {
-      $(".user-mod").css("display","none");
-      $(".user-success").fadeIn("fast");
-      setTimeout(function () {
-        $(".content-wrapper").css("display","none");
-        $("footer").css("display","none");
-        getData(cookies);
-        getDelData();
-        getBlockData();
-      },2000);
-  }
-
-  //update json data when display values changed  
-  function userDirectAdd(getClass,getText,getID) {
-      var localHost = "http://localhost:1352/users/";
-      
-      //update json data with new name value
-      if (getClass == "user-name") {
-        $.ajax({
-          url: localHost,
-          cache: false,
-          dataType: "json",
-          success: function (result) {
-            $.each(result, function (index, data) {             
-              if (getText != data.name) {
-                if (getID == data.id) {                
-                    var payload = { 
-                      id: data.id,
-                      name: getText,
-                      title: data.title,
-                      email: data.email,
-                      password: data.password,
-                      avatar: data.avatar,
-                      extension: data.extension,
-                      status: data.status,
-                      block: data.block 
-                    };
-                  $.ajax({
-                    url: localHost +getID,
-                    type: "PUT",
-                    data: JSON.stringify(payload), 
-                    dataType: "json",             
-                    contentType: "application/json",
-                    success: function(result) {
-                      $("#edit-modal").fadeIn("fast");
-                      $(".page-container").css("opacity","0.3");
-                      userAddDel()
-                    }         
-                  });
-                  return
-                }
-              }
-            });  
-          }   
-        });
-      
-      //update json data with new title value
-      } else {
-        $.ajax({
-          url: localHost,
-          cache: false,
-          dataType: "json",
-          success: function (result) {
-            $.each(result, function (index, data) {    
-              if (getText != data.title) {          
-                if (getID == data.id) {                
-                    var payload = { 
-                      id: data.id,
-                      name: data.name,
-                      title: getText,
-                      email: data.email,
-                      password: data.password,
-                      avatar: data.avatar,
-                      extension: data.extension,
-                      status: data.status,
-                      block: data.block 
-                    };
-                  $.ajax({
-                    url: localHost +getID,
-                    type: "PUT",
-                    data: JSON.stringify(payload), 
-                    dataType: "json",             
-                    contentType: "application/json",
-                    success: function() {
-                      $("#add-modal").fadeIn("fast");
-                      $(".page-container").css("opacity","0.3");
-                      userAddDel()
-                    }         
-                  });
-                  return;
-                }
-              }
-            });  
-          }   
-        });   
-      }
-  }
     
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
@@ -292,7 +194,7 @@ $(window).on("load", function () {
       size = size*2; // average width of a char
       $(this).css('width',size*6);    
     });
-    userDirectAdd(classVal,textVal,idVal);
+    userDirectEdit(classVal,textVal,idVal);
   });
   
   

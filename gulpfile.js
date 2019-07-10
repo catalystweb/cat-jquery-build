@@ -16,7 +16,9 @@ gulp.task('js', function() {
             'src/js/getData.js',
             'src/js/login.js',
             'src/js/uploadfile.js',
-            'src/js/useraddedit.js',            
+            'src/js/useradd.js', 
+            'src/js/userdirectedit.js',
+            'src/js/user-add-del-success.js',           
             'src/js/handlers.js',
             'src/js/app.js'        
         ])        

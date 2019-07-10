@@ -1,4 +1,4 @@
-Demo app build v0.4
+Demo user/admin app build v0.4
 
 This is a demo applicaiton to demonstrate my development skills through the iterative process, this should give an in-depth overview, of my logic and thought processes as well as the execution of them.
 

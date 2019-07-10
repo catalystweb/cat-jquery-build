@@ -43,10 +43,16 @@
     return false;    
 }
 
-function userEdit(getName,getID) {
+function userEdit(getCustom,getCustomExt,getID) {
   var localHost = "http://localhost:1352/users/"; 
   //update json data with new avatar value 
-    var editAvatar = $("#edit-avatar option:selected").val(); 
+    if (getCustom == null) {
+      var editAvatar = $("#edit-avatar option:selected").val();   
+      var editExtension = "jpg" 
+    } else {
+      editAvatar = getCustom
+      editExtension = getCustomExt
+    } 
     $.ajax({
       url: localHost,
       cache: false,
@@ -61,7 +67,7 @@ function userEdit(getName,getID) {
                 email: data.email,
                 password: data.password,
                 avatar: editAvatar,
-                extension: ""+data.extension+"",
+                extension: editExtension,
                 status: data.status,
                 block: data.block 
               };
@@ -84,7 +90,7 @@ function userEdit(getName,getID) {
     });  
 }
 
-function precursor(getFileName,getFileExt) {
+function precursor(getFileName,getFileExt,getID) {
   //precursor to fire function with parameters from file upload once submit button clicked 
   $("#add-button").on("click", function (e) {
       console.log("filename: " +getFileName);
@@ -92,12 +98,12 @@ function precursor(getFileName,getFileExt) {
         userAdd(getFileName,getFileExt);
       }        
   });
-  // $("#edit-button").on("click", function (e) {
-  //     console.log("filename: " +getFileName);
-  //     if ($("#edit-avatar option").filter(":selected").text() == "Use example Avatar") {
-  //       userEdit(getFileName,getFileExt);
-  //     }        
-  // });
+  $("#edit-button").on("click", function (e) {
+      console.log("filename: " +getFileName);
+      if ($("#edit-avatar option").filter(":selected").text() == "Use example Avatar") {
+        userEdit(getFileName,getFileExt,getID);
+      }        
+  });
 }
 
 //show user pass after record added
@@ -140,7 +146,7 @@ $(document).on("click", function (e) {
         });
     }
 
-    //avatar edit display
+    //avatar direct edit display
     if ($(e.target).hasClass("user-avatar")) {
       var dataName = $(e.target).parent().next("div").find(".user-name").data("name");
       var dataID = $(e.target).parent().parent().parent().parent("section").attr("id");
@@ -164,7 +170,7 @@ $(document).on("click", function (e) {
           $(".black-icon").fadeOut("fast");
           $("#edit-button").fadeIn("fast");
           $("#edit-button").on("click", function () {
-            userEdit(dataName,dataID);
+            userEdit(null,null,dataID);
           });
         } else {
           $("#edit-button").fadeOut("fast");

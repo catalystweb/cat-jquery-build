@@ -4,66 +4,6 @@ $(window).on("load", function () {
   $("#searchField").val("");
   $("input").val('');
   $("select").val('');  
-
-  //display json data source for block list
-  function getBlockData() {
-    var localHost = "http://localhost:1352/users/";
-    var userBlock = "<option value=''>Select blocked user from list</option>";
-
-    $.ajax({
-      url: localHost,
-      cache: false,
-      data: {},
-      dataType: "jsonp",
-      success: function (result) {
-        $.each(result, function (index, data) {
-          if (data.block == "true") {
-            userBlock +=
-              "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + "</option>";
-          }
-          $("#block-list").html(userBlock);
-        });
-        var select = $('#block-list');
-        select.html(select.find('option:gt(0)').sort(function(x, y) {
-          // to change to descending order switch "<" for ">"
-          return $(x).text() > $(y).text() ? 1 : -1;
-        }));
-        select.prepend("<option value='' selected='true'>Select blocked user from list</option>");
-      }
-    });
-  }
-  getBlockData();
-
-  //display json data source for delete list
-  function getDelData() {
-    var localHost = "http://localhost:1352/users/";
-    var userDel =
-      "<option value='' selected='true'>Select user from list</option>";
-
-    $.ajax({
-      url: localHost,
-      cache: false,
-      data: {},
-      dataType: "jsonp",
-      success: function (result) {
-        $.each(result, function (index, data) {
-          userDel +=
-            "<option id='" + data.id + "' value='" + data.name + "'>" + data.name + '</option>';
-          $("#del-list").html(userDel);
-        });
-
-        var select = $('#del-list');
-        select.html(select.find('option:gt(0)').sort(function(x, y) {
-          // to change to descending order switch "<" for ">"
-          return $(x).text() > $(y).text() ? 1 : -1;
-        }));
-        select.prepend("<option value='' selected='true'>Select user from list</option>");
-
-      }
-    });
-  }
-  getDelData();
-
     
   //onclick event handler for api interactions
   $(document).on("click", function (e) {

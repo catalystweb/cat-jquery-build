@@ -11,16 +11,16 @@ var browserSync = require('browser-sync').create();
 gulp.task('js', function() {
     return src([
             'src/js/jquery.js',
-            'src/js/cookies-plugin.js',
+            'src/js/login/cookies-plugin.js',
             'src/js/login/cookies.js',            
             'src/js/getData.js',
             'src/js/login/login.js',
             'src/js/user/upload.js',
             'src/js/user/user-add.js', 
             'src/js/user/user-direct-edit.js',
-            'src/js/user/user-add-del-success.js',           
-            'src/js/handlers.js',
-            'src/js/app.js'        
+            'src/js/user/user-add-del-success.js',                        
+            'src/js/handlers.js',            
+            'src/js/app.js'       
         ])        
         //.pipe(babel({ presets: ['@babel/env']}))
         .pipe(include())

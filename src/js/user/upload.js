@@ -34,7 +34,11 @@
             success: function () {
               $(".black-icon").fadeIn("fast");
               $(".flex-inline").css("display","none");
-                precursor(getFileNameStripped,getFileExt)
+              if (!dataName) {
+                precursor(getFileNameStripped,getFileExt);
+              } else {
+                precursor(getFileNameStripped,getFileExt,dataName);
+              }
             },
             error: function () {              
             },

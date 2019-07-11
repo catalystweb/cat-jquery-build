@@ -111,7 +111,10 @@ select {
   @include modal-container;
   background: $black;
   color: $silver;
-  border:1px solid $silver;
+  border:1px solid $silver;  
+  .padding {
+    padding:0;
+  }
 }
 
 /* user-module */

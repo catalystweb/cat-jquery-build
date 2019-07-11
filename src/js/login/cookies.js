@@ -2,9 +2,10 @@
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
   var validate = Cookies.get('validate');
+  var tutorial = Cookies.get('tutorial');
   var path = "css/";
-
-    if (cookies == 'true') {
+  
+  if (cookies == 'true') {
       if (theme == "dark") {
         $("#dark").prop("checked",true);
         $('link[href="'+path+'dark-theme.css"]').prop("disabled", false);

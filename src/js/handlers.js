@@ -55,6 +55,46 @@ $(window).on("load", function () {
         }         
         
         //modal display window
+        if (e.target.id == "ok-button") {
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-search").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $("footer").addClass("highlighter");
+            $(".page-container").css("opacity", "0.7");
+        }
+
+        if (e.target.id == "gotit-button") {
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-clickuser").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".show-avatar").addClass("highlighter");
+            $(".user-info-child").addClass("highlighter");
+            $(".page-container").css("opacity", "0.7");
+        }
+
+        if (e.target.id == "gotit2-button") {
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-block").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".user-button").addClass("highlighter");
+            $(".page-container").css("opacity", "0.7");
+        }
+
+        if (e.target.id == "gotit3-button") {
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-final").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".arrow-icon").addClass("highlighter");
+            $(".page-container").css("opacity", "0.7");
+        }
+
+        if (e.target.id == "gotit4-button") {
+            $(".modal-container").fadeOut("fast");
+            $(".page-container").css("opacity", "1");
+            $("div, span, button, footer").removeClass("highlighter");
+            tutorial = Cookies.set('tutorial','complete');
+        }
+
         if (e.target.id == "add-user") {
             $(".modal-container").fadeOut("fast");
             $("#add-modal").fadeIn("fast");

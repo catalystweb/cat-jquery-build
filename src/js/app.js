@@ -1,7 +1,6 @@
 //=require jquery.js
 
 $(window).on("load", function () {    
-
   //onblur event handler callback for editable input
   $(document).on("blur", ".user-name, .user-title", function() { 
     var classVal = $(this).attr("class");
@@ -70,13 +69,13 @@ $(window).on("load", function () {
           $(".user-success").fadeOut("fast");
           $(".content-wrapper").css("display","none");
           $("footer").css("display","none");
-          getData(cookies);
+          getData(cookies,tutorial);
           getDelData();
           getBlockData();
 
         } else {  
           $(".user-success").fadeOut("fast");
-          getData(cookies);
+          getData(cookies,tutorial);
           getDelData();
           getBlockData();
         }     
@@ -91,18 +90,19 @@ $(window).on("load", function () {
           }
       }
       if ($(".modal-container").is(":visible")) {
-          if (e.key === "Escape" && !$("#login-modal").is(":visible")) {
+          if (e.key === "Escape" && !$("#login-modal").is(":visible") && !$(".tutorial-selector").is(":visible")) {
+            console.log("inside");
             $(".modal-container").fadeOut("fast");  
             if (! $('input[type="radio').is(':radio')) {
                 $("input").val('');
             }
             if ($(".pass").is(":visible")) {
               $(".user-success").fadeOut("fast");
-              getData(cookies);
+              getData(cookies,tutorial);
     
             } else {  
               $(".user-success").fadeOut("fast");
-              getData(cookies);
+              getData(cookies,tutorial);
             }
           }
         }

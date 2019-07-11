@@ -1,0 +1,231 @@
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
+@import '../other/modal.scss';
+
+.page-container {
+  @include page-container;
+  background: $light-grey;
+}
+
+.content-wrapper {
+  @include content-wrapper;
+  background: $silver;
+}
+
+header {
+  @include header;
+  background: $silver;
+  border-bottom: 1px solid $black;
+  color: $black;
+}
+
+.side-menu-wrapper {
+  @include side-menu-wrapper;
+  background: $silver;
+  border-bottom:1px solid $black;
+  color: $black;
+}
+
+.slideIn {
+  margin-left:0vw;
+  width:$width-100;
+  background:$silver;
+  transition:margin-left 0.4s ease-in-out;
+  padding-left:1px;
+  margin-top:-1px;
+}
+
+.slideOut {
+  margin-left:100vw;
+  width:$width-100;
+  background:$silver;
+  transition:margin-left 0.4s ease-in-out;
+}
+
+footer {
+  @include footer;
+  background: $silver;
+}
+
+.sort-list {
+  display:flex;
+  width: calc($width-100 - 45px);
+  font-size: 13px;
+  padding: 10px 0px 0px 25px;
+  background: $light-grey;
+  color: $black;
+  cursor: $cursor;
+}
+
+.close:hover {
+  background: $grey;
+  color: $white;
+}
+
+button {
+  @include button;
+  border: 1px solid $grey;
+  background: $white;
+  color: $grey;
+  cursor: $cursor;
+}
+
+button:hover {
+  color: $white;
+  background: $grey;
+}
+
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
+select {
+  width: $width-100;
+  color: $dark-grey;
+  background: $white;
+  border-radius: 4px;
+  padding: 10px 0px 10px 0px;
+  text-indent: 10px;
+}
+
+.file-input {
+  color: $dark-grey;
+  background: $white;
+  border-radius: 4px;
+  padding: 10px 0 10px 0;
+  display: block;
+  width: 85px;
+  cursor: $cursor;
+}
+
+.file-input:hover {
+  color: $white;
+  background: $grey;
+}
+
+/* modal css */
+
+.modal-container {
+  @include modal-container;
+  background: $silver;
+  color: $black;
+  .padding {
+    padding:0;
+  }
+}
+
+.text-center {
+  text-align: center;
+  padding-bottom:10px;
+}
+
+/* user-module */
+.user-wrapper {
+  width: $width-100;
+  overflow: auto;
+  color: $black;
+  background: $light-grey;
+}
+
+.user-avatar {
+  cursor:$cursor;
+  background-size: cover;
+  width: 3em;
+  height: 3em;
+  border: 0.2em solid $grey;
+  border-radius: 50%;
+  background: $white;
+  margin-left: 1em;
+  float: left;
+}
+
+.user-nodata {
+  padding-left: 20px;
+  background: $light-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* arrow-icons */
+.arrow-icon {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  border: 0.1em solid $white;
+  border-radius: 50%;
+  background: $white;
+  margin-left: 0.75em;
+  cursor: $cursor;
+  transition: 0.4s ease-in-out;
+}
+
+.arrow-icon:after {
+  content: "";
+  display: inline-block;
+  margin-top: 0.6em;
+  margin-left: 0.75em;
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 0.1em solid $border-grey;
+  border-right: 0.1em solid $border-grey;
+  -moz-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.arrow-spin-up {
+  transform: rotate(0deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-down {
+  transform: rotate(180deg) !important;
+  transition:  400ms ease-in-out;
+}
+
+.arrow-spin-down:after {
+  margin-left:0.7em;
+}
+
+.arrow-spin-left {
+  transform: rotate(90deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-right {
+  transform: rotate(270deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-sort {
+  @include arrow-sort;
+}
+.arrow-sort {
+    .empty {
+      position: absolute;
+      top: 9px;
+      left: -21px;
+      width: 0;
+      border-bottom: solid 36px $black;
+      border-right: solid 21px transparent;
+      border-left: solid 21px transparent;
+  }
+}
+
+input.user-name, input.user-title {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background: $light-grey;
+  border: none;
+  width: fit-content;
+  color: $black;
+  width:150px;
+}
+
+input.user-title {
+  display:block;
+}
+
+.fas {
+  color:$black;
+  margin-left:20px;
+  display:none;
+}

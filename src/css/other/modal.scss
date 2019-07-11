@@ -1,0 +1,58 @@
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
+
+.modal-triangle-bottom-container {
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    margin-left: calc(50% - 55px);
+    margin-top: 25px;
+}
+.modal-triangle-left-container {
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    margin-left: -55px;
+    margin-top: -100px;
+}
+.modal-triangle-right-container {
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    margin-left: calc(40% + 156px);
+    margin-top: -90px;
+}
+
+.modal-triangle-bottom {
+    border-top: $triangle-border $silver;
+    border-left: $triangle-border transparent;
+    border-right: $triangle-border transparent;
+    filter: drop-shadow(0px 10px 4px rgba(0, 0, 0, .3));
+}
+
+.modal-triangle-left {
+    border-right: $triangle-border $silver;
+    border-bottom: $triangle-border transparent;
+    border-top: $triangle-border transparent;
+    filter: drop-shadow(-7px 1px 4px rgba(0, 0, 0, 0.3));
+}
+.modal-triangle-right {
+    border-left: $triangle-border $silver;
+    border-bottom: $triangle-border transparent;
+    border-top: $triangle-border transparent;
+    filter: drop-shadow(10px 2px 5px rgba(0, 0, 0, .3));
+}
+
+#welcome-modal, #welcome-search, #welcome-clickuser, #welcome-block, #welcome-final {
+    max-width: 250px;
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.6);
+}
+
+.modal-login {
+    max-width:300px;
+}
+
+#gotit3-button {
+    box-shadow:none !important;
+    border:1px solid $grey !important;
+}

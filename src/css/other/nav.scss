@@ -1,31 +1,26 @@
-#add-user {
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
+@import '../other/modal.scss';
+
+#add-user, #del-user, #block-user, 
+#change-theme, #log-in, #log-out {
   cursor: pointer;
 }
 
-#del-user {
-  cursor: pointer;
-}
-
-#block-user {
-  cursor: pointer;
-}
-
-#change-theme {
-  cursor: pointer;
-}
-
-#log-in {
-  cursor: pointer;
-}
-
-#log-out {
-  cursor: pointer;
-}
-
-.nav {
+.nav, .nav2 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  
+  ul {
+    margin-top: 0px;
+    list-style-type: none;
+    padding-inline-start:0;
+    width:100%;
+  }
+  li {
+    padding: 3px 0px 3px 0px;
+  }
 }
 
 .nav2 {
@@ -43,17 +38,6 @@
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
-}
-
-nav ul, .nav2 ul {
-  margin-top: 0px;
-  list-style-type: none;
-  padding-inline-start:0;
-  width:100%;
-}
-
-nav li, .nav2 li {
-  padding: 3px 0px 3px 0px;
 }
 
 /* search module */

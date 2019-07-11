@@ -13,6 +13,7 @@
                     if (getEmail == data.email && getPass == data.password) {
                       Cookies.set('user','true');
                       Cookies.set('validate',''+getPass+'');
+                      Cookies.set('tutorial','complete');
                       $("#login-modal").fadeOut("fast");
                       setTimeout(function() {
                         location.reload();
@@ -37,8 +38,7 @@
             dataType: "json",
             success: function (result) {   
               $.each(result, function (index, data) {
-                    if (getPass == data.password) {
-                      console.log("password: " +getPass);
+                    if (getPass == data.password) { 
                           var payload = { 
                             id: data.id,
                             name: data.name,

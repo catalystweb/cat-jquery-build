@@ -1,4 +1,4 @@
-function getData(cookieVar) {
+function getData(cookieVar,tutorialVar) {
     var localHost = "http://localhost:1352/users/";
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {
@@ -42,7 +42,8 @@ function getData(cookieVar) {
                   '<div class="user-avatar show-avatar" data-name=' + data.avatar +' style="background-image: url(img/'+ data.avatar + '.' +data.extension +');"></div >' +
                   '<div class="user-status ' + data.status + '"></div>' +
                   '</div >' +
-                  '<div class="user-info"><div>' +
+                  '<div class="user-info">' +
+                  '<div class="user-info-child">' +
                   '<input class="user-name" data-name="'+ data.name + '" value="' + data.name + '"></input><span class="hideshow display-inline padding-left-10"><i class="fas fa-arrow-left"></i></span>' +
                   '<input class="user-title" value="' + data.title + '"></input>' +
                   '</div>' +
@@ -68,6 +69,9 @@ function getData(cookieVar) {
                     $("li#log-in").css("display","none");
                   } else {
                     $("li#log-out").css("display","none");
+                  }
+                  if (tutorialVar != "complete") {
+                    $("#welcome-modal").fadeIn("fast");
                   }
                   $(".header-container").fadeIn("fast");
                   $(".page-container").fadeIn("slow");

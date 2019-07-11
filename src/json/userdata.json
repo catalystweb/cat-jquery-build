@@ -6,7 +6,7 @@
       "title": "Daughter",
       "email": "lydia@catalystweb.com.au",
       "password": "80692",
-      "avatar": "red-head",
+      "avatar": "lady-1",
       "extension": "jpg",
       "status": "offline",
       "block": "false"
@@ -49,14 +49,14 @@
       "title": "Developer",
       "email": "tuck.nuts@gmail.com",
       "password": "6967",
-      "avatar": "shirt-guy",
+      "avatar": "wife-beater",
       "extension": "jpg",
       "status": "offline",
       "block": "false"
     },
     {
       "id": "Y1Tt9GG",
-      "name": "Andy Grays",
+      "name": "Andy Gray",
       "title": "Developer",
       "email": "andy@gmail.com",
       "password": "blah",
@@ -93,7 +93,7 @@
       "title": "Sister in law",
       "email": "r.luca@gmail.com",
       "password": "52120",
-      "avatar": "lady-1",
+      "avatar": "lady-2",
       "extension": "jpg",
       "status": "offline",
       "block": "false"

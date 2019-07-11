@@ -18,9 +18,7 @@ $(window).on("load", function () {
  
     //jquery global click event handler
     $(document).on("click", function(e) {
-
-        var path = "css/";
-        
+        var path = "css/";        
         if (e.target.id == "submit-theme") {
             if ($("#dark").is(":checked")) {
                 $('link[href="'+path+'dark-theme.css"]').prop("disabled", false);
@@ -54,17 +52,56 @@ $(window).on("load", function () {
             }
             $("#change-theme").fadeOut("fast");
             $(".page-container").css("opacity", "1");
-        } 
+        }         
         
+        //modal display window
+        if (e.target.id == "ok-button") {
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-search").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $("footer").addClass("highlighter");
+        }
+
+        if (e.target.id == "gotit-button") {
+            $("div, span, button, footer").removeClass("highlighter");
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-clickuser").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".show-avatar").addClass("highlighter");
+            $(".user-info-child").addClass("highlighter");
+        }
+
+        if (e.target.id == "gotit2-button") {
+            $("div, span, button, footer").removeClass("highlighter");
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-block").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".user-button").addClass("highlighter");
+        }
+
+        if (e.target.id == "gotit3-button") {
+            $("div, span, button, footer").removeClass("highlighter");
+            $(".modal-container").fadeOut("fast");
+            $("#welcome-final").fadeIn("fast");
+            $(".user-mod").fadeIn("fast");
+            $(".arrow-icon").addClass("highlighter");
+        }
+
+        if (e.target.id == "gotit4-button") {
+            $(".modal-container").fadeOut("fast");
+            $("div, span, button, footer").removeClass("highlighter");
+            tutorial = Cookies.set('tutorial','complete');
+        }
+
         if (e.target.id == "add-user") {
             $(".modal-container").fadeOut("fast");
+            $("#add-avatar-ul").val('');
             $("#add-modal").fadeIn("fast");
             $(".user-mod").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");
     
         }
         if (e.target.id == "del-user") {
-            //clear existing field values
             $("select").val('');
             $("#checkbox-state").prop("checked",false);
             if (!$('#swMenu').is(":checked")) { 
@@ -76,7 +113,6 @@ $(window).on("load", function () {
             $(".page-container").css("opacity", "0.3");
         }
         if (e.target.id == "block-user") {
-            //clear existing field values
             $("select").val('');
             $("#checkbox-state").prop("checked",false);
             if (!$('#swMenu').is(":checked")) { 
@@ -186,6 +222,7 @@ $(window).on("load", function () {
             }
         }
 
+        //menu arrow direction spin 
         if (e.target.classList[0] == "arrow-icon") {
             if ($(".side-menu-wrapper").is(":visible")) {
                 $("#del-modal").fadeOut("fast");
@@ -228,6 +265,7 @@ $(window).on("load", function () {
             }
         }
         
+        //flip sort arrow when sort function called
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             if ($(".arrow-sort").hasClass("arrow-spin-down")) {
                 $(".arrow-sort").removeClass("arrow-spin-down");
@@ -238,7 +276,7 @@ $(window).on("load", function () {
             }
         }
 
-        // call sort function for asc and desc on click event    
+        // call sort function for asc and desc onclick event    
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             var getStateVal = document.getElementsByClassName("sort-list")[0].id;    
             $(".sort-class").sort(function (a, b) {

@@ -1,10 +1,12 @@
   var cookies = Cookies.get('user');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
-  var validate = Cookies.get('validate');
+  var validatepass = Cookies.get('validate');
+  var fileuploaded = Cookies.get('fileuploaded');
+  var tutorial = Cookies.get('tutorial');
   var path = "css/";
-
-    if (cookies == 'true') {
+  
+  if (cookies == 'true') {
       if (theme == "dark") {
         $("#dark").prop("checked",true);
         $('link[href="'+path+'dark-theme.css"]').prop("disabled", false);
@@ -20,7 +22,7 @@
         $(".arrow-icon").removeClass("arrow-spin-down").addClass("arrow-spin-left");
         $("header").removeClass("slideDown");
       }
-      if (validate != null) {
+      if (validatepass != null) {
         var localHost = "http://localhost:1352/users/";
             $.ajax({
                 url: localHost,
@@ -30,7 +32,7 @@
                 success: function (result) {  
                     $.each(result, function (index, data) {
                         if (cookies == 'true') {
-                            if (validate == data.password) {
+                            if (validatepass == data.password) {
                                   var payload = { 
                                     id: data.id,
                                     name: data.name,
@@ -52,7 +54,7 @@
                                     var currentUser = "";
                                     currentUser += "<li class='current-user'>current user: "+ data.name +" </li>";
                                     $(".current-user").replaceWith(currentUser);   
-                                    getData("true");
+                                    getData(cookies,tutorial);
                                   }         
                                 });           
                             }
@@ -61,7 +63,12 @@
                 }
             });
         } 
-  } else { 
-    $(".side-menu-wrapper").css("height","141px");
-    $("#login-modal").fadeIn("fast");
+  } else {       
+    if (fileuploaded == 'true') {
+      $(".side-menu-wrapper").css("height","141px");
+      getData(null,tutorial);
+    } else {  
+      $(".side-menu-wrapper").css("height","141px");
+      $("#login-modal").fadeIn("fast");
+    }
   }  

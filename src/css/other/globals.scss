@@ -1,0 +1,190 @@
+//global styles
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
+@import '../other/modal.scss';
+
+html {
+  height: $height-100;
+}
+
+nav {
+  width: $width-100;
+  padding: 5px 10px 0px 0px;
+}
+
+body {
+  height: $height-100;
+  margin: 0;
+  overflow: hidden;
+  background: $white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: $dark-grey;
+  background: $black;
+}
+
+section {
+  width: $width-100;
+  background: $light-grey;
+}
+
+.header-container {
+  @include header-container;
+  background: $light-grey;
+}
+
+.login-container {
+  height:$height-100;
+  width:$width-100;
+  background:$black;
+  transition: 0.3s ease-in-out;
+}
+  
+.logo {
+  display:flex;
+  align-items: center;
+  padding-left: 15px;
+  cursor: pointer;
+}
+  
+.catalyst {
+  display:none;
+}
+  
+.cat-inner {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  width:200px;
+}
+
+.slideDown {
+  min-height: 205px;
+  transition: min-height 0.3s ease-in-out;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+.flex-inline {
+  color:$dark-red;
+  display:inline-flex;
+  margin-left:20px; 
+}
+
+.display-inline {
+  display:inline-block;
+}
+
+.padding-left-10 {
+  padding-left:10px;
+}
+
+.current-user {
+  display: inline-flex;
+  width: calc(100% - 110px);
+  justify-content: center;
+  cursor:initial;
+  font-size:13px;
+}
+
+li.current-user {
+  padding-top:10px;
+}
+
+.transition {
+  transition: color 0.2s ease-out, background 0.2s ease-in;
+}
+
+select {
+  text-indent: 3px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -ms-appearance: checkbox;
+}
+
+input[type="file"] {
+  display:none;
+}
+
+#noData {
+  display: flex;
+  height: $height-100;
+}
+
+.defaultFont {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13.3px;
+}
+
+.offline {
+  background: $light-grey;
+}
+
+.online {
+  background: $green;
+}
+
+.afk {
+  background: $hot-pink;
+}
+
+.green {
+  display:flex; 
+  justify-content: center; 
+  color: $dark-green; 
+  font-weight: bold;
+}
+
+.silver {
+  color:$silver;
+}
+
+.red {
+  display:flex; 
+  justify-content: center; 
+  color: $dark-red; 
+  font-weight: bold;
+}
+
+.border {
+  border: 1px solid $grey;
+}
+
+.close {
+  @include close;
+  border: 2px solid $grey;
+  cursor: $cursor;
+}
+
+.margin {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.text-center {
+  text-align: $text-center;
+}
+
+.highlighter {
+  box-shadow: 0 0 10px 2px rgba(139,0,0,0.7);
+  border:2px solid $dark-red !important;
+}
+
+.margin-right-zero {
+  margin-right:0 !important;
+}
+

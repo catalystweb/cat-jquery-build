@@ -1,0 +1,235 @@
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
+@import '../other/modal.scss';
+
+.page-container {
+  @include page-container;
+  background: $black;
+}
+
+.content-wrapper {
+  @include content-wrapper;
+  background: $black;
+}
+
+header {
+  @include header;
+  background: $catalyst-blue;
+  border-bottom: 1px solid $grey;
+  color: $silver;
+}
+
+.side-menu-wrapper {
+  @include side-menu-wrapper;
+  background: $black;
+  border-bottom:1px solid $grey;
+  color: $silver;
+}
+
+.slideIn {
+  display:flex !important;
+  margin-left:0vw;
+  width:$width-100;
+  background:$catalyst-blue;
+  transition:margin-left 0.3s ease-in-out;
+  padding-left:1px;
+  margin-top:-1px;
+}
+
+.slideOut {
+  margin-left:100vw;
+  width:$width-100;
+  background:$catalyst-blue;
+  transition:margin-left 0.3s ease-in-out;
+}
+
+footer {
+  @include footer;
+  border-top: 1px solid $grey;
+  background: $catalyst-blue;
+}
+
+.sort-list {
+  display:flex;
+  width: calc($width-100 - 45px);
+  font-size: 13px;
+  padding: 10px 0px 0px 25px;
+  background: $black;
+  color: $white;
+  cursor: $cursor;
+}
+
+.close:hover {
+  background: $grey;
+  color: $white;
+}
+
+button {
+  @include button;
+  border: 1px solid $grey;
+  background: $black;
+  color: $grey;
+  cursor: $cursor;
+}
+
+button:hover {
+  color: $white;
+  background: $catalyst-blue;
+}
+
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
+select {
+  width: $width-100;
+  color: $black;
+  background: $silver;
+  border-radius: 4px;
+  padding: 10px 0px 10px 0px;
+  text-indent: 10px;
+}
+
+.file-input {
+  color: $silver;
+  background: $black;
+  border-radius: 4px;
+  padding: 10px 0 10px 0;
+  display: block;
+  width: 85px;
+  cursor: $cursor;
+}
+
+.file-input:hover {
+  color: $white;
+  background: $catalyst-blue;
+}
+
+.black-icon {
+  color:$silver;
+}
+
+/* modal css */
+.modal-container {
+  @include modal-container;
+  background: $black;
+  color: $silver;
+  border:1px solid $silver;  
+  .padding {
+    padding:0;
+  }
+}
+
+/* user-module */
+.user-wrapper {
+  width: $width-100;
+  overflow: auto;
+  color: $silver;
+  background: $black;
+}
+
+.user-container {
+  border-bottom: 1px solid $grey;
+}
+
+.user-avatar {
+  cursor:$cursor;
+  background-size: cover;
+  width: 3em;
+  height: 3em;
+  border: 0.2em solid $grey;
+  border-radius: 50%;
+  background: $white;
+  margin-left: 1em;
+  float: left;
+}
+
+.user-nodata {
+  padding-left: 20px;
+  background: $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* arrow-icons */
+.arrow-icon {
+  display: inline-block;
+  width: 2em;  
+  height: 2em;  
+  border: 0.1em solid $grey;  
+  border-radius: 50%;  
+  background: $black;  
+  margin-left: 0.75em;  
+  cursor: $cursor;
+}
+
+.arrow-icon:after {
+  content: "";
+  display: inline-block;
+  margin-top: 0.6em;
+  margin-left: 0.70em;
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 0.1em solid $white;
+  border-right: 0.1em solid $white;
+  -moz-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.arrow-spin-up {
+  transform: rotate(0deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-down {
+  transform: rotate(180deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-down:after {
+  margin-left:0.7em;
+}
+
+.arrow-spin-left {
+  transform: rotate(90deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-spin-right {
+  transform: rotate(270deg) !important;
+  transition: 400ms ease-in-out;
+}
+
+.arrow-sort {
+  @include arrow-sort;
+}
+.arrow-sort {
+  .empty {
+    position: absolute;
+    top: 9px;
+    left: -21px;
+    width: 0;
+    border-bottom: solid 36px $white;
+    border-right: solid 21px transparent;
+    border-left: solid 21px transparent;
+  }
+}
+
+input.user-name, input.user-title {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background: $black;
+  border: none;
+  width: fit-content;
+  color: $silver;
+  width:150px;
+}
+
+input.user-title {
+  display:block;
+}
+
+.fas {
+  color:$silver;
+  margin-left:20px;
+  display:none;
+}

@@ -1,57 +1,34 @@
-
-@import '../other/colors.scss';
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
 
 .page-container {
-  max-width:1024px !important;
-  margin:0 auto;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 65px);
+  @include page-container;
   background: $black;
-  transition:0.3s ease-in-out;
 }
 
 .content-wrapper {
-  flex: 1 1 auto;
-  position: relative;
-  overflow-y: auto;
+  @include content-wrapper;
   background: $black;
 }
 
 header {
-  height: 65px;
-  min-height: 65px;
-  transition: min-height 0.3s ease-in-out;
-  overflow: hidden;
+  @include header;
   background: $catalyst-blue;
   border-bottom: 1px solid $grey;
   color: $silver;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .side-menu-wrapper {
-  height: 161px;
-  width:100%;
-  max-width:1023px;
-  margin-left: 100vw;
-  transition: margin-left 0.3s ease-in-out;
-  overflow: hidden;
+  @include side-menu-wrapper;
   background: $black;
   border-bottom:1px solid $grey;
   color: $silver;
-  display: flex;
-  position: absolute;
-  margin-right: 0;
-  top: 66px;
-  justify-content: center;
-  z-index: 9999;
 }
 
 .slideIn {
   display:flex !important;
   margin-left:0vw;
-  width:100%;
+  width:$width-100;
   background:$catalyst-blue;
   transition:margin-left 0.3s ease-in-out;
   padding-left:1px;
@@ -60,42 +37,25 @@ header {
 
 .slideOut {
   margin-left:100vw;
-  width:100%;
+  width:$width-100;
   background:$catalyst-blue;
   transition:margin-left 0.3s ease-in-out;
 }
 
 footer {
-  flex: 0 0 auto;
-  z-index: 1;
-  max-width:1024px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  @include footer;
   border-top: 1px solid $grey;
   background: $catalyst-blue;
-  position:sticky;
-  bottom:0;
 }
 
 .sort-list {
   display:flex;
-  width: calc(100% - 45px);
+  width: calc($width-100 - 45px);
   font-size: 13px;
   padding: 10px 0px 0px 25px;
   background: $black;
   color: $white;
-  cursor: pointer;
-}
-
-.close {
-  display: inline-flex;
-  border: 2px solid $grey;
-  border-radius: 12px;
-  width: 20px;
-  padding-bottom: 1px;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 .close:hover {
@@ -104,17 +64,11 @@ footer {
 }
 
 button {
-  display: inline-block;
-  height: 40px;
-  width: 70px;
-  border-radius: 4px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  @include button;
   border: 1px solid $grey;
   background: $black;
   color: $grey;
-  text-align: center;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 button:hover {
@@ -125,7 +79,7 @@ button:hover {
 input[type="text"], input[type="password"], input[type="email"], 
 input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder,
 select {
-  width: 100%;
+  width: $width-100;
   color: $black;
   background: $silver;
   border-radius: 4px;
@@ -140,7 +94,7 @@ select {
   padding: 10px 0 10px 0;
   display: block;
   width: 85px;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 .file-input:hover {
@@ -153,25 +107,16 @@ select {
 }
 
 /* modal css */
-
 .modal-container {
-  max-width:400px;
-  top: 30%;
-  left:25%;
-  right:25%;
-  margin:0 auto;
+  @include modal-container;
   background: $black;
   color: $silver;
   border:1px solid $silver;
-  border-radius: 4px;
-  padding: 1.5em;
-  position: fixed;
-  z-index: 1;
 }
 
 /* user-module */
 .user-wrapper {
-  width: 100%;
+  width: $width-100;
   overflow: auto;
   color: $silver;
   background: $black;
@@ -182,7 +127,7 @@ select {
 }
 
 .user-avatar {
-  cursor:pointer;
+  cursor:$cursor;
   background-size: cover;
   width: 3em;
   height: 3em;
@@ -210,7 +155,7 @@ select {
   border-radius: 50%;  
   background: $black;  
   margin-left: 0.75em;  
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 .arrow-icon:after {
@@ -252,22 +197,18 @@ select {
 }
 
 .arrow-sort {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  border-bottom: solid 10px $white;
-  border-right: solid 6px transparent;
-  border-left: solid 6px transparent;
-  transform: rotate(180deg);
+  @include arrow-sort;
 }
-.arrow-sort .empty {
-  position: absolute;
-  top: 9px;
-  left: -21px;
-  width: 0;
-  border-bottom: solid 36px $white;
-  border-right: solid 21px transparent;
-  border-left: solid 21px transparent;
+.arrow-sort {
+  .empty {
+    position: absolute;
+    top: 9px;
+    left: -21px;
+    width: 0;
+    border-bottom: solid 36px $white;
+    border-right: solid 21px transparent;
+    border-left: solid 21px transparent;
+  }
 }
 
 input.user-name, input.user-title {

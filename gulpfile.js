@@ -32,7 +32,8 @@ gulp.task('js', function() {
 
 gulp.task('scss', function() {
     return src([
-            'src/css/other/colors.scss',
+            'src/css/other/variables.scss',
+            'src/css/other/mixins.scss',
             'src/css/other/globals.scss',
             'src/css/other/nav.scss',
             'src/css/other/spinner.scss',

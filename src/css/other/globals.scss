@@ -1,18 +1,18 @@
 //global styles
-
-@import '../other/colors.scss';
+@import '../other/variables.scss';
+@import '../other/mixins.scss';
 
 html {
-  height: 100%;
+  height: $height-100;
 }
 
 nav {
-  width: 100%;
+  width: $width-100;
   padding: 5px 10px 0px 0px;
 }
 
 body {
-  height: 100%;
+  height: $height-100;
   margin: 0;
   overflow: hidden;
   background: $white;
@@ -22,21 +22,18 @@ body {
 }
 
 section {
-  width: 100%;
+  width: $width-100;
   background: $light-grey;
 }
 
 .header-container {
-  max-width:1024px !important;
-  margin:0 auto;
-  display: flex;
-  flex-direction: column;
+  @include header-container;
   background: $light-grey;
 }
 
 .login-container {
-  height:100%;
-  width:100%;
+  height:$height-100;
+  width:$width-100;
   background:$black;
   transition: 0.3s ease-in-out;
 }
@@ -124,7 +121,7 @@ input[type="file"] {
 
 #noData {
   display: flex;
-  height: 100%;
+  height: $height-100;
 }
 
 .defaultFont {
@@ -164,6 +161,12 @@ input[type="file"] {
 
 .border {
   border: 1px solid $grey;
+}
+
+.close {
+  @include close;
+  border: 2px solid $grey;
+  cursor: $cursor;
 }
 
 .margin {

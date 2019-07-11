@@ -226,7 +226,7 @@ $(window).on("load", function () {
             }
         }
         
-        //flip data list sort arrow 
+        //flip sort arrow when sort function called
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             if ($(".arrow-sort").hasClass("arrow-spin-down")) {
                 $(".arrow-sort").removeClass("arrow-spin-down");
@@ -237,7 +237,7 @@ $(window).on("load", function () {
             }
         }
 
-        // call sort function for asc and desc on click event    
+        // call sort function for asc and desc onclick event    
         if (e.target.classList[0] == "sort" || e.target.classList.contains('arrow-sort')) {
             var getStateVal = document.getElementsByClassName("sort-list")[0].id;    
             $(".sort-class").sort(function (a, b) {

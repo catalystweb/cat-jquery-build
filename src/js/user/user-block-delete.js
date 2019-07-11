@@ -12,7 +12,7 @@
         success: function (result) {
           $.each(result, function (index, data) {              
             if (userID == data.id) {
-              if (cookies == "true" && validate == data.password) {
+              if (cookies == "true" && validatepass == data.password) {
                 $(".user-mod").css("display","none");
                 $("#block-modal, .user-fail").fadeIn("fast");
                 $(".page-container").css("opacity","0.3");
@@ -87,7 +87,7 @@
           success: function (result) {
             $.each(result, function (index, data) {           
               if (secID == data.id) {      
-                if (cookies == "true" && validate == data.password) {
+                if (cookies == "true" && validatepass == data.password) {
                     $(".user-mod").css("display","none");
                     $("#block-modal, .user-fail").fadeIn("fast");
                     $(".page-container").css("opacity","0.3");

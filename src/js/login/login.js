@@ -38,8 +38,7 @@
             dataType: "json",
             success: function (result) {   
               $.each(result, function (index, data) {
-                    if (getPass == data.password) {
-                      console.log("password: " +getPass);
+                    if (getPass == data.password) { 
                           var payload = { 
                             id: data.id,
                             name: data.name,

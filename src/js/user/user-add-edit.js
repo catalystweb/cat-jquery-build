@@ -8,7 +8,6 @@
         var dataName = $("#add-name").val();
         var dataTitle = $("#add-title").val();
         var dataEmail = $("#add-email").val();
-        console.log("new value");
         if (getCustom == null) {
           var dataAvatar = $("#add-avatar option:selected").val();   
           var dataExtension = "jpg" 
@@ -52,6 +51,7 @@ function userEdit(getCustom,getCustomExt,getID) {
     } else {
       editAvatar = getCustom
       editExtension = getCustomExt
+      var fileUploaded = true;
     } 
     $.ajax({
       url: localHost,
@@ -78,9 +78,11 @@ function userEdit(getCustom,getCustomExt,getID) {
               dataType: "json",             
               contentType: "application/json",
               success: function(result) {
+                $("#add-avatar").val("");
+                $("#edit-avatar").val("");
                 $("#add-modal").fadeIn("fast");
                 $(".page-container").css("opacity","0.3");
-                userAddDel(null)
+                userAddDel(fileUploaded)
               }         
             });                    
             return false; 
@@ -165,16 +167,22 @@ $(document).on("click", function (e) {
             $('#edit-avatar').prop("disabled", false);
         }
       });
-      $("#edit-avatar").on("change", function () {  
+      $("#edit-avatar").on("change", function () {          
         if ($("#edit-avatar option").filter(":selected").text() != "Use example Avatar") {
           $(".black-icon").fadeOut("fast");
-          $("#edit-button").fadeIn("fast");
-          $("#edit-button").on("click", function () {
-            userEdit(null,null,dataID);
-          });
+          $("#edit-button").fadeIn("fast");          
         } else {
           $("#edit-button").fadeOut("fast");
         }
+      });
+      $("#edit-button").on("click", function () {
+        console.log("edit avatar ul: " +$("#edit-avatar-ul").val());
+        if ($("#edit-avatar option").filter(":selected").text() != "Use example Avatar" && $("#edit-avatar-ul").val() == "") {
+          $("#edit-button").fadeOut("fast");
+          userEdit(null,null,dataID);
+          $("#edit-button").prop("onclick", null).off("click");
+        }
+
       });   
     }  
 });

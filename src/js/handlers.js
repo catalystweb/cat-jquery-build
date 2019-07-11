@@ -95,6 +95,7 @@ $(window).on("load", function () {
 
         if (e.target.id == "add-user") {
             $(".modal-container").fadeOut("fast");
+            $("#add-avatar-ul").val('');
             $("#add-modal").fadeIn("fast");
             $(".user-mod").fadeIn("fast");
             $(".page-container").css("opacity", "0.3");

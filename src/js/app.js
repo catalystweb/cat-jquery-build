@@ -91,7 +91,6 @@ $(window).on("load", function () {
       }
       if ($(".modal-container").is(":visible")) {
           if (e.key === "Escape" && !$("#login-modal").is(":visible") && !$(".tutorial-selector").is(":visible")) {
-            console.log("inside");
             $(".modal-container").fadeOut("fast");  
             if (! $('input[type="radio').is(':radio')) {
                 $("input").val('');

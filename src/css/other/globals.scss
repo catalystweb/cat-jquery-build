@@ -79,7 +79,7 @@ section {
   padding-bottom: 10px;
 }
 .flex-inline {
-  color:darkred;
+  color:$dark-red;
   display:inline-flex;
   margin-left:20px; 
 }
@@ -133,44 +133,37 @@ input[type="file"] {
 }
 
 .offline {
-  background: lightgrey;
+  background: $light-grey;
 }
 
 .online {
-  background: green;
+  background: $green;
 }
 
 .afk {
-  background: #ea4dd3;
+  background: $hot-pink;
 }
 
 .green {
   display:flex; 
   justify-content: center; 
-  color:darkgreen; 
+  color: $dark-green; 
   font-weight: bold;
 }
 
 .silver {
-  color:silver;
-}
-
-.black-icon {
-  display:none;
-  justify-content: center;
-  color:#00173d;
-  font-weight:bold;
+  color:$silver;
 }
 
 .red {
   display:flex; 
   justify-content: center; 
-  color:darkred; 
+  color: $dark-red; 
   font-weight: bold;
 }
 
 .border {
-  border: 1px solid grey;
+  border: 1px solid $grey;
 }
 
 .margin {

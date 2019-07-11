@@ -133,6 +133,25 @@ select {
   text-indent: 10px;
 }
 
+.file-input {
+  color: $silver;
+  background: $black;
+  border-radius: 4px;
+  padding: 10px 0 10px 0;
+  display: block;
+  width: 85px;
+  cursor: pointer;
+}
+
+.file-input:hover {
+  color: $white;
+  background: $catalyst-blue;
+}
+
+.black-icon {
+  color:$silver;
+}
+
 /* modal css */
 
 .modal-container {

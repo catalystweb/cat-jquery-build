@@ -1,5 +1,6 @@
 @import '../other/variables.scss';
 @import '../other/mixins.scss';
+@import '../other/modal.scss';
 
 .page-container {
   @include page-container;
@@ -109,32 +110,6 @@ select {
   .padding {
     padding:0;
   }
-}
-
-.modal-triangle {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left:-45px;
-}
-.modal-triangle-2 {
-  width: 0px;
-  height: 0px;
-  border-right: solid 20px $grey;
-  border-bottom: solid 20px transparent;
-  border-top: solid 20px transparent;
-}
-
-.modal-welcome {
-  display: inline-flex;
-  color: $black;
-  background:$light-grey;
-  padding:1.5em;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.modal-login {
-  max-width:300px;
 }
 
 .text-center {

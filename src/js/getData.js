@@ -72,7 +72,6 @@ function getData(cookieVar,tutorialVar) {
                   }
                   if (tutorialVar != "complete") {
                     $("#welcome-modal").fadeIn("fast");
-                    $(".page-container").css("opacity","0.3");
                   }
                   $(".header-container").fadeIn("fast");
                   $(".page-container").fadeIn("slow");

@@ -35,6 +35,7 @@ gulp.task('scss', function() {
             'src/css/other/variables.scss',
             'src/css/other/mixins.scss',
             'src/css/other/globals.scss',
+            'src/css/other/modal.scss',
             'src/css/other/nav.scss',
             'src/css/other/spinner.scss',
             'src/css/other/user.scss',

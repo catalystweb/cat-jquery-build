@@ -13,6 +13,7 @@
                     if (getEmail == data.email && getPass == data.password) {
                       Cookies.set('user','true');
                       Cookies.set('validate',''+getPass+'');
+                      Cookies.set('tutorial','complete');
                       $("#login-modal").fadeOut("fast");
                       setTimeout(function() {
                         location.reload();

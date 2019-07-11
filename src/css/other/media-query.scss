@@ -75,4 +75,12 @@
       width: 120px;
       text-align: center;
     }
+
+    #welcome-modal, #welcome-search, #welcome-clickuser, #welcome-block, #welcome-final {
+      border:1px solid grey;
+    }
+
+    .modal-triangle-left-container, .modal-triangle-right-container, .modal-triangle-bottom-container {
+      display:none;
+    }
   }

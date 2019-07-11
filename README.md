@@ -7,7 +7,7 @@ From a practical standpoint the aim was to demonstrate competency in the usage o
 Requires Node.js
 1. Clone the repository (https://github.com/catalystweb/app-demo.git)
 2. Run the application (npm run start)
-3. Skip the initial login screen (x) (you may login at anyone, once you have created a test user)
-4. Follow tutorial 
+3. Skip the initial login screen (x) , (you may login at anyone, once you have created a test user)
+4. Follow the tutorial 
 
 Developed by Daniel Kandilas

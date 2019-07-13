@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "jquery": "3.4.1",
+    "lodash": "^4.17.14",
     "open": "^6.4.0",
     "sass": "^1.22.4"
   },

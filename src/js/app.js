@@ -52,7 +52,7 @@ $(window).on("load", function () {
         $("#logout-button").fadeIn("fast"); 
         $("#logout-button").on("click", function() {
           $("#logout-modal").fadeOut("fast");
-          login(null,validate,true);
+          login(null,validatepass,true);
         });                 
     }   
 

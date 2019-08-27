@@ -1,4 +1,3 @@
-console.log("login.js loaded");
   function login(getEmail,getPass,getLogout) {
     //jquery click listener for login modal
       var localHost = "http://localhost:1352/users/"; 

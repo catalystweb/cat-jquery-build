@@ -1,4 +1,3 @@
-console.log("user-add-del-success.js loaded"); 
   //show user add or delete successfully modal 
   function userAddDel(fileupload) {
       $(".user-mod").css("display","none");

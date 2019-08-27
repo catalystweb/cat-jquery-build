@@ -1,4 +1,3 @@
-console.log("upload.js loaded");
 //upload avatar file via ajax 
   var Upload = function (file) {
     this.file = file;

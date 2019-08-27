@@ -1,3 +1,4 @@
+console.log("getData.js loaded");
 function getData(cookieVar,tutorialVar) {
     var localHost = "http://localhost:1352/users/";
     //hide any existing modal 

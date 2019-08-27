@@ -1,11 +1,14 @@
+console.log("cookies.js loaded");
   var cookies = Cookies.get('user');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
-  var validatepass = Cookies.get('validate');
+  var validatepass = Cookies.get('validatepass');
   var fileuploaded = Cookies.get('fileuploaded');
   var tutorial = Cookies.get('tutorial');
   var path = "css/";
   
+  console.log("tutorial cookie: " +tutorial);
+  console.log("validate pass: " +validatepass);
   if (cookies == 'true') {
       if (theme == "dark") {
         $("#dark").prop("checked",true);

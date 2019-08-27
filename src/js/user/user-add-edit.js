@@ -1,5 +1,6 @@
  //add data from submit button to json source
-  function userAdd(getCustom,getCustomExt) {
+ console.log("user-add-edit.js loaded"); 
+ function userAdd(getCustom,getCustomExt) {
     var localHost = "http://localhost:1352/users/";     
     //add new record to json data         
       function getRandomInt() {

@@ -1,5 +1,6 @@
 //=require jquery.js
 
+console.log("app.js loaded");
 $(window).on("load", function () {    
   //onblur event handler callback for editable input
   $(document).on("blur", ".user-name, .user-title", function() { 

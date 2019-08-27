@@ -1,3 +1,4 @@
+console.log("handlers.js loaded");
 $(window).on("load", function () {
     //logo hover event handler 
     $(".logo").hover(function () {

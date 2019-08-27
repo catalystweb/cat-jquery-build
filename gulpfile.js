@@ -77,7 +77,7 @@ gulp.task('browser-sync', function() {
         callbacks: {
             ready: function(err, bs) {
                 console.log("----------------------------------");
-                console.log("[\x1b[31m v0.4 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
+                console.log("[\x1b[31m v0.5 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
                 console.log("----------------------------------");
             }
         },

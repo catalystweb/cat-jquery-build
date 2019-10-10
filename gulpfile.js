@@ -88,4 +88,4 @@ gulp.task('browser-sync', function() {
 gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
-gulp.task('deploy', gulp.parallel('js', 'scss', 'themes', 'html', 'watch', 'browser-sync'));
+gulp.task('deploy', gulp.parallel('js', 'scss', 'themes', 'html', 'browser-sync'));

@@ -6,7 +6,7 @@
   "scripts": {
     "local": "npm run dev",
     "dev": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp local\"",
-    "start": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp local\"",
+    "start": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp deploy\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run start"
   },
   "dependencies": {

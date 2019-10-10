@@ -97,11 +97,13 @@ gulp.task('webserver', function() {
     console.log("----------------------------------");
     console.log("[\x1b[31m v0.5 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
     console.log("----------------------------------");
-    document()
 });
 
 //local build
 gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
-gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html','webserver'));
+gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html'));
+
+//server
+gulp.task('server', gulp.series('webserver'));

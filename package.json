@@ -6,7 +6,7 @@
   "scripts": {
     "local": "npm run build",
     "prod": "npm run start",
-    "start": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json\" \"gulp deploy\""
+    "start": "concurrently \"json-server --watch src/json/userdata.json\" \"gulp deploy\""
   },
   "dependencies": {
     "jquery": "3.4.1",

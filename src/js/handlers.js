@@ -89,8 +89,9 @@ $(window).on("load", function () {
 
         if (e.target.id == "gotit4-button") {
             $(".modal-container").fadeOut("fast");
-            $("div, span, button, footer").removeClass("highlighter");
+            $("div, span, button, footer, label").removeClass("highlighter");
             tutorial = Cookies.set('tutorial','complete');
+            getData(null,"complete");
         }
 
         if (e.target.id == "add-user") {

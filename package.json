@@ -6,7 +6,9 @@
   "scripts": {
     "local": "npm run build",
     "prod": "npm run start",
-    "start": "concurrently \"json-server --watch src/json/userdata.json\" \"gulp deploy\""
+    "build": "concurrently \"json-server --watch src/json/userdata.json\" \"gulp deploy\"",
+    "start": "concurrently \"json-server --watch src/json/userdata.json\" \"gulp deploy\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run start"
   },
   "dependencies": {
     "jquery": "3.4.1",

@@ -81,7 +81,6 @@ gulp.task('browser-sync', function() {
                 console.log("----------------------------------");
             }
         },
-        port:1350,
         ui: false
     });
 });
@@ -89,4 +88,4 @@ gulp.task('browser-sync', function() {
 gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
-gulp.task('deploy', gulp.parallel('js', 'scss', 'themes', 'html'));
+gulp.task('deploy', gulp.parallel('js', 'scss', 'themes', 'html', 'watch', 'browser-sync'));

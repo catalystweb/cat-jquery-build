@@ -10,8 +10,10 @@
   "dependencies": {
     "jquery": "3.4.1",
     "lodash": "^4.17.15",
+    "mixin-deep": "^2.0.1",
     "open": "^6.4.0",
-    "sass": "^1.23.0"
+    "sass": "^1.23.0",
+    "set-value": "^3.0.1"
   },
   "nodemonConfig": {
     "ext": "css,js,html"
@@ -19,9 +21,9 @@
   "devDependencies": {
     "@babel/core": "^7.6.3",
     "@babel/preset-env": "^7.6.3",
-    "@types/json-server": "0.14.0",
+    "@types/json-server": "^0.14.2",
     "browser-sync": "^2.26.7",
-    "concurrently": "^4.1.2",
+    "concurrently": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",

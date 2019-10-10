@@ -69,16 +69,18 @@ $(window).on("load", function () {
           $(".user-success").fadeOut("fast");
           $(".content-wrapper").css("display","none");
           $("footer").css("display","none");
-          getData(cookies,tutorial);
+          getData(cookies,"complete");
           getDelData();
           getBlockData();
-
-        } else {  
+        }
+        if (!$("#login-modal").is(":visible")) {  
+          getData(cookies,"complete");
+        } else {
           $(".user-success").fadeOut("fast");
           getData(cookies,tutorial);
           getDelData();
-          getBlockData();
-        }     
+          getBlockData();         
+        }
     }
 
     //key function if menu open close during filter function
@@ -101,10 +103,10 @@ $(window).on("load", function () {
     
             } else {  
               $(".user-success").fadeOut("fast");
-              getData(cookies,tutorial);
+              getData(cookies,"complete");
             }
           }
-        }
+      }       
     });            
   });
 });

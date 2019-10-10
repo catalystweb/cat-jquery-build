@@ -66,7 +66,7 @@
   } else {       
     if (fileuploaded == 'true') {
       $(".side-menu-wrapper").css("height","141px");
-      getData(null,tutorial);
+      getData(cookies,tutorial);
     } else {  
       $(".side-menu-wrapper").css("height","141px");
       $("#login-modal").fadeIn("fast");

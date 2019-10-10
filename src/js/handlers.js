@@ -91,7 +91,7 @@ $(window).on("load", function () {
             $(".modal-container").fadeOut("fast");
             $("div, span, button, footer, label").removeClass("highlighter");
             tutorial = Cookies.set('tutorial','complete');
-            getData(null,"complete");
+            getData(cookies,"complete");
         }
 
         if (e.target.id == "add-user") {

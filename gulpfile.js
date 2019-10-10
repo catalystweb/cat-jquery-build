@@ -1,5 +1,6 @@
 var { src, dest } = require('gulp');
 var gulp = require('gulp');
+connect = require('gulp-connect');
 var include = require('gulp-include');
 var concat = require('gulp-concat');
 var uglify = require("gulp-uglify")
@@ -58,7 +59,8 @@ gulp.task('themes', function() {
 gulp.task('html', function() {
     return src('*.html')
       .pipe(concat('app.html'))
-      .pipe(dest('app/'));
+      .pipe(dest('app/'))
+      .pipe(connect.reload());
 });
 
 gulp.task('watch', function(){
@@ -85,8 +87,20 @@ gulp.task('browser-sync', function() {
         ui: false
     });
 });
+
+gulp.task('webserver', function() {
+    connect.server({
+        root: 'app',
+        port: 1488,
+        index: "app.html",
+    });
+    console.log("----------------------------------");
+    console.log("[\x1b[31m v0.5 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
+    console.log("----------------------------------");
+});
+
 //local build
 gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
-gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html'));
+gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html','webserver'));

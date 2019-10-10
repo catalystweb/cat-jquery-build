@@ -104,4 +104,4 @@ gulp.task('webserver', function() {
 gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
-gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html'));
+gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html','webserver'));

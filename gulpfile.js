@@ -105,4 +105,4 @@ gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browse
 gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html'));
 
 //server
-gulp.task('server', gulp.series('webserver'));
+//gulp.task('server', gulp.series('webserver'));

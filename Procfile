@@ -1,1 +1,1 @@
-web: gulp prod && npm run jsony
+web: gulp prod && npm run json

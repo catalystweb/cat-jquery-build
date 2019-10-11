@@ -91,7 +91,6 @@ gulp.task('browser-sync', function() {
 gulp.task('webserver', function() {
     connect.server({
         root: 'app',
-        port: 1488,
         index: "app.html",
     });
     console.log("----------------------------------");

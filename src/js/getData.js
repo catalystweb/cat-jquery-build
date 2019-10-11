@@ -1,7 +1,3 @@
-var getURL = window.location.href;
-var localHost = getURL+"users/";
-console.log(localHost);
-
 function getData(cookieVar,tutorialVar) {
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {

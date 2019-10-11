@@ -1,6 +1,5 @@
  //add data from submit button to json source
- function userAdd(getCustom,getCustomExt) {
-    var localHost = "http://localhost:1352/users/";     
+ function userAdd(getCustom,getCustomExt) {    
     //add new record to json data         
       function getRandomInt() {
         return Math.floor(Math.random() * Math.floor(99999));
@@ -43,7 +42,6 @@
 }
 
 function userEdit(getCustom,getCustomExt,getID) {
-  var localHost = "http://localhost:1352/users/"; 
   //update json data with new avatar value 
     if (getCustom == null) {
       var editAvatar = $("#edit-avatar option:selected").val();   

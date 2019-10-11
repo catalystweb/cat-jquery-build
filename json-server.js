@@ -5,5 +5,5 @@ const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 1352;
 server.use(middlewares);
 server.use(router);
-server.listen(1352);
-console.log("json server working on port " +1352);
+server.listen(port);
+console.log("json server working on port " +port);

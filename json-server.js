@@ -5,7 +5,7 @@ const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 1352;
 server.use(middlewares);
 server.use(router);
-server.listen(port);
+server.listen(1352);
 console.log("----------------------------------");
 console.log("[\x1b[31m v0.5 Catalyst App \x1b[37m] \- \x1b[32mdeveloped by Daniel Kandilas");
 console.log("----------------------------------");

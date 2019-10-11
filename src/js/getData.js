@@ -1,4 +1,6 @@
-var localHost = "http://localhost:1352/users/";
+var getURL = window.location.href;
+var localHost = getURL+"users/";
+console.log(localHost);
 
 function getData(cookieVar,tutorialVar) {
     //hide any existing modal 

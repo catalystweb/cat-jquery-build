@@ -10,6 +10,6 @@ Requires <a href="https://nodejs.org/en/">Node.js</a>
 3. Skip the initial login screen (x) , (you may login at anytime, once you have created a test user)
 4. Follow the tutorial 
 
-*This app has now gone live you may view the deployed version <a href="https://catalystweb.herokuapp.com">here</a>
+<b>This app has now gone live you may view the deployed version <a href="https://catalystweb.herokuapp.com">here</a></b>
 
 Developed by Daniel Kandilas

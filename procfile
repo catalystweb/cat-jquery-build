@@ -1,1 +1,1 @@
-web: npm run prod && npm run server
+web: npm run prod && node src/js/server.js

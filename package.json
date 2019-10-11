@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "local": "npm run dev",
+    "local": "npm run start",
     "dev": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp local\"",
     "json": "node json-server.js",
-    "prod": "concurrently \"gulp prod\" \"npm run json\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run prod"
+    "start": "concurrently \"gulp prod\" \"npm run json\""
   },
   "dependencies": {
     "jquery": "3.4.1",

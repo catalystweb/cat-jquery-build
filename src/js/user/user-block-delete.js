@@ -1,6 +1,5 @@
   //onclick event handler for api interactions
   $(document).on("click", function (e) {
-    var localHost = "http://localhost:1352/users/";
     
     //delete user from json source
     if (e.target.id == "del-button") {

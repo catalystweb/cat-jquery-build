@@ -23,7 +23,6 @@
         $("header").removeClass("slideDown");
       }
       if (validatepass != null) {
-        var localHost = "http://localhost:1352/users/";
             $.ajax({
                 url: localHost,
                 cache: false,

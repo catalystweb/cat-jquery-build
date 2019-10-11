@@ -1,6 +1,5 @@
   //update json data when display values changed  
   function userDirectEdit(getClass,getText,getID) {
-      var localHost = "http://localhost:1352/users/";
       
       //update json data with new name value
       if (getClass == "user-name") {

@@ -1,9 +1,7 @@
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('src/json/userdata.json');
-const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 5000;
-server.use(middlewares);
-server.use(router);
+var express = require('express');
+var serveStatic = require('serve-static')
+var server = express();
+var port = process.env.PORT || 1488;
+server.use(serveStatic('app/', { 'index': ['app.html'] }))
 server.listen(port);
-console.log("json server working on port " +port);
+console.log("expressjs server working on port " +port);

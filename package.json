@@ -6,8 +6,9 @@
   "scripts": {
     "local": "npm run dev",
     "dev": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp local\"",
-    "prod": "gulp prod && node server.js",
-    "server": "node src/js/server.js"
+    "json": "node json-server.js",
+    "server": "node server.js",
+    "prod": "concurrently \"gulp prod\"  \"npm run server\" \"npm run json\""
   },
   "dependencies": {
     "jquery": "3.4.1",
@@ -38,6 +39,7 @@
     "js-cookie": "^2.2.1",
     "json-server": "^0.15.1",
     "node-sass": "^4.12.0",
+    "serve-static": "^1.14.1",
     "sleep-ms": "^2.0.1",
     "upload-server": "^1.1.6"
   },

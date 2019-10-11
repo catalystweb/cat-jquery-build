@@ -1,3 +1,4 @@
+//this is for deployment to heroku only
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('src/json/userdata.json');

@@ -1,3 +1,4 @@
+//this is for deployment to heroku only
 var express = require('express');
 var serveStatic = require('serve-static')
 var server = express();

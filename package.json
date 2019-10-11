@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "local": "npm run build",
     "prod": "npm run start",
-    "build": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp local\"",
-    "start": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp deploy\""
+    "dev": "concurrently \"upload-server --folder src/img --port 1350\" \"gulp dev\" \"npm run json\"",
+    "json": "node json-server.js",
+    "start": "gulp prod && npm run json"
   },
   "dependencies": {
     "jquery": "3.4.1",
@@ -30,6 +30,7 @@
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
     "gulp-include": "^2.4.1",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
@@ -37,6 +38,7 @@
     "js-cookie": "^2.2.1",
     "json-server": "^0.15.1",
     "node-sass": "^4.12.0",
+    "serve-static": "^1.14.1",
     "sleep-ms": "^2.0.1",
     "upload-server": "^1.1.6"
   },

@@ -1,0 +1,1 @@
+web: gulp prod && npm run json

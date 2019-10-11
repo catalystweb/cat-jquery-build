@@ -1,3 +1,10 @@
+  
+  var getURL = window.location.href;
+  if (getURL.indexOf("localhost") >-1) {
+    var localHost = "http://localhost:1488/users/";
+  } else {
+    var localHost = getURL+"users/";
+  }  
   var cookies = Cookies.get('user');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
@@ -23,7 +30,6 @@
         $("header").removeClass("slideDown");
       }
       if (validatepass != null) {
-        var localHost = "http://localhost:1352/users/";
             $.ajax({
                 url: localHost,
                 cache: false,

@@ -27,7 +27,7 @@ gulp.task('js', function() {
         .pipe(include())
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(dest('app/js'))
+        .pipe(dest('public/js'))
 }); 
 
 gulp.task('scss', function() {
@@ -45,20 +45,20 @@ gulp.task('scss', function() {
       .pipe(sass().on('error', sass.logError))
       .pipe(concat('app.min.css'))
       .pipe(minify())
-      .pipe(dest('app/css'));
+      .pipe(dest('public/css'));
 });
 
 gulp.task('themes', function() {
     return src('src/css/themes/*.scss')
       .pipe(sass().on('error', sass.logError))
       .pipe(minify())
-      .pipe(dest('app/css'));
+      .pipe(dest('public/css'));
 });
 
 gulp.task('html', function() {
     return src('*.html')
-      .pipe(concat('app.html'))
-      .pipe(dest('app/'));
+      .pipe(concat('index.html'))
+      .pipe(dest('public/'))
 });
 
 gulp.task('watch', function(){
@@ -71,8 +71,8 @@ gulp.task('watch', function(){
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "app",
-            index: "app.html"
+            baseDir: "public",
+            index: "index.html"
         },   
         callbacks: {
             ready: function(err, bs) {
@@ -81,12 +81,14 @@ gulp.task('browser-sync', function() {
                 console.log("----------------------------------");
             }
         },
-        port:1350,
+        open: true,
+        port: 1352,
         ui: false
     });
 });
+
 //local build
-gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
+gulp.task('dev', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
-gulp.task('deploy', gulp.parallel('js', 'scss', 'themes', 'html'));
+gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html'));

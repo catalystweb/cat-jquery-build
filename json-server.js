@@ -1,3 +1,4 @@
+//json-server servers public folder by default - do not change source location
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('src/json/userdata.json');

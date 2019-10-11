@@ -81,13 +81,13 @@ gulp.task('browser-sync', function() {
                 console.log("----------------------------------");
             }
         },
-        open: false,
+        open: true,
         ui: false
     });
 });
 
 //local build
-gulp.task('local', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
+gulp.task('dev', gulp.parallel('js', 'scss', 'themes', 'html', 'watch','browser-sync'));
 
 //deployment
 gulp.task('prod', gulp.parallel('js', 'scss', 'themes', 'html'));

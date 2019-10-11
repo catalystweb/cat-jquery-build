@@ -1,6 +1,5 @@
   var getURL = window.location.href;
   var localHost = getURL+"users/";
-  console.log(localHost);
  
   var cookies = Cookies.get('user');
   var theme = Cookies.get('theme');

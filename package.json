@@ -7,7 +7,6 @@
     "local": "npm run dev",
     "dev": "concurrently \"upload-server --folder app/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp local\"",
     "json": "node json-server.js",
-    "server": "node server.js",
     "prod": "concurrently \"gulp prod\" \"npm run json\""
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 //deploy path
 var localHost = "https://catalystweb.herokuapp.com:1352/users/"
 //local path
-var localHost = "http://localhost:1352/users/";
+//var localHost = "http://localhost:1352/users/";
 
 function getData(cookieVar,tutorialVar) {
     //var localHost = "http://localhost:1352/users/";

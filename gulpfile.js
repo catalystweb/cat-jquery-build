@@ -27,7 +27,7 @@ gulp.task('js', function() {
         .pipe(include())
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(dest('app/js'))
+        .pipe(dest('public/js'))
 }); 
 
 gulp.task('scss', function() {
@@ -45,20 +45,20 @@ gulp.task('scss', function() {
       .pipe(sass().on('error', sass.logError))
       .pipe(concat('app.min.css'))
       .pipe(minify())
-      .pipe(dest('app/css'));
+      .pipe(dest('public/css'));
 });
 
 gulp.task('themes', function() {
     return src('src/css/themes/*.scss')
       .pipe(sass().on('error', sass.logError))
       .pipe(minify())
-      .pipe(dest('app/css'));
+      .pipe(dest('public/css'));
 });
 
 gulp.task('html', function() {
     return src('*.html')
       .pipe(concat('app.html'))
-      .pipe(dest('app/'))
+      .pipe(dest('public/'))
 });
 
 gulp.task('watch', function(){

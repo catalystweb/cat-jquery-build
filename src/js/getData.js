@@ -1,10 +1,6 @@
-//deploy path
-var localHost = "https://catalystweb.herokuapp.com:1352/users/"
-//local path
-//var localHost = "http://localhost:1352/users/";
+var localHost = "http://localhost:1352/users/";
 
 function getData(cookieVar,tutorialVar) {
-    //var localHost = "http://localhost:1352/users/";
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {
         $("#del-modal").fadeOut("fast");
@@ -99,7 +95,6 @@ function getData(cookieVar,tutorialVar) {
 
   //display json data source for block list
   function getBlockData() {
-    //var localHost = "http://localhost:1352/users/";
     var userBlock = "<option value=''>Select blocked user from list</option>";   
 
     $.ajax({
@@ -128,7 +123,6 @@ function getData(cookieVar,tutorialVar) {
 
   //display json data source for delete list
   function getDelData() {
-    //var localHost = "http://localhost:1352/users/";
     var userDel =
       "<option value='' selected='true'>Select user from list</option>";
 

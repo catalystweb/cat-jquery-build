@@ -24,7 +24,7 @@
         console.log("sanitised name: " +getFileNameStripped);
         $.ajax({
             type: "POST",
-            url: "http://localhost:1355/",
+            url: localHost,
             async: true,
             data: fileData,
             cache: false,

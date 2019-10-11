@@ -57,7 +57,7 @@ gulp.task('themes', function() {
 
 gulp.task('html', function() {
     return src('*.html')
-      .pipe(concat('app.html'))
+      .pipe(concat('index.html'))
       .pipe(dest('public/'))
 });
 
@@ -71,8 +71,8 @@ gulp.task('watch', function(){
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "app",
-            index: "app.html"
+            baseDir: "public",
+            index: "index.html"
         },   
         callbacks: {
             ready: function(err, bs) {
@@ -82,6 +82,7 @@ gulp.task('browser-sync', function() {
             }
         },
         open: true,
+        port: 1352,
         ui: false
     });
 });

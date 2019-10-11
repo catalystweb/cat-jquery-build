@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "local": "npm run start",
-    "dev": "concurrently \"upload-server --folder public/img --port 1355\" \"json-server --watch src/json/userdata.json --port 1352\" \"gulp dev\"",
+    "prod": "npm run start",
+    "dev": "concurrently \"upload-server --folder src/img --port 1350\" \"gulp dev\" \"npm run json\"",
     "json": "node json-server.js",
     "start": "gulp prod && npm run json"
   },

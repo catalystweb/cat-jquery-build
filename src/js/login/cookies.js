@@ -1,6 +1,10 @@
+  
   var getURL = window.location.href;
-  var localHost = getURL+"users/";
- 
+  if (getURL.indexOf("localhost") >-1) {
+    var localHost = "http://localhost:1488/users/";
+  } else {
+    var localHost = getURL+"users/";
+  }  
   var cookies = Cookies.get('user');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');

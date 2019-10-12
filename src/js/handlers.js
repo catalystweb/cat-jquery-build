@@ -14,8 +14,7 @@ $(window).on("load", function () {
         $(this).next("span").children("i").css("display","inline-block").animate({"margin-left":"20px"}, 200);
         $(this).next("span").children("i").fadeOut("fast");
         return false;
-    });
-  
+    }); 
  
     //jquery global click event handler
     $(document).on("click", function(e) {

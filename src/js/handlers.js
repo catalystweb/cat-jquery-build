@@ -15,6 +15,7 @@ $(window).on("load", function () {
         $(this).next("span").children("i").fadeOut("fast");
         return false;
     });
+  
  
     //jquery global click event handler
     $(document).on("click", function(e) {
@@ -220,6 +221,17 @@ $(window).on("load", function () {
                 $("#del-button").fadeIn("fast");
             } else {
                 $("#del-button").fadeOut("fast");
+            }
+        }
+
+        if (e.target.classList[0] == "arrow-icon") {
+            console.log($(".side-menu-wrapper").css("margin-left"));
+            if ($(".side-menu-wrapper").css("margin-left") == "0px") {
+                setTimeout(function () {
+                $(".side-menu-wrapper").css("display","none");
+                },400);
+            } else {
+                $(".side-menu-wrapper").css("display","flex");
             }
         }
 

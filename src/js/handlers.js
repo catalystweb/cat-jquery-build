@@ -223,17 +223,20 @@ $(window).on("load", function () {
                 $("#del-button").fadeOut("fast");
             }
         }
-
-        if (e.target.classList[0] == "arrow-icon") {
+        
+        //hide slide menu display once out of view and transition complete
+        if ($('#swMenu').is(":checked")) {
             console.log($(".side-menu-wrapper").css("margin-left"));
-            if ($(".side-menu-wrapper").css("margin-left") == "0px") {
+            if ($(".side-menu-wrapper").css("margin-left") >= "1px" && $(".side-menu-wrapper").hasClass("slideOut")) {
                 setTimeout(function () {
                 $(".side-menu-wrapper").css("display","none");
                 },400);
             } else {
                 $(".side-menu-wrapper").css("display","flex");
             }
-        }
+        } else {
+            $(".side-menu-wrapper").css("display","none");
+        }        
 
         //menu arrow direction spin 
         if (e.target.classList[0] == "arrow-icon") {

@@ -71,10 +71,10 @@
         } 
   } else {       
     if (fileuploaded == 'true') {
-      $(".side-menu-wrapper").css("height","141px");
+      //$(".side-menu-wrapper").css("height","141px");
       getData(cookies,tutorial);
     } else {  
-      $(".side-menu-wrapper").css("height","141px");
+      //$(".side-menu-wrapper").css("height","141px");
       $("#login-modal").fadeIn("fast");
     }
   }  

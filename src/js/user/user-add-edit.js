@@ -123,9 +123,11 @@ $(document).on("click", function (e) {
     //add user submit button 
     if (e.target.id == "add-button") {
       if ($("#add-avatar option").filter(":selected").text() != "Use example Avatar") {
-        $("#add-avatar-ul").val('');
+        $("#add-avatar-ul").val('');        
         userAdd();
-      }    
+      } else {
+        userAdd();
+      }   
     }
 
     //hide show custom avatar button 

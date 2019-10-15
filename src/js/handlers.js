@@ -53,6 +53,12 @@ $(window).on("load", function () {
             $("#change-theme").fadeOut("fast");
             $(".page-container").css("opacity", "1");
         }         
+
+        if (e.target.classList[0] == "current-user") {
+            if ($(".current-user").text() == "*Click here for the tutorial**Click here for the tutorial*") {
+                $("#welcome-modal").fadeIn("fast");
+            }
+        }
         
         //modal display window
         if (e.target.id == "ok-button") {

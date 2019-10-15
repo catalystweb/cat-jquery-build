@@ -4,7 +4,8 @@
     var localHost = "http://localhost:1488/users/";
   } else {
     var localHost = getURL+"users/";
-  }  
+  }
+  
   var cookies = Cookies.get('user');
   var theme = Cookies.get('theme');
   var menu = Cookies.get('menu');
@@ -12,6 +13,12 @@
   var fileuploaded = Cookies.get('fileuploaded');
   var tutorial = Cookies.get('tutorial');
   var path = "css/";
+
+  if (!tutorial) {
+    var currentUser = "";
+    currentUser += "<li class='current-user' style='cursor:pointer;color:darkred;font-weight:bold;'>*Click here for the tutorial*</li>";
+    $(".current-user").replaceWith(currentUser); 
+  }
 
   if (cookies == 'true') {
       if (theme == "dark") {

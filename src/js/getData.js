@@ -1,3 +1,8 @@
+function tutorial() {
+  console.log("tutorial click fired");
+  $("#welcome-modal").fadeIn("fast");
+};
+
 function getData(cookieVar,tutorialVar) {
     //hide any existing modal 
     if ($(".modal-container").is(":visible")) {
@@ -68,9 +73,6 @@ function getData(cookieVar,tutorialVar) {
                     $("li#log-in").css("display","none");
                   } else {
                     $("li#log-out").css("display","none");
-                  }
-                  if (tutorialVar != "complete") {
-                    $("#welcome-modal").fadeIn("fast");
                   }
                   $(".header-container").fadeIn("fast");
                   $(".page-container").fadeIn("slow");

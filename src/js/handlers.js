@@ -176,8 +176,8 @@ $(window).on("load", function () {
             });
             //regex function to validate email            
             $(this).on("input", function () {  
-                $("#add-modal input[type='email'], #add-modal input[type='password']").bind("keyup change", function () {
-                    if ($("#add-email").val() != "" && $("#add-password").val() != "") {
+                $("#add-modal input[type='email'], #add-modal input[type='text']").bind("keyup change", function () {
+                    if ($("#add-email").val() != "" && $("#add-name").val() != "" && $("#add-title").val() != "") {
                         var email = $("#add-email").val();
                         if (validateEmail(email)) {
                           $("button").prop("disabled", false);

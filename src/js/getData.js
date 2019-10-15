@@ -19,6 +19,7 @@ function getData(cookieVar,tutorialVar) {
     $("select").val('');
     $("#edit-avatar-ul").val('');
     $("#add-avatar-ul").val('');
+    $(document).removeClass("highlighter");
     $("#checkbox-state").prop("checked",false);
     if (!$('#swMenu').is(":checked")) { 
         $('input[type=checkbox]').prop('checked',false);

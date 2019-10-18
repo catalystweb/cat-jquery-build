@@ -7,7 +7,7 @@ From a practical standpoint the aim was to demonstrate competency in the usage o
 <i>Requires <a href="https://nodejs.org/en/" target="_blank">Node.js</a></i>
 
 1. Clone the repository <a href="https://github.com/catalystweb/app-demo.git" target="_blank">here</a>
-2. Run the application (npm run start)
+2. Run the application (npm run dev)
 3. Skip the initial login screen (x) , (you may login at anytime, once you have created a test user)
 4. Follow the tutorial 
 
